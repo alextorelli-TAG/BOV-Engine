@@ -1,0 +1,13 @@
+{
+  "order": [
+    {
+      "plate": 1,
+      "photo": "C:/Users/ATorelli/OneDrive - Marcus & Millichap/Documents/Claude/tag-bov-engine/YE 2025 BOV Template 4.27.26/Links/Template1_Cover1.jpg",
+      "focal": [0.5, 0.5],
+      "data": {
+        "property_name": "Property Name Goes Here",
+        "address": "123 Main Street, Miami Beach, FL 00000"
+      }
+    }
+  ]
+}

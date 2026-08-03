@@ -120,12 +120,27 @@ def place(c, path, box, focal, dpi=200):
 ASSETS = os.path.join(ROOT, 'assets')
 
 
-def stamp_icon(c, name, box):
-    """Draw a brand pictogram PNG (transparent bg) at an exact box."""
+def stamp_icon(c, name, box, fit=False):
+    """Draw a transparent PNG at `box`. With fit=True, scale to fit inside the
+    box preserving aspect ratio, centred (used for logos so they don't stretch);
+    otherwise stretch to fill (used for pictograms/scrims sized to their clip)."""
     p = os.path.join(ASSETS, name)
-    if os.path.exists(p):
-        c.drawImage(p, box[0], ry(box[3]), box[2] - box[0], box[3] - box[1],
-                    mask='auto')
+    if not os.path.exists(p):
+        return
+    x0, top, x1, bot = box
+    w, h = x1 - x0, bot - top
+    if fit:
+        iw, ih = ImageReader(p).getSize()
+        asp = iw / ih
+        if w / h > asp:                     # box wider than image -> fit height
+            nw = h * asp
+            x0 += (w - nw) / 2
+            w = nw
+        else:                               # box taller -> fit width
+            nh = w / asp
+            top += (h - nh) / 2
+            h = nh
+    c.drawImage(p, x0, ry(top + h), w, h, mask='auto')
 
 
 # ------------------------------------------------------------ draw helpers
@@ -614,6 +629,80 @@ def _chart_block(c, dy, block):
         cell_text(c, x0, x1, 306.87 + dy, tot.get(key), 'FRL', 9, ink, align)
 
 
+TOC_SECTIONS = ['Marcus & Millichap Advantage', 'Advisor Bios', 'Marketing Plan',
+                'Investment Overview', 'Financial Analysis', 'Sale Comparables',
+                'Rent Comparables', 'Market Overview']
+
+
+def build_plate4(c, d, photo=None, focal=(0.5, 0.5)):
+    """Table of Contents: left photo + section list. Generated last, so the
+    sections list reflects which survived selection (renumbered 1..N)."""
+    navy, orange = hexcol(C['navy']), hexcol(C['orange'])
+    grey = (0.69, 0.718, 0.737)
+
+    if photo and os.path.exists(photo):
+        place(c, photo, [0.0, 0.0, 360.0, 612.0], focal)
+    else:
+        fill_box(c, [0.0, 0.0, 360.0, 612.0], navy)
+
+    cell_text(c, 432.0, 0, 71.28, 'TABLE OF CONTENTS', 'FRL-Med', 18, navy,
+              'left', pad=0, track=2.5)
+    hrule(c, 432.0, 96.0, 720.0, 3.0, navy)
+
+    sections = d.get('sections', TOC_SECTIONS)
+    for i, sec in enumerate(sections[:8]):
+        top = 117.77 + i * 51.14
+        title = sec.get('title') if isinstance(sec, dict) else sec
+        num = sec.get('num', i + 1) if isinstance(sec, dict) else i + 1
+        cell_text(c, 432.0, 0, top, f'SECTION {num}', 'FRL', 9, orange, 'left',
+                  pad=0, track=0.9)
+        cell_text(c, 432.0, 0, top + 12.94, title, 'FRL-Bold', 11, navy, 'left', pad=0)
+        if i < len(sections) - 1:
+            hrule(c, 432.0, 148.4 + i * 51.14, 720.0, 0.25, navy)
+
+    hrule(c, 0.0, 594.1, 360.0, 1.0, grey)
+    hrule(c, 360.0, 594.1, 792.0, 1.0, navy)
+    stamp_icon(c, 'brand/mm_logo_navy.png', [432.0, 544.3, 572.0, 563.5], fit=True)
+
+
+def build_plate1(c, d, photo=None, focal=(0.5, 0.5)):
+    """Cover: full-bleed property photo + navy scrim, PROPOSAL bar, title/
+    address, and the Marcus & Millichap logo box."""
+    navy, orange = hexcol(C['navy']), hexcol(C['orange'])
+
+    if photo and os.path.exists(photo):
+        place(c, photo, [0.0, 0.0, 792.0, 612.0], focal)
+    else:
+        fill_box(c, [0.0, 0.0, 792.0, 612.0], navy)
+
+    stamp_icon(c, 'cover_scrim.png', [0.0, 0.0, 792.0, 153.4])
+
+    # left PROPOSAL bar (orange cap + navy) with rotated label
+    fill_box(c, [0.0, 0.0, 22.3, 5.4], orange)
+    fill_box(c, [0.0, 5.4, 22.3, 225.0], navy)
+    c.saveState()
+    c.translate(15.4, ry(216.0))
+    c.rotate(90)
+    t = c.beginText(0, 0)
+    t.setFont('FRL', 9)
+    t.setFillColorRGB(1, 1, 1)
+    t.setCharSpace(2.2)
+    t.textOut('PROPOSAL')
+    c.drawText(t)
+    c.restoreState()
+
+    # title + address (white)
+    cell_text(c, 54.0, 0, 41.84, d.get('property_name', d.get('property', '')),
+              'FRL', 40, (1, 1, 1), 'left', pad=0)
+    cell_text(c, 54.0, 0, 102.74, d.get('address', ''), 'FRL-Med', 14,
+              (1, 1, 1), 'left', pad=0)
+
+    # bottom logo box (orange cap + navy) + white M&M logo
+    fill_box(c, [310.5, 554.4, 481.5, 558.0], orange)
+    fill_box(c, [310.5, 558.0, 481.5, 612.0], navy)
+    stamp_icon(c, 'brand/mm_logo_white.png', [320.0, 571.5, 470.0, 596.5], fit=True)
+
+
 def build_plate44(c, d, photo=None, focal=(0.5, 0.5)):
     """Rent Comps Charts — two stacked comp blocks per page."""
     running_head(c, 'RENT COMPS CHARTS // ', d.get('property', 'SUBJECT PROPERTY'))
@@ -681,7 +770,8 @@ def wrap(c, text, font, size, measure):
     return lines
 
 
-BUILDERS = {25: build_plate25, 35: build_plate35, 41: build_plate41,
+BUILDERS = {1: build_plate1, 4: build_plate4,
+            25: build_plate25, 35: build_plate35, 41: build_plate41,
             37: build_plate37, 38: build_plate37,
             44: build_plate44, 45: build_plate44}
 

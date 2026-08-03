@@ -662,7 +662,8 @@ def build_plate4(c, d, photo=None, focal=(0.5, 0.5)):
 
     hrule(c, 0.0, 594.1, 360.0, 1.0, grey)
     hrule(c, 360.0, 594.1, 792.0, 1.0, navy)
-    stamp_icon(c, 'brand/mm_logo_navy.png', [432.0, 544.3, 572.0, 563.5], fit=True)
+    stamp_icon(c, 'brand/anton_group_lockup_navy.png', [432.0, 536.0, 545.0, 577.0],
+               fit=True)
 
 
 def build_plate1(c, d, photo=None, focal=(0.5, 0.5)):
@@ -700,7 +701,8 @@ def build_plate1(c, d, photo=None, focal=(0.5, 0.5)):
     # bottom logo box (orange cap + navy) + white M&M logo
     fill_box(c, [310.5, 554.4, 481.5, 558.0], orange)
     fill_box(c, [310.5, 558.0, 481.5, 612.0], navy)
-    stamp_icon(c, 'brand/mm_logo_white.png', [320.0, 571.5, 470.0, 596.5], fit=True)
+    stamp_icon(c, 'brand/anton_group_lockup_white.png', [326.0, 561.0, 466.0, 609.0],
+               fit=True)
 
 
 def build_plate44(c, d, photo=None, focal=(0.5, 0.5)):

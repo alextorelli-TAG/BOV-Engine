@@ -10,6 +10,13 @@ page_library/
 *.psd
 *.eps
 
+# --- Committed licensed media (internal-only, private repo) ---
+# The one deliberate home for licensed Getty/brand/stock imagery. This tool is
+# never public, so these are checked in for point-and-click selection. Kept as an
+# explicit exception in case a broad image ignore is ever added above.
+!assemble/assets/stock/
+!assemble/assets/stock/**
+
 # --- Local agent / editor state ---
 .claude/
 

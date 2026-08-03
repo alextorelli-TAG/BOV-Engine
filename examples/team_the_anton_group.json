@@ -14,6 +14,7 @@
       "office": "(212) 430-5209", "mobile": "(917) 848-6043",
       "email": "Eric.Anton@marcusmillichap.com",
       "address": "260 Madison Avenue, New York, NY 10016",
+      "headshot": "assemble/assets/headshots/eric-anton.jpg",
       "bio": [
         "Mr. Anton is a Senior Managing Director and Director of the firm’s Global Capital Group. He is located in Marcus & Millichap’s New York office, the firm’s largest. With more than 25 years of experience in commercial real estate, his group is focused on investment sales and equity placement transactions in the New York metropolitan area.",
         "As Director of the Global Capital Group, he is responsible for identifying new sources of inbound capital to the U.S. from across the world, traveling regularly to meet investors in Beijing, Shanghai, Tokyo, Hong Kong, London, Singapore, Germany, Canada, and Korea.",
@@ -29,6 +30,7 @@
       "office": "(646) 805-1497", "mobile": "(917) 885-0894",
       "email": "Nelson.Lee@marcusmillichap.com",
       "address": "260 Madison Avenue, New York, NY 10016",
+      "headshot": "assemble/assets/headshots/nelson-lee.jpg",
       "bio": [
         "Mr. Lee is Co-Chairman of the Global Capital Group at Marcus & Millichap’s Manhattan office, with more than 22 years of commercial real estate experience.",
         "In the last five years he and the GCG team have traveled to more than 20 cities in 11 countries to facilitate investments and capital-markets transactions, closing more than $2.2 billion across hospitality, multifamily, development, office, and retail.",
@@ -44,13 +46,14 @@
       "email": "Henri.Kessler@marcusmillichap.com",
       "address": "260 Madison Avenue, New York, NY 10016",
       "license": "NY 10401288939",
+      "headshot": "assemble/assets/headshots/henri-kessler.jpg",
       "bio": [
         "Mr. Kessler is a Senior Associate at Marcus & Millichap’s Global Capital Group and a member of The Anton Group, responsible for identifying new sources of inbound capital to the U.S. from around the world. He establishes relationships with Pan-Asian and European family offices, international investors, developers, and institutional clients — providing services from owner representation and advisory to investment sales and 1031 exchanges.",
         "Mr. Kessler joined Marcus & Millichap in 2017 after brokering the sale of the AMC Village 7 Theater in Manhattan for $32.25 million. Since then, he has traded over $100 million in CRE transactions, including the sale of the Gosman’s Portfolio in Montauk, NY for $34 million, and the representation of developers and owners of industrial entertainment and production facilities nationally.",
         "Prior to Marcus & Millichap, Mr. Kessler was a Partner at The Robert Evans Company on the Paramount Pictures Studio lot in Hollywood, where he developed feature films and television series and founded Woodland Hotel & Resort Group, LLC. He holds a degree from New York University and brings deep international and cross-disciplinary deal-making experience to every transaction."
       ]
     },
-    { "id": "adam-steiner", "name": "Adam Steiner", "title": "Associate Director, Investments", "office": "(212) 430-5175", "mobile": "(973) 769-2760", "email": "Adam.Steiner@marcusmillichap.com" },
+    { "id": "adam-steiner", "name": "Adam Steiner", "title": "Associate Director, Investments", "office": "(212) 430-5175", "mobile": "(973) 769-2760", "email": "Adam.Steiner@marcusmillichap.com", "headshot": "assemble/assets/headshots/adam-steiner.jpg" },
     { "id": "chris-murphy", "name": "Chris Murphy", "title": "Associate, Investments", "office": "(646) 805-1485", "mobile": "(203) 399-8990", "email": "Chris.Murphy@marcusmillichap.com" },
     { "id": "justice-carrenard", "name": "Justice Carrenard", "title": "Associate", "office": "(646) 805-1471", "mobile": "(347) 788-7217", "email": "Justice.Carrenard@marcusmillichap.com" },
     { "id": "philip-gallagher", "name": "Philip Gallagher", "title": "Associate", "office": "(646) 805-1406", "mobile": "(203) 501-3145", "email": "Philip.Gallagher@marcusmillichap.com" },

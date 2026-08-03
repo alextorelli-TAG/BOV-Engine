@@ -77,6 +77,43 @@ To preview and verify a single page against the corporate original:
 python tools/diff_plate.py examples/config_plate35_only.json 35 --show
 ```
 
+## Running the console + build server
+
+The operator console is served by a small local server that also runs the
+assembler and streams the finished PDF back. Start it once:
+
+```bash
+pip install -r serve/requirements.txt
+python -m uvicorn serve.app:app --port 8000
+```
+
+Then open **http://localhost:8000** in a browser. Configure the book and click
+**Assemble PDF** — the console POSTs its config to the server and downloads the
+result. (If you open the raw `studio/tag_bov_studio.html` file instead, Assemble
+still works but preloaded assets won't load and it falls back to downloading the
+config JSON for a CLI run.)
+
+### Preloaded asset catalog
+
+Licensed imagery lives in the repo (this is an internal-only tool) and shows up in
+the console as point-and-click thumbnails — no per-build upload. Drop images into
+`assemble/assets/stock/` — `dividers/<assetclass>/` for section backgrounds,
+`corporate/` for the InDesign `Links` set, `textures/` for grounds — then rebuild
+the catalog:
+
+```bash
+python tools/build_asset_catalog.py
+```
+
+This writes `assemble/assets/asset_catalog.json`, which the server exposes at
+`GET /api/assets`. The team roster comes from `examples/team_the_anton_group.json`
+via `GET /api/team`. Operator property photos are still uploaded per deal (Photos
+tab) and resolved, along with the catalog, against `BOV_LIBRARY_ROOT`:
+
+```bash
+BOV_LIBRARY_ROOT="<path to your images>" python -m uvicorn serve.app:app --port 8000
+```
+
 ## Repository layout
 
 | Path | What it is |
@@ -86,6 +123,7 @@ python tools/diff_plate.py examples/config_plate35_only.json 35 --show
 | `copy/` | Character-budget and copy-validation logic for generated prose |
 | `manifests/` | Which pages exist and how each is produced, per deal type |
 | `studio/` | The operator console (single-page web app) |
+| `serve/` | Local build server the console POSTs to (FastAPI) |
 | `tools/` | Developer utilities for measuring and verifying pages |
 | `examples/` | Sample job configs |
 | `fonts/` | Frank Ruhl Libre + Roboto (free Google Fonts, exact corporate match) |

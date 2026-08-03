@@ -297,9 +297,10 @@
             <div class="field"><label>License</label><input id="f-lic" placeholder="NY #10401…"></div>
           </div>
           <div class="row">
-            <div class="field"><label>Direct</label><input id="f-tel" placeholder="212.430.0000"></div>
-            <div class="field"><label>Email</label><input id="f-mail" placeholder="first.last@marcusmillichap.com"></div>
+            <div class="field"><label>Direct</label><input id="f-tel" placeholder="(212) 430-0000"></div>
+            <div class="field"><label>Mobile</label><input id="f-mob" placeholder="(917) 000-0000"></div>
           </div>
+          <div class="field"><label>Email</label><input id="f-mail" placeholder="first.last@marcusmillichap.com"></div>
           <div class="field"><label>Headshot — 4:5</label><div class="drop">Drop a headshot</div></div>
           <button class="go" id="savep">Save advisor</button>
         </div>
@@ -340,9 +341,11 @@
       </div>
       <div class="card" style="margin-top:18px">
         <h3>Narrative</h3>
-        <p>The only place a model writes prose. Layout never depends on it.</p>
-        <div class="field"><label>Property description</label><textarea id="p-desc" placeholder="Three or four paragraphs on construction, unit mix, condition, position…"></textarea></div>
-        <div class="field"><label>Highlights — one per line</label><textarea id="p-hl" placeholder="30-unit elevator building in Murray Hill&#10;Sub-4% in-place, 38% below-market rents&#10;Two blocks to the 6 at 33rd Street"></textarea></div>
+        <p>Feeds the Property Summary (plate 25): <b>Description</b> → the left prose
+          column, <b>Highlights</b> → the bullet list. Type or paste them now; copy
+          generation will draft both from your facts + thesis in a later release.</p>
+        <div class="field"><label>Property description — 3–4 paragraphs</label><textarea id="p-desc" placeholder="Three or four paragraphs on construction, unit mix, condition, position…"></textarea></div>
+        <div class="field"><label>Highlights — one per line (4–6)</label><textarea id="p-hl" placeholder="30-unit elevator building in Murray Hill&#10;Sub-4% in-place, 38% below-market rents&#10;Two blocks to the 6 at 33rd Street"></textarea></div>
       </div>
     </section>
 
@@ -367,6 +370,7 @@
       <div class="buildbar">
         <button class="go" id="build">Assemble PDF</button>
         <button class="ghost" id="saveset">Save as preset</button>
+        <button class="ghost" id="dlcfg">Download config</button>
         <button class="ghost" id="reset">Reset to Full</button>
         <span id="msg" style="font-size:11.5px;color:var(--muted)"></span>
       </div>
@@ -375,7 +379,7 @@
 </div>
 
 <script>
-const PAGES=[{"n":1,"t":"Cover","c":"build","s":"Front Matter","f":null,"tf":3,"im":1,"sl":["property_photo"]},{"n":2,"t":"Disclaimer","c":"static","s":"Front Matter","f":null,"tf":2,"im":1,"sl":["brand_logo"]},{"n":3,"t":"Presented By","c":"variant","s":"Front Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]},{"n":4,"t":"Table of Contents","c":"build","s":"Front Matter","f":null,"tf":9,"im":1,"sl":["property_photo"]},{"n":5,"t":"Divider \u2014 M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":6,"t":"Welcome to M&M","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":4,"im":1,"sl":["corporate_stock"]},{"n":7,"t":"Our Mission","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":8,"t":"The M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":9,"t":"A Company of Specialists","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":10,"t":"Better Methods, Better Results","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":11,"t":"Year in Review Stats","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":7,"im":2,"sl":["corporate_stock"]},{"n":12,"t":"#1 in Multifamily","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":10,"im":1,"sl":["corporate_stock"]},{"n":13,"t":"MarcusMillichap.com","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":14,"t":"Making a Market","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":15,"t":"Research Reports","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":16,"t":"Actionable Insights","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":17,"t":"Capital Migration","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":18,"t":"MMCC Financing","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":19,"t":"Divider \u2014 Advisor Bios","c":"static","s":"Advisor Bios","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":20,"t":"Advisor Bio","c":"variant","s":"Advisor Bios","f":"ADVISOR BIOS","tf":6,"im":2,"sl":["advisor_headshot","corporate_stock"]},{"n":21,"t":"Divider \u2014 Marketing Plan","c":"static","s":"Marketing Plan","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":22,"t":"Maximum Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":23,"t":"Internal & External Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":24,"t":"Divider \u2014 Investment Overview","c":"static","s":"Investment Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":25,"t":"Property Summary","c":"build","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":5,"im":1,"sl":["property_photo"]},{"n":26,"t":"Regional Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":27,"t":"Local Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":28,"t":"Retailer Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":29,"t":"Property Photos","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":2,"im":4,"sl":["property_photo"]},{"n":30,"t":"Divider \u2014 Financial Analysis","c":"static","s":"Financial Analysis","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":31,"t":"Financial Detail I","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":32,"t":"Financial Detail II","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":33,"t":"Divider \u2014 Sale Comparables","c":"static","s":"Sale Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":34,"t":"Sale Comps Map","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":35,"t":"Sale Comps Summary","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":0,"sl":[]},{"n":36,"t":"Sale Comps Chart","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":4,"im":0,"sl":[]},{"n":37,"t":"Sale Comps Detail I","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":10,"im":2,"sl":["property_photo"]},{"n":38,"t":"Sale Comps Detail II","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":11,"im":2,"sl":["property_photo"]},{"n":39,"t":"Divider \u2014 Rent Comparables","c":"static","s":"Rent Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":40,"t":"Rent Comps Map","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":41,"t":"Rent Comps Summary","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":0,"sl":[]},{"n":42,"t":"Rent Comps Chart I","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":43,"t":"Rent Comps Chart II","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":44,"t":"Rent Comps Detail I","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":2,"sl":["property_photo"]},{"n":45,"t":"Rent Comps Detail II","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":7,"im":2,"sl":["property_photo"]},{"n":46,"t":"Divider \u2014 Market Overview","c":"static","s":"Market Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":47,"t":"Metro Overview","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":7,"im":1,"sl":["property_photo"]},{"n":48,"t":"Metro Economy","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":15,"im":1,"sl":["property_photo"]},{"n":49,"t":"Metro Demographics","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":20,"im":0,"sl":[]},{"n":50,"t":"Demographics Chart I","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":51,"t":"Demographics Chart II","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":52,"t":"Demographics Chart III","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":53,"t":"Back Cover","c":"variant","s":"Back Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]}];
+const PAGES=[{"n":1,"t":"Cover","c":"build","s":"Front Matter","f":null,"tf":3,"im":1,"sl":["property_photo"]},{"n":2,"t":"Disclaimer","c":"static","s":"Front Matter","f":null,"tf":2,"im":1,"sl":["brand_logo"]},{"n":3,"t":"Presented By","c":"variant","s":"Front Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]},{"n":300,"ins":"exec_summary","code":"ES","t":"Executive Summary","c":"build","s":"Front Matter","f":"EXECUTIVE SUMMARY","tf":6,"im":0,"sl":[]},{"n":4,"t":"Table of Contents","c":"build","s":"Front Matter","f":null,"tf":9,"im":1,"sl":["property_photo"]},{"n":5,"t":"Divider \u2014 M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":301,"ins":"anton_advantage","code":"AA","t":"The Anton Advantage","c":"build","s":"Marcus & Millichap Advantage","f":"THE ANTON ADVANTAGE","tf":6,"im":0,"sl":[]},{"n":6,"t":"Welcome to M&M","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":4,"im":1,"sl":["corporate_stock"]},{"n":7,"t":"Our Mission","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":8,"t":"The M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":9,"t":"A Company of Specialists","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":10,"t":"Better Methods, Better Results","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":11,"t":"Year in Review Stats","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":7,"im":2,"sl":["corporate_stock"]},{"n":12,"t":"#1 in Multifamily","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":10,"im":1,"sl":["corporate_stock"]},{"n":13,"t":"MarcusMillichap.com","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":14,"t":"Making a Market","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":15,"t":"Research Reports","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":16,"t":"Actionable Insights","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":17,"t":"Capital Migration","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":18,"t":"MMCC Financing","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":19,"t":"Divider \u2014 Advisor Bios","c":"static","s":"Advisor Bios","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":20,"t":"Advisor Bio","c":"variant","s":"Advisor Bios","f":"ADVISOR BIOS","tf":6,"im":2,"sl":["advisor_headshot","corporate_stock"]},{"n":21,"t":"Divider \u2014 Marketing Plan","c":"static","s":"Marketing Plan","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":22,"t":"Maximum Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":23,"t":"Internal & External Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":24,"t":"Divider \u2014 Investment Overview","c":"static","s":"Investment Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":25,"t":"Property Summary","c":"build","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":5,"im":1,"sl":["property_photo"]},{"n":26,"t":"Regional Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":27,"t":"Local Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":28,"t":"Retailer Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":29,"t":"Property Photos","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":2,"im":4,"sl":["property_photo"]},{"n":30,"t":"Divider \u2014 Financial Analysis","c":"static","s":"Financial Analysis","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":31,"t":"Financial Detail I","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":32,"t":"Financial Detail II","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":33,"t":"Divider \u2014 Sale Comparables","c":"static","s":"Sale Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":34,"t":"Sale Comps Map","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":35,"t":"Sale Comps Summary","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":0,"sl":[]},{"n":36,"t":"Sale Comps Chart","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":4,"im":0,"sl":[]},{"n":37,"t":"Sale Comps Detail I","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":10,"im":2,"sl":["property_photo"]},{"n":38,"t":"Sale Comps Detail II","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":11,"im":2,"sl":["property_photo"]},{"n":39,"t":"Divider \u2014 Rent Comparables","c":"static","s":"Rent Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":40,"t":"Rent Comps Map","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":41,"t":"Rent Comps Summary","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":0,"sl":[]},{"n":42,"t":"Rent Comps Chart I","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":43,"t":"Rent Comps Chart II","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":44,"t":"Rent Comps Detail I","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":2,"sl":["property_photo"]},{"n":45,"t":"Rent Comps Detail II","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":7,"im":2,"sl":["property_photo"]},{"n":46,"t":"Divider \u2014 Market Overview","c":"static","s":"Market Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":47,"t":"Metro Overview","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":7,"im":1,"sl":["property_photo"]},{"n":48,"t":"Metro Economy","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":15,"im":1,"sl":["property_photo"]},{"n":49,"t":"Metro Demographics","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":20,"im":0,"sl":[]},{"n":50,"t":"Demographics Chart I","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":51,"t":"Demographics Chart II","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":52,"t":"Demographics Chart III","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":53,"t":"Back Cover","c":"variant","s":"Back Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]}];
 </script>
 <script>
 /* ------------------------------------------------------------------ data */
@@ -383,6 +387,22 @@ const CLASS_LABEL={static:'Static',annual:'Annual',variant:'Variant',stamp:'Stam
 
 // Repeatable plates: one plate in the template, n pages in the output.
 const REPEATS={20:'advisors',37:'saleComps',38:'saleComps',44:'rentComps',45:'rentComps'};
+
+// Engine inserts share the plate keyspace; they use n>=300 and carry an `ins`
+// name the assembler maps to a builder (build_exec_summary / build_anton_advantage).
+const MAND=new Set([1,2,300,4,19,20,24,25,30,33,35,53]);  // mandatory — can't be removed
+const DEFAULT_OFF=new Set([3,301]);                       // Presented By (dropped) · Anton Advantage (optional)
+const defaultKeep=()=>new Set(PAGES.filter(p=>!DEFAULT_OFF.has(p.n)).map(p=>p.n));
+
+// Section dividers are rebuilt by the assembler (build_divider); the background
+// texture is one global choice, so per-page divider data stays empty for MVP.
+const DIVIDERS=new Set([5,19,21,24,30,33,39,46]);
+// Corporate pages that stamp the property photo into their frame(s).
+const PHOTO_STAMPS=new Set([26,27,28,29,34,40]);
+
+// The local build server (serve/app.py). If it isn't running, Assemble falls
+// back to downloading the config JSON so it can be run from the CLI.
+const BUILD_URL='http://localhost:8000/api/bov/build';
 
 const PRESETS={
   Full:{all:true},
@@ -445,14 +465,20 @@ function guessSlot(name){
   return 'property_photo';
 }
 
+// Inline fallback for offline / file:// use. When the console is served, this is
+// replaced by the live dataset from GET /api/team (full bios included). Field
+// shape matches build_plate20: office = office phone (-> "direct"), address =
+// street (-> "office" row), bio = paragraph list, headshot = repo path.
 const SEED_TEAM=[
-  {id:'ea',name:'Eric Anton',title:'Senior Managing Director',tel:'212.430.5100',mail:'eric.anton@marcusmillichap.com',lic:'NY #10301', on:true},
-  {id:'hk',name:'Henri M. Kessler',title:'Associate Director, Investments',tel:'212.430.5101',mail:'henri.kessler@marcusmillichap.com',lic:'NY #10401', on:true},
+  {id:'eric-anton',name:'Eric Michael Anton',role:'Team Lead',title:'Senior Managing Director Investments',bioTitle:'Senior Managing Director · Co-Chairman, Global Capital Group',office:'(212) 430-5209',mobile:'(917) 848-6043',email:'Eric.Anton@marcusmillichap.com',address:'260 Madison Avenue, New York, NY 10016',bio:[],headshot:'assemble/assets/headshots/eric-anton.jpg',headshotUrl:'/assets/headshots/eric-anton.jpg',on:true},
+  {id:'nelson-lee',name:'Nelson Lee',role:'Global Capital Group',title:'Managing Director, Investments',bioTitle:'Managing Director, Investments · Co-Chairman, Global Capital Group',office:'(646) 805-1497',mobile:'(917) 885-0894',email:'Nelson.Lee@marcusmillichap.com',address:'260 Madison Avenue, New York, NY 10016',bio:[],headshot:'assemble/assets/headshots/nelson-lee.jpg',headshotUrl:'/assets/headshots/nelson-lee.jpg',on:true},
+  {id:'henri-kessler',name:'Henri Kessler',role:'Transaction Execution',title:'Associate Director, Investments',bioTitle:'Associate Director · Investments · Senior Associate, Global Capital Group',office:'(646) 805-1427',mobile:'(310) 691-0775',email:'Henri.Kessler@marcusmillichap.com',address:'260 Madison Avenue, New York, NY 10016',license:'NY 10401288939',bio:[],headshot:'assemble/assets/headshots/henri-kessler.jpg',headshotUrl:'/assets/headshots/henri-kessler.jpg',on:true},
+  {id:'adam-steiner',name:'Adam Steiner',role:'',title:'Associate Director, Investments',bioTitle:'Associate Director, Investments',office:'(212) 430-5175',mobile:'(973) 769-2760',email:'Adam.Steiner@marcusmillichap.com',address:'260 Madison Avenue, New York, NY 10016',bio:[],headshot:'assemble/assets/headshots/adam-steiner.jpg',headshotUrl:'/assets/headshots/adam-steiner.jpg',on:true},
 ];
 
 /* ----------------------------------------------------------------- state */
 let S={
-  keep:new Set(PAGES.map(p=>p.n)),
+  keep:defaultKeep(),
   preset:'Full',
   assetClass:'multifamily',
   team:SEED_TEAM.map(p=>({...p})),
@@ -527,10 +553,145 @@ function outputPages(){
     else if(REPEATS[p.n]==='rentComps')reps=rent[p.n]??0;
     for(let i=0;i<reps;i++){
       const n=out.length+1;
-      out.push({plate:p.n,title:p.t,c:p.c,footer:p.f?`${n} | ${p.f}`:null,n});
+      out.push({plate:p.n,ins:p.ins,code:p.code,title:p.t,c:p.c,sec:p.s,
+        footer:p.f?`${n} | ${p.f}`:null,n,ri:i});
     }
   }
   return out;
+}
+
+/* ------------------------------------------------- config for the assembler */
+// Translate the console's state into the exact shape assemble/assembler.py
+// consumes: { order:[ {plate|insert, include, data, photo, focal}... ],
+// divider_texture }. We emit one order entry per OUTPUT page (repeats already
+// expanded by outputPages), all include:true — the assembler renumbers footers
+// from the included set. Image paths are the library's source paths/filenames;
+// the build server resolves them and drops any it can't find.
+const onAdvisors=()=>{const on=S.team.filter(t=>t.on);return on.length?on:S.team.slice(0,1);};
+const libItem=slot=>LIB.items.find(x=>x.id===S.bind[slot]);
+const slotPath=slot=>{const it=libItem(slot);return it?(it.path||it.name):undefined;};
+const slotFocal=slot=>{const it=libItem(slot);return it?[+it.focal.x.toFixed(3),+it.focal.y.toFixed(3)]:undefined;};
+function attachPhoto(e,slot){const p=slotPath(slot);if(p){e.photo=p;const f=slotFocal(slot);if(f)e.focal=f;}}
+// A library item's preview src: a served catalog URL, else the uploaded data-URI.
+const thumbSrc=it=>it?(it.thumbUrl||LIB.thumbs[it.id]||''):'';
+
+const pnum=k=>parseFloat((S.prop[k]||'').toString().replace(/[^0-9.]/g,''));
+const usd=v=>'$'+Math.round(v).toLocaleString('en-US');
+
+function offeringPairs(){
+  const price=pnum('price'),noi=pnum('noi'),units=pnum('units'),sf=pnum('sf'),p=S.prop;
+  const r=[];
+  if(price)r.push(['List Price',usd(price)]);
+  if(price&&noi)r.push(['Cap Rate',(noi/price*100).toFixed(2)+'%']);
+  if(noi)r.push(['NOI',usd(noi)]);
+  if(units)r.push(['Units',String(units)]);
+  if(price&&units)r.push(['Price / Unit',usd(price/units)]);
+  if(sf)r.push(['Gross SF',Math.round(sf).toLocaleString('en-US')]);
+  if(price&&sf)r.push(['Price / SF','$'+(price/sf).toFixed(2)]);
+  if(p.yr)r.push(['Year Built',p.yr]);
+  if(p.occ)r.push(['Occupancy',(''+p.occ).replace(/%$/,'')+'%']);
+  return r;
+}
+function advisorData(a){
+  // build_plate20: direct = office phone, office = street address, per-advisor headshot
+  const d={name:a.name,title:a.bioTitle||a.title,direct:a.office,mobile:a.mobile,
+           email:a.email,office:a.address,bio:a.bio||[]};
+  if(a.role)d.role=a.role;
+  if(a.license)d.license=a.license;
+  if(a.headshot)d.headshot=a.headshot;
+  return d;
+}
+function tocSections(){
+  const out=[];
+  for(const p of PAGES){
+    if(!S.keep.has(p.n)||p.s==='Front Matter'||p.s==='Back Matter')continue;
+    if(!out.includes(p.s))out.push(p.s);
+  }
+  return out;
+}
+function execData(){
+  const lead=onAdvisors()[0]||{};
+  return {property:(S.prop.name||'').toUpperCase(),
+    eyebrow:[S.prop.name,S.prop.city].filter(Boolean).join(' · '),
+    salutation:'Dear Investor,', body:[],   // body filled by copy-gen later
+    signature:lead.name||'', titles:lead.title||''};
+}
+
+function buildConfig(){
+  const order=[];
+  for(const op of outputPages()){
+    const e=op.ins?{insert:op.ins}:{plate:op.plate};
+    e.include=true;
+    const pl=op.plate;
+    if(op.ins==='exec_summary')e.data=execData();
+    else if(op.ins==='anton_advantage')e.data={};
+    else if(pl===1){e.data={property_name:S.prop.name||'',
+        address:[S.prop.addr,S.prop.city].filter(Boolean).join(', ')};attachPhoto(e,'property_photo');}
+    else if(pl===4)e.data={sections:tocSections()};
+    else if(pl===20){const a=onAdvisors()[op.ri]||onAdvisors()[0];if(a)e.data=advisorData(a);}
+    else if(pl===25){e.data={
+        description:(S.prop.desc||'').split(/\n{2,}/).map(s=>s.trim()).filter(Boolean),
+        highlights:(S.prop.hl||'').split(/\n/).map(s=>s.trim()).filter(Boolean),
+        offering:offeringPairs()};attachPhoto(e,'property_photo');}
+    else if(pl===53){const a=onAdvisors()[0]||{};
+        e.data={name:a.name||'',title:a.title||'',direct:a.office||'',mobile:a.mobile||'',email:a.email||''};attachPhoto(e,'property_photo');}
+    else if(PHOTO_STAMPS.has(pl))attachPhoto(e,'property_photo');
+    // dividers + remaining build plates (comps detail/summary) carry defaults
+    order.push(e);
+  }
+  const cfg={order,meta:{property:S.prop.name||'BOV',assetClass:S.assetClass}};
+  const tex=slotPath('divider_bg')||(ASSET_CLASSES.find(a=>a.id===S.assetClass)||{}).asset;
+  if(tex)cfg.divider_texture=tex;
+  return cfg;
+}
+
+function downloadBlob(name,blob){
+  const u=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
+
+/* ------------------------------------------------- preloaded server assets */
+// When served from the build server, the console browses committed imagery and
+// the real team dataset instead of forcing an upload. Fails silently under
+// file:// (fetch to /api/* 404s) — the inline SEED_TEAM and uploads still work.
+function mergeCatalog(assets){
+  LIB.items=LIB.items.filter(it=>it.src!=='catalog');   // always take fresh catalog
+  for(const a of assets){
+    LIB.items.push({id:a.id,name:a.label||a.file.split('/').pop(),path:a.file,
+      thumbUrl:a.url,slot:a.slot,assetClass:a.assetClass,w:a.w,h:a.h,
+      focal:{x:.5,y:.5},src:'catalog',corporate:true});
+  }
+}
+function seedTeam(contacts){
+  if(!contacts.length)return;
+  const toUrl=p=>p?('/assets/'+p.replace(/^assemble\/assets\//,'')):undefined;
+  const prev={};S.team.forEach(t=>prev[t.id]=t.on);   // keep the operator's picks
+  S.team=contacts.map(c=>({
+    id:c.id,name:c.name,role:c.role||'',title:c.title||'',bioTitle:c.bioTitle||c.title||'',
+    office:c.office||'',mobile:c.mobile||'',email:c.email||'',address:c.address||'',
+    license:c.license||'',bio:c.bio||[],headshot:c.headshot,headshotUrl:toUrl(c.headshot),
+    on:(c.id in prev)?prev[c.id]:!!c.headshot        // default-on the full-package advisors
+  }));
+}
+function bindDivider(){
+  const byClass=LIB.items.find(x=>x.slot==='divider_bg'&&x.assetClass===S.assetClass);
+  const any=LIB.items.find(x=>x.slot==='divider_bg');
+  const chosen=byClass||any;
+  if(chosen)S.bind.divider_bg=chosen.id;
+}
+function autoBind(){
+  bindDivider();
+  for(const s of ['corporate_stock','marketing_bg','brand_logo']){
+    if(S.bind[s])continue;
+    const it=LIB.items.find(x=>x.slot===s);
+    if(it)S.bind[s]=it.id;
+  }
+}
+async function loadServerData(){
+  try{const r=await fetch('/api/assets');if(r.ok)mergeCatalog((await r.json()).assets||[]);}catch(e){}
+  try{const r=await fetch('/api/team');if(r.ok)seedTeam((await r.json()).contacts||[]);}catch(e){}
+  autoBind();
 }
 
 /* ------------------------------------------------------------- photo library */
@@ -587,7 +748,7 @@ function renderPhotos(){
 
   lib.innerHTML=LIB.items.map(it=>`
     <button class="thumb" data-i="${it.id}" aria-selected="${sel===it.id}" title="${it.name}\n${it.w}×${it.h}px">
-      ${LIB.thumbs[it.id]?`<img src="${LIB.thumbs[it.id]}" alt="">`:''}
+      ${thumbSrc(it)?`<img src="${thumbSrc(it)}" alt="" loading="lazy">`:''}
       <span class="sb">${it.slot.replace('_',' ').replace('property ','')}</span>
       ${it.corporate?`<span class="lk">M&amp;M</span>`:''}
       <span class="nm">${it.name}</span>
@@ -597,7 +758,7 @@ function renderPhotos(){
 
   const it=LIB.items.find(x=>x.id===sel);
   if(!it){focalpane.innerHTML=`<div class="drop">Select an image to set its focal point.</div>`;return;}
-  const src=LIB.thumbs[it.id]||'';
+  const src=thumbSrc(it);
   const shapes=SLOT_SHAPES[it.slot]||[];
   const slotOpts=Object.keys(SLOT_SHAPES).map(s=>
     `<option value="${s}"${s===it.slot?' selected':''}>${s.replace(/_/g,' ')}</option>`).join('');
@@ -608,7 +769,7 @@ function renderPhotos(){
     <div class="row" style="margin-top:11px">
       <div class="field"><label>Slot</label><select id="fslot">${slotOpts}</select></div>
       <div class="field"><label>Original</label>
-        <input value="${it.w}×${it.h} · ${Math.round(it.bytes/1024)} KB" readonly></div>
+        <input value="${it.w}×${it.h}${it.bytes?` · ${Math.round(it.bytes/1024)} KB`:(it.src==='catalog'?' · catalog':'')}" readonly></div>
     </div>
     <div class="field"><label>Full-resolution source</label>
       <input value="${it.path}" readonly title="${it.path}"></div>
@@ -619,7 +780,9 @@ function renderPhotos(){
         ${src?`<img src="${src}" style="object-position:${it.focal.x*100}% ${it.focal.y*100}%" alt="">`:''}
       </div><div class="cap"><b>${(w/h).toFixed(2)}:1</b><br>p${pgs.join(' · p')}</div></div>`).join('')
       ||`<div class="drop" style="grid-column:1/-1">Corporate stock — not cropped by us.</div>`}</div>
-    <button class="ghost" id="delimg" style="margin-top:12px">Remove from library</button>`;
+    ${it.src==='catalog'
+      ?`<p class="note">Preloaded catalog asset — managed in the repo (run the catalog generator to change it), not removable here.</p>`
+      :`<button class="ghost" id="delimg" style="margin-top:12px">Remove from library</button>`}`;
 
   const fw=document.getElementById('fw');
   const setFocal=ev=>{
@@ -636,7 +799,8 @@ function renderPhotos(){
     if(!S.bind[it.slot])S.bind[it.slot]=it.id;
     saveLib();save();renderAll();
   };
-  document.getElementById('delimg').onclick=()=>{
+  const del=document.getElementById('delimg');
+  if(del)del.onclick=()=>{
     LIB.items=LIB.items.filter(x=>x.id!==it.id);delete LIB.thumbs[it.id];
     for(const k in S.bind)if(S.bind[k]===it.id)delete S.bind[k];
     sel=LIB.items[0]?.id||null;saveLib();save();renderAll();
@@ -650,7 +814,7 @@ function renderBinds(){
     const locked=LOCKED_SLOTS.has(slot);
     const opts=LIB.items.filter(x=>x.slot===slot);
     return `<div class="bindrow">
-      <div class="bt">${it&&LIB.thumbs[it.id]?`<img src="${LIB.thumbs[it.id]}" alt="">`:''}</div>
+      <div class="bt">${thumbSrc(it)?`<img src="${thumbSrc(it)}" alt="" loading="lazy">`:''}</div>
       <div class="bi"><b>${slot.replace(/_/g,' ')}</b>
         <span>${n} frame${n>1?'s':''} · ${where}</span></div>
       ${locked?`<span class="lock">Corporate</span>`
@@ -677,7 +841,7 @@ const VIEWS=[
 let view='deck';
 
 function renderNav(){
-  const counts={deck:`${S.keep.size}/53`,photos:`${LIB.items.length}`,over:'6',
+  const counts={deck:`${S.keep.size}/${PAGES.length}`,photos:`${LIB.items.length}`,over:'6',
     team:`${advisorsOn()}`,prop:'',build:''};
   nav.innerHTML=VIEWS.map(([id,label])=>
     `<button data-v="${id}" aria-current="${view===id}">${label}<i>${counts[id]||''}</i></button>`).join('');
@@ -688,12 +852,22 @@ function renderNav(){
 }
 
 function renderPresets(){
-  presets.innerHTML='<label>Tweaks</label>'+Object.keys(PRESETS).map(k=>
-    `<button class="chip" data-p="${k}" aria-pressed="${S.preset===k}">${k}</button>`).join('');
+  const user=S.userPresets||{};
+  const keys=[...Object.keys(PRESETS),...Object.keys(user)];
+  presets.innerHTML='<label>Tweaks</label>'+keys.map(k=>
+    `<button class="chip" data-p="${k}" aria-pressed="${S.preset===k}">${k}${user[k]?' ·':''}</button>`).join('');
   presets.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{
-    const p=PRESETS[b.dataset.p];
-    S.keep=new Set(p.all?PAGES.map(x=>x.n):p.keep);
-    S.preset=b.dataset.p;renderAll();save();
+    const key=b.dataset.p;
+    if(user[key]){
+      const u=user[key];
+      S.keep=new Set([...u.keep,...MAND]);
+      if(u.assetClass)S.assetClass=u.assetClass;
+      if(u.counts)S.counts={...S.counts,...u.counts};
+    }else{
+      const p=PRESETS[key];
+      S.keep=p.all?defaultKeep():new Set([...p.keep,...MAND]);  // mandatory pages always survive
+    }
+    S.preset=key;renderAll();save();
   });
 }
 
@@ -709,22 +883,26 @@ function renderBoard(){
       </div>
       <div class="plates">${ps.map(p=>`
         <button class="plate" data-c="${p.c}" data-n="${p.n}" aria-pressed="${S.keep.has(p.n)}"
-          title="${p.tf} text frames · ${p.im} image frames">
-          ${REPEATS[p.n]?`<span class="rep">×n</span>`:''}
-          <span class="pn">${String(p.n).padStart(2,'0')}</span>
+          title="${p.ins?'Engine insert':p.tf+' text frames · '+p.im+' image frames'}${MAND.has(p.n)?' · mandatory':''}">
+          ${REPEATS[p.n]?`<span class="rep">×n</span>`:(p.ins?`<span class="rep">insert</span>`:'')}
+          <span class="pn">${p.code||String(p.n).padStart(2,'0')}</span>
           <span class="pt">${p.t}</span>
-          <span class="pc">${CLASS_LABEL[p.c]}</span>
+          <span class="pc">${CLASS_LABEL[p.c]}${MAND.has(p.n)?' · locked':''}</span>
         </button>`).join('')}</div></div>`;
   }).join('');
 
   board.querySelectorAll('.plate').forEach(b=>b.onclick=()=>{
-    const n=+b.dataset.n;S.keep.has(n)?S.keep.delete(n):S.keep.add(n);
+    const n=+b.dataset.n;
+    if(S.keep.has(n)){
+      if(MAND.has(n)){msg.textContent='That page is mandatory — it can’t be removed.';return;}
+      S.keep.delete(n);
+    }else S.keep.add(n);
     S.preset='';renderAll();save();
   });
   board.querySelectorAll('[data-sec]').forEach(b=>b.onclick=()=>{
     const ps=PAGES.filter(p=>p.s===b.dataset.sec);
     const all=ps.every(p=>S.keep.has(p.n));
-    ps.forEach(p=>all?S.keep.delete(p.n):S.keep.add(p.n));
+    ps.forEach(p=>{if(all){if(!MAND.has(p.n))S.keep.delete(p.n);}else S.keep.add(p.n);});
     S.preset='';renderAll();save();
   });
 }
@@ -736,22 +914,34 @@ function renderOverlays(){
       <div class="lb"><b>${a.name}</b><span>${a.asset}</span></div>
     </button>`).join('');
   classes.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{
-    S.assetClass=b.dataset.a;renderAll();save();});
+    S.assetClass=b.dataset.a;bindDivider();renderAll();save();});
   const a=ASSET_CLASSES.find(x=>x.id===S.assetClass);
   const dv=LIB.items.find(x=>x.id===S.bind.divider_bg);
+  const classMatch=dv&&dv.assetClass===S.assetClass;
   acnote.innerHTML=`Applies <b>${dv?dv.name:a.asset}</b> to pages 5, 19, 21, 24, 30, 33, 39 and 46 — and swaps
     plate 12 to the <b>${a.name}</b> brokerage ranking.
-    ${dv?'':'<span style="color:var(--orange)">No divider image bound yet — add one under Photos.</span>'}`;
-  slots.innerHTML=`<dl class="kv">`+SLOT_INFO.map(([id,n,where,who])=>
-    `<dt><span class="tag">${who}</span>${id}</dt><dd>${n} frame${n>1?'s':''}</dd>
-     <dt style="grid-column:1/3;color:var(--dim);font-size:10.5px;padding-bottom:7px">${where}</dt>`).join('')+`</dl>`;
+    ${dv?(classMatch?'':' <span style="color:var(--dim)">(generic divider — add a '+a.name+'-tagged image under stock/dividers/'+a.id+' for an exact match)</span>')
+        :' <span style="color:var(--orange)">No divider image bound yet — add one under Photos.</span>'}`;
+  // State-aware slot panel: show which library image currently fills each slot.
+  slots.innerHTML=`<dl class="kv">`+SLOT_INFO.map(([id,n,where,who])=>{
+    const it=LIB.items.find(x=>x.id===S.bind[id]);
+    const th=thumbSrc(it);
+    const fill=it?it.name:(LOCKED_SLOTS.has(id)?'corporate default':'— none —');
+    return `<dt><span class="tag">${who}</span>${id}</dt><dd>${n} frame${n>1?'s':''}</dd>
+     <dt style="grid-column:1/3;color:var(--dim);font-size:10.5px;padding:2px 0 8px;
+       display:flex;align-items:center;gap:7px">
+       ${th?`<img src="${th}" alt="" style="width:34px;height:26px;object-fit:cover;border:1px solid var(--line);border-radius:2px" loading="lazy">`:''}
+       <span>${where} · <b style="color:${it?'var(--muted)':'var(--dim)'}">${fill}</b></span></dt>`;
+  }).join('')+`</dl>`;
 }
 
 function renderTeam(){
   people.innerHTML=S.team.map(p=>`
     <div class="person" data-on="${p.on}">
-      <div class="av">${p.name.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
-      <div class="who"><b>${p.name}</b><span>${p.title}</span><span>${p.mail}</span></div>
+      <div class="av" style="${p.headshotUrl?'padding:0;overflow:hidden':''}">${p.headshotUrl
+        ?`<img src="${p.headshotUrl}" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy">`
+        :p.name.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+      <div class="who"><b>${p.name}</b><span>${p.title}</span><span>${p.email||''}${p.bio&&p.bio.length?'':' · no bio yet'}</span></div>
       <div class="acts">
         <button data-t="${p.id}">${p.on?'In book':'Excluded'}</button>
         <button data-d="${p.id}">Remove</button>
@@ -792,7 +982,7 @@ function renderDerived(){
 function renderStrip(){
   const out=outputPages();
   sig.innerHTML=out.map(p=>
-    `<div data-c="${p.c}" title="plate ${String(p.plate).padStart(2,'0')} — ${p.title}${p.footer?'\n'+p.footer:''}">
+    `<div data-c="${p.c}" title="${p.ins?'insert':'plate '+String(p.plate).padStart(2,'0')} — ${p.title}${p.footer?'\n'+p.footer:''}">
       ${p.n}${p.footer?'<span></span>':''}</div>`).join('');
   const nm=S.prop.name||'Untitled property';
   sigmeta.innerHTML=`<b style="color:var(--paper)">${nm}</b> · ${out.length} pages ·
@@ -859,22 +1049,47 @@ savep.onclick=()=>{
   const g=id=>document.getElementById(id);
   const name=g('f-name').value.trim();
   if(!name){msg.textContent='Advisor needs a name.';return;}
-  S.team.push({id:'a'+Date.now(),name,title:g('f-title').value.trim()||'Investments',
-    tel:g('f-tel').value.trim(),mail:g('f-mail').value.trim(),lic:g('f-lic').value.trim(),on:true});
-  ['f-name','f-title','f-tel','f-mail','f-lic'].forEach(i=>g(i).value='');
+  const title=g('f-title').value.trim()||'Investments';
+  S.team.push({id:'a'+Date.now(),name,role:'',title,bioTitle:title,
+    office:g('f-tel').value.trim(),mobile:g('f-mob').value.trim(),email:g('f-mail').value.trim(),
+    address:'',license:g('f-lic').value.trim(),bio:[],on:true});
+  ['f-name','f-title','f-tel','f-mob','f-mail','f-lic'].forEach(i=>g(i).value='');
   msg.textContent=name+' added to the roster.';renderAll();save();
 };
 document.getElementById('reset').onclick=()=>{
-  S.keep=new Set(PAGES.map(p=>p.n));S.preset='Full';renderAll();save();};
-document.getElementById('saveset').onclick=()=>{
-  msg.textContent=`Preset saved — ${S.keep.size} plates, ${ASSET_CLASSES.find(a=>a.id===S.assetClass).name}.`;};
-document.getElementById('build').onclick=()=>{
-  const out=outputPages();
-  const b=out.filter(p=>p.c==='build').length,s=out.filter(p=>p.c==='stamp').length;
-  msg.innerHTML=`<b style="color:var(--orange)">Queued.</b> ${out.length} pages —
-    ${out.length-b-s} copied, ${s} stamped, ${b} rendered.`;
-  view='build';renderAll();
+  S.keep=defaultKeep();S.preset='Full';renderAll();save();};
+
+document.getElementById('saveset').onclick=async()=>{
+  const name=(window.prompt('Name this preset','My preset')||'').trim();
+  if(!name){msg.textContent='Preset needs a name.';return;}
+  S.userPresets=S.userPresets||{};
+  S.userPresets[name]={keep:[...S.keep],assetClass:S.assetClass,counts:{...S.counts}};
+  S.preset=name;await save();renderAll();
+  msg.innerHTML=`<b style="color:var(--orange)">Preset “${name}” saved.</b> ${S.keep.size} plates.`;
 };
 
-load().then(renderAll);
+document.getElementById('dlcfg').onclick=()=>{
+  const cfg=buildConfig();
+  downloadBlob('bov-config.json',new Blob([JSON.stringify(cfg,null,2)],{type:'application/json'}));
+  msg.innerHTML=`<b style="color:var(--orange)">Config downloaded.</b> ${cfg.order.length} pages.`;
+};
+
+document.getElementById('build').onclick=async()=>{
+  const cfg=buildConfig(),out=outputPages();
+  msg.innerHTML=`Building ${out.length} pages…`;view='build';renderAll();
+  try{
+    const r=await fetch(BUILD_URL,{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});
+    if(!r.ok){const t=await r.text();throw new Error(`server ${r.status}: ${t.slice(0,200)}`);}
+    const pages=r.headers.get('X-BOV-Pages')||out.length;
+    downloadBlob((cfg.meta.property||'BOV')+'.pdf',await r.blob());
+    msg.innerHTML=`<b style="color:var(--orange)">Built ${pages} pages.</b> PDF downloaded.`;
+  }catch(err){
+    downloadBlob('bov-config.json',new Blob([JSON.stringify(cfg,null,2)],{type:'application/json'}));
+    msg.innerHTML=`<b style="color:var(--orange)">Build server offline.</b> `+
+      `Config downloaded — run it with the CLI. <span style="color:var(--dim)">(${err.message})</span>`;
+  }
+};
+
+load().then(loadServerData).then(renderAll);
 </script>

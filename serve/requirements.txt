@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn[standard]>=0.27
+# The assembler's own runtime deps (also needed by this process):
+pypdf>=4.0
+reportlab>=4.0
+Pillow>=10.0
+# For ROADMAP Part D (copy generation) — imported by the server once wired:
+anthropic>=0.40

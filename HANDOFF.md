@@ -127,8 +127,19 @@ Four layers, in dependency order.
 5. **Console** — `studio/tag_bov_studio.html`. Plate selection, presets, asset
    class, team roster, photo library with focal points and live crop previews,
    slot bindings, property intake, preflight. State persists via
-   `window.storage`. **The Assemble button still only reports what would be
-   produced — it is not yet wired to the assembler.**
+   `window.storage`. **Wired to the assembler:** the Assemble button calls
+   `buildConfig()` (state → the assembler's `{order, divider_texture}` contract)
+   and POSTs it to the local build server, which returns the finished PDF. The
+   page model is realigned to the template (Executive Summary + Anton Advantage
+   inserts, Presented By dropped, mandatory-page locks). "Save as preset" persists
+   named presets; "Download config" emits the raw config for CLI runs.
+
+6. **Build server** — `serve/app.py` (FastAPI). `POST /api/bov/build` runs
+   `assemble()` and streams back the PDF; `GET /api/health` reports library
+   status. The Anthropic API key (ROADMAP Part D) will live only here, never in
+   the browser. Run: `python -m uvicorn serve.app:app --port 8000`. Operator
+   images resolve against `BOV_LIBRARY_ROOT`; unresolved paths fall back to the
+   corporate placeholder so a build never crashes on a missing file.
 
 ---
 
@@ -257,9 +268,25 @@ and front matter stay shared. See `manifests/land_plate_manifest.yaml`.
 4. **Strip superseded footer text** rather than covering it (limitation 2).
 5. **Divider template + two asset-class images.** Cheapest proof of the overlay
    swap.
-6. **Wire the console's Assemble button** to the assembler.
-7. **Build the land core** against Albemarle using the land manifest.
-8. Metro library, dashboard integration.
+6. ~~Wire the console's Assemble button to the assembler.~~ **Done.** Config
+   bridge (`buildConfig()`) + local build server (`serve/app.py`); verified end
+   to end — browser POST → PDF, footers renumbered, 0 NO-BUILDER gaps.
+6b. ~~Preloaded asset catalog + full team wiring.~~ **Done.** Licensed imagery is
+   committed under `assemble/assets/stock/` and catalogued by
+   `tools/build_asset_catalog.py` → `asset_catalog.json`; the server serves the
+   console + `/assets` + `/api/assets` + `/api/team`. The console preloads the
+   catalog (no upload needed), auto-binds slots, rebinds the divider per asset
+   class, and seeds the four full-package advisors (headshots + bios) from the
+   dataset. Verified: divider background and advisor bio render with real imagery.
+7. **LLM copy generation (ROADMAP Part D, high-priority MVP).** Wrap
+   `copy/copyfit.py` with a single `anthropic` call in the build server:
+   generate → `check()` → regenerate once. Haiku 4.5 default, Sonnet 5 for the
+   Executive Summary; model as a per-page config knob. Extend `copyfit.py`
+   budgets to the exec-summary body and advisor bio (plate 25 only today).
+8. **Build the land core** against Albemarle using the land manifest.
+9. Metro library, dashboard integration. Install qpdf on PATH so built PDFs are
+   compressed (currently ~55 MB uncompressed; assembler falls back when qpdf is
+   absent).
 
 ---
 

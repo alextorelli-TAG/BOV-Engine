@@ -623,6 +623,48 @@ def build_plate44(c, d, photo=None, focal=(0.5, 0.5)):
         _chart_block(c, CHART_ROW_DY, d['bottom'])
 
 
+# --- inserted pages (not part of the corporate 53) --------------------------
+def build_exec_summary(c, d):
+    """Executive Summary letter — inserted after Presented By, before the TOC.
+    Reuses the house design system; the body flows so variable-length copy and
+    the signature block stay together. Numbers in the body must trace to the
+    fact sheet (enforced upstream by the copy layer)."""
+    navy, orange, ink = hexcol(C['navy']), hexcol(C['orange']), hexcol(C['ink'])
+
+    running_head(c, 'EXECUTIVE SUMMARY // ', d.get('property', 'SUBJECT PROPERTY'))
+
+    # eyebrow (orange, letter-spaced) + right-aligned attention block
+    cell_text(c, 36.0, 0, 120.0, d.get('eyebrow', ''), 'FRL', 10.5, orange,
+              'left', pad=0, track=0.9)
+    ay = 120.0
+    for line in d.get('attn', []):
+        cell_text(c, 0, 756.0, ay, line, 'FRL', 9.5, ink, 'right', pad=0)
+        ay += 13.5
+
+    # salutation (display face)
+    cell_text(c, 36.0, 0, 202.0, d.get('salutation', ''), 'FRL', 15, navy, 'left', pad=0)
+
+    # body paragraphs (flow)
+    y = 226.0
+    for para in d.get('body', []):
+        for line in wrap(c, para, 'FRL', 9.5, 720.0):
+            cell_text(c, 36.0, 0, y, line, 'FRL', 9.5, ink, 'left', pad=0)
+            y += 14.0
+        y += 6.0
+
+    # closing + signature
+    y += 8.0
+    cell_text(c, 36.0, 0, y, d.get('closing', 'Sincerely,'), 'FRL', 10, ink, 'left', pad=0)
+    y += 24.0
+    cell_text(c, 36.0, 0, y, d.get('signature', ''), 'FRL-Bold', 15, navy, 'left', pad=0)
+    y += 20.0
+    cell_text(c, 36.0, 0, y, d.get('titles', ''), 'FRL', 9.5, orange, 'left', pad=0, track=0.5)
+
+
+INSERTS = {'exec_summary': build_exec_summary}
+INSERT_META = {'exec_summary': {'footer_section': 'EXECUTIVE SUMMARY'}}
+
+
 def wrap(c, text, font, size, measure):
     """Greedy wrap using real font metrics."""
     words, lines, cur = text.split(), [], ''
@@ -657,6 +699,24 @@ def assemble(config, library, out_path, fonts, assets=None):
         # page number, so footers renumber to the surviving set.
         if item.get('include') is False:
             continue
+
+        # inserted pages (Executive Summary, land-specific pages): no corporate
+        # library page and no manifest entry — render on a blank page.
+        if 'insert' in item:
+            name = item['insert']
+            n += 1
+            section = INSERT_META.get(name, {}).get('footer_section')
+            page = PdfWriter().add_blank_page(PAGE_W, PAGE_H)
+            buf, c = new_overlay()
+            INSERTS[name](c, item.get('data', {}))
+            if section:
+                draw_footer(c, n, section)
+            page.merge_page(finish_overlay(buf, c))
+            writer.add_page(page)
+            log.append(f'  {n:>3}  INSERT:{name:<16} '
+                       f'{(section + " footer") if section else "no footer"}')
+            continue
+
         plate = item['plate']
         meta = plates[plate]
         cls = meta['class']

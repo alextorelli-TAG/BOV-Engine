@@ -1,0 +1,126 @@
+# TAG BOV — Land / Development-Site Plate Set
+# Derived from the 2202 Albemarle Road draft (19pp) mapped against the
+# 53-plate corporate template. Multifamily plates 25-29, 31-32, 34-38 and
+# 40-45 do not apply to land and are replaced wholesale by the L-series.
+#
+# Everything outside the core -- front matter, all 8 dividers, the M&M
+# boilerplate run, advisor bios, back cover -- is shared with the multifamily
+# set and passes through from the corporate page library unchanged.
+
+meta:
+  derived_from: 2202_Albemarle_Road_BOV_HK_draft__7_30_26.pdf
+  trim: [792, 612]           # landscape, matching corporate. SEE OPEN QUESTION.
+  open_question: >
+    The source draft is portrait 8.5x11. Corporate house standard is landscape
+    11x8.5. The zoning pathway table and transit list are built tall and will
+    need relayout for landscape. Confirm which orientation is mandatory before
+    building L04.
+
+# ---------------------------------------------------------------- shared
+shared_from_corporate:
+  front_matter:   [1, 2, 3, 4]
+  dividers:       [5, 19, 21, 24, 30, 33, 39, 46]
+  mm_boilerplate: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  marketing_plan: [22, 23]
+  advisor_bios:   [20]        # repeatable, one per advisor
+  back_cover:     [53]
+
+# --------------------------------------------------------------- retired
+not_applicable_to_land:
+  - {plates: [25], reason: "Offering summary is NOI/cap/GRM/price-per-unit. Overlap with land is Listing Price only."}
+  - {plates: [26, 27, 28], reason: "Regional/local/retailer maps — replaced by L03 which carries transit."}
+  - {plates: [31, 32], reason: "Financial detail charts — replaced by L05 valuation scenarios."}
+  - {plates: [34, 35, 36, 37, 38], reason: "Sale comps assume building SF, units, cap rate — replaced by L07."}
+  - {plates: [40, 41, 42, 43, 44, 45], reason: "Rent comparables. No rent roll on vacant land."}
+  - {plates: [47, 48, 49, 50, 51, 52], reason: "Metro demographics are income-property framing — optional for land."}
+
+# ------------------------------------------------------------- land core
+land_core:
+  - id: L01
+    name: Executive Summary
+    class: build
+    source_page: 4
+    section: EXECUTIVE SUMMARY
+    notes: >
+      Thesis paragraph, numbered findings (highest & best use, market-validated
+      pricing, density, recommendation), and the indicated valuation ladder as a
+      4-up stat band. No corporate equivalent — this is the most valuable page in
+      the draft and has no analogue in the 53-plate set.
+    copy_budget: {measure: TBD, note: "Source ran 3,021 ch — 2.4x plate 25's frame. Compute from the built frame."}
+
+  - id: L02
+    name: Site & Zoning Facts
+    class: build
+    source_page: 6
+    section: PROPERTY OVERVIEW
+    fields: [address, submarket, block_lot, bbl, lot_dimensions, lot_area,
+             zoning, building_class, occupancy, flood_zone, community_district,
+             school_district, delivery]
+    slots: [aerial_site_view, tax_lot_map]
+    notes: "Two-column fact grid + callout band + 4-up stat strip. Closest corporate relative is plate 25's structure, not its content."
+
+  - id: L03
+    name: Location & Transit
+    class: build
+    source_page: 7
+    section: LOCATION
+    slots: [street_view, context_map]
+    notes: "Context paragraph, transit distance table (station / line / distance / walk time), 4-up stat strip."
+
+  - id: L04
+    name: Zoning Pathways
+    class: build
+    source_page: 9
+    section: ZONING ENVELOPE
+    notes: >
+      Five-row table: use type / FAR / max buildable / permitted uses. Shaded
+      winner row. Highest-and-best-use narrative below.
+      HARD-CODED DISCLOSURE — the zoning-counsel confirmation line is a fixed
+      element of this plate, never generated copy.
+    required_disclosure: >
+      Stacking should be confirmed with zoning counsel before contract.
+
+  - id: L05
+    name: Valuation Scenarios
+    class: build
+    source_page: 10
+    section: VALUATION
+    notes: "Two scenario cards (floor / list basis) over a 3-up valuation ladder."
+
+  - id: L06
+    name: Strategies Reconciled
+    class: build
+    source_page: 11
+    section: STRATEGIES RECONCILED
+    notes: "Five-row ranked strategy table + strategic takeaway and recommendation blocks."
+
+  - id: L07
+    name: Land Comparables
+    class: build
+    source_page: 13
+    section: SALES COMPARABLES
+    columns: [date, address, submarket, price, psf_bsf, bsf, zoning]
+    notes: "Repeatable — 3 comps per plate. Comp-indicated range callout at foot."
+
+  - id: L08
+    name: Team Select Experience
+    class: variant
+    source_page: 15
+    section: SELECT EXPERIENCE
+    notes: "Team track record. Built once per team, reused across every land BOV."
+
+  - id: L09
+    name: 1031 Exchange
+    class: static
+    source_page: 16
+    section: THE M&M ADVANTAGE
+    notes: "Firm boilerplate with a 4-step timeline. Build once, then passthrough forever."
+
+# ------------------------------------------------------------- assembly
+preset_land_full:
+  order: [1, 2, 3, 4, L01, 24, L02, L03, 30, L04, L05, L06, 33, L07,
+          5, L08, L09, 19, 20, 53]
+  note: "Mirrors the Albemarle draft's running order using corporate dividers."
+
+preset_land_lean:
+  order: [1, 2, 3, 4, L01, 24, L02, L03, 30, L04, L05, 33, L07, 19, 20, 53]

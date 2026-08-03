@@ -1,0 +1,880 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Palette lifted from YE_2025_BOV_Template.idml swatch book.
+     Dark surround = light table: the page plates are the subject. */
+  :root{
+    --void:#070E18; --surface:#0E1826; --surface-2:#14202F; --line:#1E2B3D;
+    --navy:#002B5C; --navy-lift:#0A3A72;
+    --orange:#F58026; --orange-warm:#E5893F;
+    --paper:#E8EAED; --muted:#8A93A0; --dim:#5A6472;
+    --grey-band:#E5E7E6; --grey-mid:#A7A9AC;
+    --disp:'Frank Ruhl Libre',Georgia,serif;
+    --ui:'Roboto',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--void);color:var(--paper);font-family:var(--ui);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:none}
+  ::selection{background:var(--orange);color:#000}
+  :focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+  .shell{display:grid;grid-template-columns:186px 1fr;min-height:100vh}
+
+  /* ---- rail ---- */
+  .rail{background:var(--surface);border-right:1px solid var(--line);padding:20px 0;display:flex;flex-direction:column}
+  .mark{padding:0 18px 20px;border-bottom:1px solid var(--line);margin-bottom:14px}
+  .mark b{font-family:var(--disp);font-weight:900;font-size:19px;letter-spacing:-.01em;display:block;line-height:1.15}
+  .mark span{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500}
+  .nav{display:flex;flex-direction:column;gap:1px;padding:0 8px}
+  .nav button{text-align:left;padding:9px 10px;border-radius:3px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:8px;transition:.12s}
+  .nav button:hover{background:var(--surface-2);color:var(--paper)}
+  .nav button[aria-current="true"]{background:var(--navy);color:#fff;font-weight:500}
+  .nav button i{font-style:normal;font-size:10px;color:var(--dim);font-variant-numeric:tabular-nums}
+  .nav button[aria-current="true"] i{color:var(--orange)}
+  .railfoot{margin-top:auto;padding:14px 18px 0;border-top:1px solid var(--line);font-size:10px;color:var(--dim);line-height:1.6}
+
+  /* ---- main ---- */
+  .main{display:flex;flex-direction:column;min-width:0}
+  .head{padding:20px 26px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .head h1{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.015em}
+  .head p{color:var(--muted);font-size:12px;max-width:60ch;margin-top:3px}
+  .view{padding:22px 26px 26px;flex:1;min-width:0}
+  .hidden{display:none !important}
+
+  /* ---- tweak bar (presets) ---- */
+  .tweaks{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .tweaks>label{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-right:4px}
+  .chip{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;transition:.12s}
+  .chip:hover{border-color:var(--navy-lift);color:var(--paper)}
+  .chip[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:#12191F;font-weight:500}
+
+  /* ---- imposition board : the signature ---- */
+  .band{margin-bottom:22px}
+  .bandhead{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+  .bandhead h2{font-family:var(--disp);font-size:13.5px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+  .bandhead hr{flex:1;border:none;border-top:1px solid var(--line)}
+  .bandhead button{font-size:10.5px;color:var(--dim);letter-spacing:.05em;text-transform:uppercase}
+  .bandhead button:hover{color:var(--orange)}
+  .plates{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+
+  .plate{position:relative;aspect-ratio:11/8.5;border-radius:2px;background:var(--surface-2);
+    border:1px solid var(--line);padding:8px 8px 7px;display:flex;flex-direction:column;
+    text-align:left;transition:transform .13s,opacity .13s,border-color .13s;overflow:hidden}
+  .plate:hover{transform:translateY(-2px);border-color:var(--navy-lift)}
+  .plate .pn{font-family:var(--disp);font-weight:700;font-size:15px;line-height:1;color:var(--paper)}
+  .plate .pt{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.25;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .plate .pc{margin-top:auto;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  /* class encoding — the four production classes, not decoration */
+  .plate[data-c="static"]::before,.plate[data-c="annual"]::before,
+  .plate[data-c="variant"]::before,.plate[data-c="stamp"]::before,
+  .plate[data-c="build"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px}
+  .plate[data-c="static"]::before{background:var(--dim)}
+  .plate[data-c="annual"]::before{background:repeating-linear-gradient(180deg,var(--dim) 0 4px,transparent 4px 8px)}
+  .plate[data-c="variant"]::before{background:var(--navy-lift)}
+  .plate[data-c="stamp"]::before{background:repeating-linear-gradient(180deg,var(--orange) 0 5px,transparent 5px 10px)}
+  .plate[data-c="build"]::before{background:var(--orange)}
+  .plate[aria-pressed="false"]{opacity:.26}
+  .plate[aria-pressed="false"] .pn{color:var(--dim)}
+  .plate .rep{position:absolute;right:6px;top:6px;font-size:8.5px;color:var(--orange);
+    border:1px solid var(--orange);border-radius:2px;padding:0 3px;letter-spacing:.05em}
+
+  /* ---- legend ---- */
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:10.5px;color:var(--dim);margin-bottom:20px}
+  .legend b{display:inline-block;width:3px;height:11px;vertical-align:-1px;margin-right:6px;border-radius:1px}
+
+  /* ---- signature strip ---- */
+  .strip{border-top:1px solid var(--line);background:var(--surface);padding:13px 26px;position:sticky;bottom:0}
+  .striptop{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:9px;flex-wrap:wrap}
+  .striptop h3{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+  .striptop em{font-style:normal;color:var(--muted);font-size:11px}
+  .sig{display:flex;gap:3px;overflow-x:auto;padding-bottom:5px}
+  .sig div{flex:0 0 auto;min-width:26px;height:34px;border-radius:1.5px;background:var(--surface-2);
+    border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+    padding-bottom:3px;font-size:9px;color:var(--muted);font-variant-numeric:tabular-nums;position:relative}
+  .sig div span{position:absolute;left:2px;right:2px;bottom:0;height:4px;background:var(--grey-band);opacity:.5}
+  .sig div[data-c="build"]{border-color:var(--orange)}
+  .sig div[data-c="stamp"]{border-color:var(--orange-warm);border-style:dashed}
+  .sig div[data-c="variant"]{border-color:var(--navy-lift)}
+  .buildbar{display:flex;gap:10px;align-items:center;margin-top:11px;flex-wrap:wrap}
+  .go{background:var(--orange);color:#12191F;font-weight:700;padding:10px 22px;border-radius:3px;letter-spacing:.02em}
+  .go:hover{background:#FF8F3C}
+  .ghost{border:1px solid var(--line);color:var(--muted);padding:10px 16px;border-radius:3px}
+  .ghost:hover{color:var(--paper);border-color:var(--navy-lift)}
+
+  /* ---- generic panels ---- */
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:17px}
+  .card h3{font-family:var(--disp);font-size:14px;font-weight:700;margin-bottom:4px}
+  .card>p{color:var(--muted);font-size:11.5px;margin-bottom:13px}
+  .field{margin-bottom:11px}
+  .field label{display:block;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+  .field input,.field select,.field textarea{width:100%;background:var(--void);border:1px solid var(--line);
+    border-radius:3px;padding:8px 9px;color:var(--paper)}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);outline:none}
+  .field textarea{resize:vertical;min-height:70px;line-height:1.55}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+  /* ---- asset class swatches ---- */
+  .classes{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+  .ac{border:1px solid var(--line);border-radius:3px;overflow:hidden;text-align:left;transition:.13s}
+  .ac:hover{border-color:var(--navy-lift)}
+  .ac[aria-pressed="true"]{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+  .ac .sw{height:56px;position:relative}
+  .ac .sw::after{content:"";position:absolute;inset:0;background:var(--navy);opacity:.55}
+  .ac .lb{padding:8px 9px}
+  .ac .lb b{display:block;font-family:var(--disp);font-size:12.5px;font-weight:700}
+  .ac .lb span{font-size:10px;color:var(--dim)}
+
+  /* ---- team ---- */
+  .people{display:flex;flex-direction:column;gap:8px}
+  .person{display:flex;gap:11px;align-items:center;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:3px;padding:9px 11px}
+  .person[data-on="false"]{opacity:.4}
+  .av{width:38px;height:47px;flex:0 0 auto;border-radius:2px;background:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:14px;color:var(--orange)}
+  .person .who{flex:1;min-width:0}
+  .person .who b{display:block;font-size:12.5px;font-weight:500}
+  .person .who span{display:block;font-size:10.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .person .acts{display:flex;gap:6px;flex:0 0 auto}
+  .person .acts button{font-size:10px;color:var(--dim);border:1px solid var(--line);padding:4px 7px;border-radius:2px}
+  .person .acts button:hover{color:var(--orange);border-color:var(--orange)}
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:11.5px}
+  .kv dt{color:var(--dim)}
+  .kv dd{text-align:right;font-variant-numeric:tabular-nums}
+  .warn{border-left:2px solid var(--orange);background:rgba(245,128,38,.07);padding:9px 12px;
+    font-size:11.5px;color:var(--paper);border-radius:0 3px 3px 0;margin-bottom:8px}
+  .ok{border-left-color:#3E9C6A;background:rgba(62,156,106,.08)}
+  .drop{border:1px dashed var(--line);border-radius:3px;padding:20px;text-align:center;color:var(--dim);font-size:11.5px}
+  .drop:hover{border-color:var(--orange);color:var(--muted)}
+  .tag{display:inline-block;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);
+    border:1px solid var(--orange);border-radius:2px;padding:1px 5px;margin-right:4px}
+  .note{font-size:11px;color:var(--dim);line-height:1.6;margin-top:10px}
+  @media (max-width:760px){.shell{grid-template-columns:1fr}.rail{flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px}
+    .mark{border:none;padding:0 14px 0 4px;margin:0}.nav{flex-direction:row;flex-wrap:wrap}.railfoot{display:none}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}  /* ---- photo library ---- */
+  .libbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .libbar .count{font-size:11px;color:var(--dim);margin-left:auto;font-variant-numeric:tabular-nums}
+  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:7px}
+  .thumb{position:relative;aspect-ratio:4/3;border:1px solid var(--line);border-radius:2px;
+    overflow:hidden;background:var(--void);padding:0;transition:.12s}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb:hover{border-color:var(--navy-lift)}
+  .thumb[aria-selected="true"]{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+  .thumb .nm{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(3,8,14,.92));
+    color:var(--paper);font-size:8.5px;padding:9px 4px 3px;text-align:left;line-height:1.2;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .thumb .sb{position:absolute;top:3px;left:3px;font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;
+    background:rgba(3,8,14,.8);color:var(--orange);padding:1px 4px;border-radius:1.5px}
+  .thumb .lk{position:absolute;top:3px;right:3px;font-size:8px;color:var(--grey-mid);
+    background:rgba(3,8,14,.8);padding:1px 3px;border-radius:1.5px}
+
+  .focalwrap{position:relative;border:1px solid var(--line);border-radius:3px;overflow:hidden;
+    background:var(--void);cursor:crosshair;aspect-ratio:4/3}
+  .focalwrap img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
+  .cross{position:absolute;width:22px;height:22px;margin:-11px 0 0 -11px;pointer-events:none;
+    border:1.5px solid var(--orange);border-radius:50%;box-shadow:0 0 0 1px rgba(3,8,14,.7)}
+  .cross::before,.cross::after{content:"";position:absolute;background:var(--orange)}
+  .cross::before{left:50%;top:-8px;bottom:-8px;width:1px;margin-left:-.5px}
+  .cross::after{top:50%;left:-8px;right:-8px;height:1px;margin-top:-.5px}
+
+  .crops{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:7px}
+  .crop{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--void)}
+  .crop .fr{position:relative;overflow:hidden}
+  .crop .fr img{width:100%;height:100%;object-fit:cover;display:block}
+  .crop .cap{font-size:8px;color:var(--dim);padding:3px 4px;text-align:center;line-height:1.3;
+    font-variant-numeric:tabular-nums}
+  .crop .cap b{color:var(--muted);font-weight:500}
+
+  .bindrow{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+  .bindrow:last-child{border-bottom:none}
+  .bindrow .bt{width:52px;height:39px;flex:0 0 auto;border-radius:2px;overflow:hidden;
+    border:1px solid var(--line);background:var(--void)}
+  .bindrow .bt img{width:100%;height:100%;object-fit:cover;display:block}
+  .bindrow .bi{flex:1;min-width:0}
+  .bindrow .bi b{display:block;font-size:11.5px;font-weight:500}
+  .bindrow .bi span{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bindrow .lock{font-size:9.5px;color:var(--dim);border:1px solid var(--line);padding:3px 7px;border-radius:2px}
+  input[type=file]{display:none}
+  .fbtn{border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:3px;display:inline-block}
+  .fbtn:hover{color:var(--paper);border-color:var(--orange)}
+
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="mark"><b>BOV Studio</b><span>The Anton Group</span></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="railfoot">
+      Template pack<br><b style="color:var(--muted)">YE_2025_BOV</b><br>53 plates · 792×612pt
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="head">
+      <div><h1 id="vt"></h1><p id="vs"></p></div>
+      <div id="hx"></div>
+    </div>
+
+    <!-- DECK -->
+    <section class="view" id="v-deck">
+      <div class="tweaks" id="presets"><label>Tweaks</label></div>
+      <div class="legend">
+        <span><b style="background:var(--dim)"></b>Static — passthrough</span>
+        <span><b style="background:repeating-linear-gradient(180deg,var(--dim) 0 4px,transparent 4px 8px)"></b>Annual refresh</span>
+        <span><b style="background:var(--navy-lift)"></b>Variant — pick one</span>
+        <span><b style="background:repeating-linear-gradient(180deg,var(--orange) 0 5px,transparent 5px 10px)"></b>Stamp — drop image</span>
+        <span><b style="background:var(--orange)"></b>Build — generated</span>
+      </div>
+      <div id="board"></div>
+    </section>
+
+    <!-- OVERLAYS -->
+    <section class="view hidden" id="v-over">
+      <div class="grid2">
+        <div class="card">
+          <h3>Asset class</h3>
+          <p>One full-bleed 792×612 image sits behind all eight section dividers. Swapping it retones the entire book.</p>
+          <div class="classes" id="classes"></div>
+          <p class="note" id="acnote"></p>
+        </div>
+        <div class="card">
+          <h3>Image slots</h3>
+          <p>Every image frame in the template resolves to one of these named slots.</p>
+          <div id="slots"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Bindings for this book</h3>
+        <p>Which library image fills each slot. Locked slots are corporate and can't be reassigned.</p>
+        <div id="binds"></div>
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section class="view hidden" id="v-photos">
+      <div class="libbar">
+        <label class="fbtn" for="pick-dir">Add a folder</label>
+        <input type="file" id="pick-dir" webkitdirectory directory multiple accept="image/*">
+        <label class="fbtn" for="pick-file">Add files</label>
+        <input type="file" id="pick-file" multiple accept="image/*">
+        <button class="ghost" id="clearlib">Empty library</button>
+        <span class="count" id="libcount"></span>
+      </div>
+      <div class="grid2" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)">
+        <div class="card">
+          <h3>Library</h3>
+          <p>Point this at your <b>Linked</b> folder. Corporate filenames are recognised and slotted automatically.</p>
+          <div class="lib" id="lib"></div>
+          <div class="drop" id="drop" style="margin-top:11px">Or drop images here</div>
+        </div>
+        <div class="card" id="inspect">
+          <h3>Focal point</h3>
+          <p>Click the image to set what must stay in frame. Every crop below updates.</p>
+          <div id="focalpane"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="view hidden" id="v-team">
+      <div class="grid2">
+        <div class="card">
+          <h3>Roster</h3>
+          <p>Toggle who appears. Each selected advisor adds a bio page and populates the cover blocks.</p>
+          <div class="people" id="people"></div>
+          <button class="ghost" style="margin-top:11px" id="addp">Add advisor</button>
+        </div>
+        <div class="card">
+          <h3>Add to roster</h3>
+          <p>Stored once, available to every book.</p>
+          <div class="field"><label>Name</label><input id="f-name" placeholder="Jane Advisor"></div>
+          <div class="row">
+            <div class="field"><label>Title</label><input id="f-title" placeholder="Associate Director"></div>
+            <div class="field"><label>License</label><input id="f-lic" placeholder="NY #10401…"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label>Direct</label><input id="f-tel" placeholder="212.430.0000"></div>
+            <div class="field"><label>Email</label><input id="f-mail" placeholder="first.last@marcusmillichap.com"></div>
+          </div>
+          <div class="field"><label>Headshot — 4:5</label><div class="drop">Drop a headshot</div></div>
+          <button class="go" id="savep">Save advisor</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTY -->
+    <section class="view hidden" id="v-prop">
+      <div class="grid2">
+        <div class="card">
+          <h3>Identity</h3>
+          <p>Feeds the cover, every page header, and the footer band.</p>
+          <div class="field"><label>Property name</label><input id="p-name" placeholder="The Wexler"></div>
+          <div class="field"><label>Street address</label><input id="p-addr" placeholder="260 Madison Avenue"></div>
+          <div class="row">
+            <div class="field"><label>City, State ZIP</label><input id="p-city" placeholder="New York, NY 10016"></div>
+            <div class="field"><label>Submarket</label><input id="p-sub" placeholder="Murray Hill"></div>
+          </div>
+          <div class="field"><label>Activity ID</label><input id="p-act" placeholder="Stamped onto the disclaimer"></div>
+        </div>
+        <div class="card">
+          <h3>Offering summary</h3>
+          <p>Eight fields. Derived metrics compute — never typed twice.</p>
+          <div class="row">
+            <div class="field"><label>Listing price</label><input id="p-price" inputmode="numeric" placeholder="12000000"></div>
+            <div class="field"><label>NOI</label><input id="p-noi" inputmode="numeric" placeholder="512127"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label>Units</label><input id="p-units" inputmode="numeric" placeholder="30"></div>
+            <div class="field"><label>Gross SF</label><input id="p-sf" inputmode="numeric" placeholder="26900"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label>Year built</label><input id="p-yr" placeholder="1984 / 2005"></div>
+            <div class="field"><label>Occupancy %</label><input id="p-occ" placeholder="96"></div>
+          </div>
+          <dl class="kv" id="derived"></dl>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Narrative</h3>
+        <p>The only place a model writes prose. Layout never depends on it.</p>
+        <div class="field"><label>Property description</label><textarea id="p-desc" placeholder="Three or four paragraphs on construction, unit mix, condition, position…"></textarea></div>
+        <div class="field"><label>Highlights — one per line</label><textarea id="p-hl" placeholder="30-unit elevator building in Murray Hill&#10;Sub-4% in-place, 38% below-market rents&#10;Two blocks to the 6 at 33rd Street"></textarea></div>
+      </div>
+    </section>
+
+    <!-- BUILD -->
+    <section class="view hidden" id="v-build">
+      <div class="grid2">
+        <div class="card"><h3>Output</h3><p>What this configuration produces.</p><dl class="kv" id="outkv"></dl></div>
+        <div class="card"><h3>Work required</h3><p>How each retained plate gets made.</p><dl class="kv" id="workkv"></dl>
+          <p class="note">Static, annual and variant plates are file copies. Only <b>build</b> plates render, and they share seven templates.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px"><h3>Preflight</h3><p>Checked before assembly.</p><div id="pre"></div></div>
+    </section>
+
+    <!-- strip -->
+    <div class="strip">
+      <div class="striptop">
+        <h3>Signature — output pagination</h3>
+        <em id="sigmeta"></em>
+      </div>
+      <div class="sig" id="sig"></div>
+      <div class="buildbar">
+        <button class="go" id="build">Assemble PDF</button>
+        <button class="ghost" id="saveset">Save as preset</button>
+        <button class="ghost" id="reset">Reset to Full</button>
+        <span id="msg" style="font-size:11.5px;color:var(--muted)"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PAGES=[{"n":1,"t":"Cover","c":"build","s":"Front Matter","f":null,"tf":3,"im":1,"sl":["property_photo"]},{"n":2,"t":"Disclaimer","c":"static","s":"Front Matter","f":null,"tf":2,"im":1,"sl":["brand_logo"]},{"n":3,"t":"Presented By","c":"variant","s":"Front Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]},{"n":4,"t":"Table of Contents","c":"build","s":"Front Matter","f":null,"tf":9,"im":1,"sl":["property_photo"]},{"n":5,"t":"Divider \u2014 M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":6,"t":"Welcome to M&M","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":4,"im":1,"sl":["corporate_stock"]},{"n":7,"t":"Our Mission","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":8,"t":"The M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":9,"t":"A Company of Specialists","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":10,"t":"Better Methods, Better Results","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":11,"t":"Year in Review Stats","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":7,"im":2,"sl":["corporate_stock"]},{"n":12,"t":"#1 in Multifamily","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":10,"im":1,"sl":["corporate_stock"]},{"n":13,"t":"MarcusMillichap.com","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":14,"t":"Making a Market","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":15,"t":"Research Reports","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":16,"t":"Actionable Insights","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":17,"t":"Capital Migration","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":18,"t":"MMCC Financing","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":19,"t":"Divider \u2014 Advisor Bios","c":"static","s":"Advisor Bios","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":20,"t":"Advisor Bio","c":"variant","s":"Advisor Bios","f":"ADVISOR BIOS","tf":6,"im":2,"sl":["advisor_headshot","corporate_stock"]},{"n":21,"t":"Divider \u2014 Marketing Plan","c":"static","s":"Marketing Plan","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":22,"t":"Maximum Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":23,"t":"Internal & External Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":24,"t":"Divider \u2014 Investment Overview","c":"static","s":"Investment Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":25,"t":"Property Summary","c":"build","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":5,"im":1,"sl":["property_photo"]},{"n":26,"t":"Regional Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":27,"t":"Local Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":28,"t":"Retailer Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":29,"t":"Property Photos","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":2,"im":4,"sl":["property_photo"]},{"n":30,"t":"Divider \u2014 Financial Analysis","c":"static","s":"Financial Analysis","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":31,"t":"Financial Detail I","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":32,"t":"Financial Detail II","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":33,"t":"Divider \u2014 Sale Comparables","c":"static","s":"Sale Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":34,"t":"Sale Comps Map","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":35,"t":"Sale Comps Summary","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":0,"sl":[]},{"n":36,"t":"Sale Comps Chart","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":4,"im":0,"sl":[]},{"n":37,"t":"Sale Comps Detail I","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":10,"im":2,"sl":["property_photo"]},{"n":38,"t":"Sale Comps Detail II","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":11,"im":2,"sl":["property_photo"]},{"n":39,"t":"Divider \u2014 Rent Comparables","c":"static","s":"Rent Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":40,"t":"Rent Comps Map","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":41,"t":"Rent Comps Summary","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":0,"sl":[]},{"n":42,"t":"Rent Comps Chart I","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":43,"t":"Rent Comps Chart II","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":44,"t":"Rent Comps Detail I","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":2,"sl":["property_photo"]},{"n":45,"t":"Rent Comps Detail II","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":7,"im":2,"sl":["property_photo"]},{"n":46,"t":"Divider \u2014 Market Overview","c":"static","s":"Market Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":47,"t":"Metro Overview","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":7,"im":1,"sl":["property_photo"]},{"n":48,"t":"Metro Economy","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":15,"im":1,"sl":["property_photo"]},{"n":49,"t":"Metro Demographics","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":20,"im":0,"sl":[]},{"n":50,"t":"Demographics Chart I","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":51,"t":"Demographics Chart II","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":52,"t":"Demographics Chart III","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":53,"t":"Back Cover","c":"variant","s":"Back Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]}];
+</script>
+<script>
+/* ------------------------------------------------------------------ data */
+const CLASS_LABEL={static:'Static',annual:'Annual',variant:'Variant',stamp:'Stamp',build:'Build'};
+
+// Repeatable plates: one plate in the template, n pages in the output.
+const REPEATS={20:'advisors',37:'saleComps',38:'saleComps',44:'rentComps',45:'rentComps'};
+
+const PRESETS={
+  Full:{all:true},
+  Lean:{keep:[1,2,3,4,5,8,10,11,12,19,20,21,22,24,25,26,27,29,30,31,33,34,35,37,39,40,41,44,46,47,53]},
+  'Repeat client':{keep:[1,2,3,4,19,20,24,25,26,27,29,30,31,32,33,34,35,37,38,39,40,41,44,45,46,47,48,53]},
+  'Debt & equity':{keep:[1,2,3,4,18,19,20,24,25,26,27,29,30,31,32,33,34,35,37,46,47,53]},
+  'Pricing only':{keep:[1,2,3,4,24,25,30,31,32,33,34,35,37,38,39,40,41,44,53]},
+};
+
+const ASSET_CLASSES=[
+  {id:'multifamily',name:'Multifamily',asset:'divider_palms.jpg',sw:'linear-gradient(150deg,#1D4E3A,#2F7D55 60%,#8FBF6A)'},
+  {id:'office',name:'Office',asset:'divider_curtainwall.jpg',sw:'linear-gradient(150deg,#1A2A3C,#3E5C7A 55%,#8FA8BF)'},
+  {id:'retail',name:'Retail',asset:'divider_streetfront.jpg',sw:'linear-gradient(150deg,#4A2A1C,#8A5230 55%,#D9A15E)'},
+  {id:'industrial',name:'Industrial',asset:'divider_dockside.jpg',sw:'linear-gradient(150deg,#2B2E33,#54595F 55%,#9AA0A6)'},
+  {id:'mixeduse',name:'Mixed-Use',asset:'divider_cornerlot.jpg',sw:'linear-gradient(150deg,#33243C,#6B4A72 55%,#B58FBF)'},
+  {id:'devsite',name:'Development site',asset:'divider_skyline.jpg',sw:'linear-gradient(150deg,#1C3040,#456A7F 55%,#C8B78F)'},
+];
+
+const SLOT_INFO=[
+  ['divider_bg',8,'Section dividers · full bleed 792×612','Asset class'],
+  ['property_photo',24,'Cover, headers, comps, photo grid','Per property'],
+  ['advisor_headshot',1,'Advisor bio · 4:5','Per advisor'],
+  ['brand_logo',1,'Disclaimer footer','Locked'],
+  ['marketing_bg',2,'Marketing plan ground','Locked'],
+  ['corporate_stock',15,'M&M boilerplate imagery','Locked'],
+];
+
+// Distinct frame shapes per slot, straight out of the compiled IDML geometry.
+// Every crop preview uses these, so what you see is what the assembler cuts.
+const SLOT_SHAPES={
+  property_photo:[
+    [384.8,181.4,[25]],[792,414.7,[26,27,28]],[316.1,170,[37,38]],[535.7,301.5,[29]],
+    [226.8,150.5,[44,45]],[792,612,[1,3,53]],[266.4,253.4,[48]],[531,612,[34,40]],
+    [247.3,301.5,[29]],[348.8,429.1,[47]],[360,612,[4]],
+  ],
+  divider_bg:[[792,612,[5,19,21,24,30,33,39,46]]],
+  advisor_headshot:[[162,221.1,[20]]],
+  marketing_bg:[[792,612,[22]],[665.3,612.7,[23]]],
+  brand_logo:[[184,44,[2]]],
+  corporate_stock:[],
+};
+
+// Filenames from the template's own link table. Recognised on import.
+const CORPORATE_LINKS={
+  'gettyimages-583904061.jpg':'divider_bg',
+  'template1_cover1.jpg':'property_photo',
+  'mm_headshot3_4x5.jpg':'advisor_headshot',
+  'mm_logo2018_blue295_large.png':'brand_logo',
+  'background.jpg':'marketing_bg',
+};
+const LOCKED_SLOTS=new Set(['brand_logo','marketing_bg','corporate_stock']);
+
+function guessSlot(name){
+  const n=name.toLowerCase();
+  if(CORPORATE_LINKS[n])return CORPORATE_LINKS[n];
+  if(/gettyimages|covers_\d|mmwebsite|balcony|unsplash/.test(n))return 'corporate_stock';
+  if(/head\s*shot|headshot|portrait|_4x5/.test(n))return 'advisor_headshot';
+  if(/divider|palm|skyline|aerial_wide/.test(n))return 'divider_bg';
+  if(/logo/.test(n))return 'brand_logo';
+  return 'property_photo';
+}
+
+const SEED_TEAM=[
+  {id:'ea',name:'Eric Anton',title:'Senior Managing Director',tel:'212.430.5100',mail:'eric.anton@marcusmillichap.com',lic:'NY #10301', on:true},
+  {id:'hk',name:'Henri M. Kessler',title:'Associate Director, Investments',tel:'212.430.5101',mail:'henri.kessler@marcusmillichap.com',lic:'NY #10401', on:true},
+];
+
+/* ----------------------------------------------------------------- state */
+let S={
+  keep:new Set(PAGES.map(p=>p.n)),
+  preset:'Full',
+  assetClass:'multifamily',
+  team:SEED_TEAM.map(p=>({...p})),
+  prop:{},
+  counts:{saleComps:6,rentComps:6},
+  bind:{},          // slot -> library image id
+};
+
+// The library keeps a downscaled preview plus the focal point and the original
+// path. Full-resolution files stay where they are; the assembler re-reads them
+// at build time, so a 5MB hero never has to fit in browser storage.
+let LIB={items:[],thumbs:{}};
+let sel=null;
+
+const K='bovstudio:v1', KL='bovstudio:lib:v1';
+const LIB_BUDGET=4_200_000;
+
+async function save(){
+  try{await window.storage.set(K,JSON.stringify({...S,keep:[...S.keep]}));}
+  catch(e){console.error('config save failed',e);}
+}
+async function saveLib(){
+  // Trim oldest previews if we approach the per-key ceiling. Metadata survives;
+  // only the thumbnail is dropped, and it regenerates on re-import.
+  let payload=JSON.stringify(LIB);
+  const order=[...LIB.items].sort((a,b)=>a.at-b.at);
+  let i=0;
+  while(payload.length>LIB_BUDGET&&i<order.length){
+    delete LIB.thumbs[order[i++].id];
+    payload=JSON.stringify(LIB);
+  }
+  if(i)msg.textContent=`Library over budget — dropped ${i} preview${i>1?'s':''}. Metadata kept.`;
+  try{await window.storage.set(KL,payload);}
+  catch(e){msg.textContent='Library too large to store. Remove a few images.';}
+}
+async function load(){
+  try{
+    const r=await window.storage.get(K);
+    if(r&&r.value){const d=JSON.parse(r.value);S={...S,...d,keep:new Set(d.keep)};}
+  }catch(e){/* first run */}
+  try{
+    const r=await window.storage.get(KL);
+    if(r&&r.value)LIB=JSON.parse(r.value);
+  }catch(e){/* first run */}
+}
+
+/* ----------------------------------------------------------- derivations */
+const advisorsOn=()=>S.team.filter(p=>p.on).length||1;
+
+// Two comps sit on each detail spread, so the page count comes from the comp
+// count — not from how many detail plates happen to be ticked. Spread the
+// required pages across the selected plates and drop any that aren't needed.
+function repsFor(group,plates){
+  const sel=plates.filter(n=>S.keep.has(n));
+  if(!sel.length)return {};
+  const need=Math.max(1,Math.ceil(S.counts[group]/2));
+  const base=Math.floor(need/sel.length),extra=need%sel.length;
+  const map={};
+  sel.forEach((n,i)=>map[n]=base+(i<extra?1:0));
+  return map;
+}
+
+function outputPages(){
+  const out=[];
+  const sale=repsFor('saleComps',[37,38]);
+  const rent=repsFor('rentComps',[44,45]);
+  for(const p of PAGES){
+    if(!S.keep.has(p.n))continue;
+    let reps=1;
+    if(REPEATS[p.n]==='advisors')reps=advisorsOn();
+    else if(REPEATS[p.n]==='saleComps')reps=sale[p.n]??0;
+    else if(REPEATS[p.n]==='rentComps')reps=rent[p.n]??0;
+    for(let i=0;i<reps;i++){
+      const n=out.length+1;
+      out.push({plate:p.n,title:p.t,c:p.c,footer:p.f?`${n} | ${p.f}`:null,n});
+    }
+  }
+  return out;
+}
+
+/* ------------------------------------------------------------- photo library */
+const THUMB_EDGE=420;
+
+function shrink(file){
+  return new Promise((res,rej)=>{
+    const url=URL.createObjectURL(file);
+    const im=new Image();
+    im.onload=()=>{
+      const scale=Math.min(1,THUMB_EDGE/Math.max(im.width,im.height));
+      const c=document.createElement('canvas');
+      c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+      URL.revokeObjectURL(url);
+      res({thumb:c.toDataURL('image/jpeg',0.72),w:im.width,h:im.height});
+    };
+    im.onerror=()=>{URL.revokeObjectURL(url);rej(new Error(file.name));};
+    im.src=url;
+  });
+}
+
+async function ingest(files){
+  const list=[...files].filter(f=>/^image\//.test(f.type)||/\.(jpe?g|png|webp|tiff?)$/i.test(f.name));
+  if(!list.length){msg.textContent='No images in that selection.';return;}
+  let added=0,skipped=0,failed=0;
+  msg.textContent=`Reading ${list.length} file${list.length>1?'s':''}…`;
+  for(const f of list){
+    const key=f.name+':'+f.size;
+    if(LIB.items.some(it=>it.key===key)){skipped++;continue;}
+    try{
+      const {thumb,w,h}=await shrink(f);
+      const id='i'+Math.random().toString(36).slice(2,9);
+      const slot=guessSlot(f.name);
+      LIB.items.push({id,key,name:f.name,
+        path:f.webkitRelativePath||f.name,   // where the full-res original lives
+        slot,w,h,bytes:f.size,focal:{x:.5,y:.5},at:Date.now(),
+        corporate:!!CORPORATE_LINKS[f.name.toLowerCase()]});
+      LIB.thumbs[id]=thumb;
+      if(!S.bind[slot])S.bind[slot]=id;
+      added++;
+    }catch(e){failed++;}
+  }
+  sel=sel||LIB.items.at(-1)?.id||null;
+  await saveLib();await save();renderAll();
+  msg.innerHTML=`<b style="color:var(--orange)">${added} added.</b>`+
+    (skipped?` ${skipped} already in the library.`:'')+(failed?` ${failed} unreadable.`:'');
+}
+
+function renderPhotos(){
+  libcount.textContent=LIB.items.length
+    ? `${LIB.items.length} images · ${Math.round(JSON.stringify(LIB).length/1024)} KB stored`
+    : 'empty';
+
+  lib.innerHTML=LIB.items.map(it=>`
+    <button class="thumb" data-i="${it.id}" aria-selected="${sel===it.id}" title="${it.name}\n${it.w}×${it.h}px">
+      ${LIB.thumbs[it.id]?`<img src="${LIB.thumbs[it.id]}" alt="">`:''}
+      <span class="sb">${it.slot.replace('_',' ').replace('property ','')}</span>
+      ${it.corporate?`<span class="lk">M&amp;M</span>`:''}
+      <span class="nm">${it.name}</span>
+    </button>`).join('')
+    ||`<div class="drop" style="grid-column:1/-1">Nothing here yet. Add your Linked folder above.</div>`;
+  lib.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{sel=b.dataset.i;renderAll();});
+
+  const it=LIB.items.find(x=>x.id===sel);
+  if(!it){focalpane.innerHTML=`<div class="drop">Select an image to set its focal point.</div>`;return;}
+  const src=LIB.thumbs[it.id]||'';
+  const shapes=SLOT_SHAPES[it.slot]||[];
+  const slotOpts=Object.keys(SLOT_SHAPES).map(s=>
+    `<option value="${s}"${s===it.slot?' selected':''}>${s.replace(/_/g,' ')}</option>`).join('');
+
+  focalpane.innerHTML=`
+    <div class="focalwrap" id="fw">${src?`<img src="${src}" alt="">`:'<div class="drop">Preview dropped</div>'}
+      <div class="cross" style="left:${it.focal.x*100}%;top:${it.focal.y*100}%"></div></div>
+    <div class="row" style="margin-top:11px">
+      <div class="field"><label>Slot</label><select id="fslot">${slotOpts}</select></div>
+      <div class="field"><label>Original</label>
+        <input value="${it.w}×${it.h} · ${Math.round(it.bytes/1024)} KB" readonly></div>
+    </div>
+    <div class="field"><label>Full-resolution source</label>
+      <input value="${it.path}" readonly title="${it.path}"></div>
+    <label style="display:block;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+      color:var(--dim);margin:4px 0 6px">Crops — ${shapes.length||'no'} frame shape${shapes.length===1?'':'s'} in this slot</label>
+    <div class="crops">${shapes.map(([w,h,pgs])=>`
+      <div class="crop"><div class="fr" style="aspect-ratio:${w}/${h}">
+        ${src?`<img src="${src}" style="object-position:${it.focal.x*100}% ${it.focal.y*100}%" alt="">`:''}
+      </div><div class="cap"><b>${(w/h).toFixed(2)}:1</b><br>p${pgs.join(' · p')}</div></div>`).join('')
+      ||`<div class="drop" style="grid-column:1/-1">Corporate stock — not cropped by us.</div>`}</div>
+    <button class="ghost" id="delimg" style="margin-top:12px">Remove from library</button>`;
+
+  const fw=document.getElementById('fw');
+  const setFocal=ev=>{
+    const r=fw.getBoundingClientRect();
+    it.focal={x:Math.min(1,Math.max(0,(ev.clientX-r.left)/r.width)),
+              y:Math.min(1,Math.max(0,(ev.clientY-r.top)/r.height))};
+    renderPhotos();saveLib();
+  };
+  fw.onpointerdown=e=>{fw.setPointerCapture(e.pointerId);setFocal(e);
+    fw.onpointermove=m=>{if(m.buttons)setFocal(m);};};
+  fw.onpointerup=()=>{fw.onpointermove=null;};
+  document.getElementById('fslot').onchange=e=>{
+    it.slot=e.target.value;
+    if(!S.bind[it.slot])S.bind[it.slot]=it.id;
+    saveLib();save();renderAll();
+  };
+  document.getElementById('delimg').onclick=()=>{
+    LIB.items=LIB.items.filter(x=>x.id!==it.id);delete LIB.thumbs[it.id];
+    for(const k in S.bind)if(S.bind[k]===it.id)delete S.bind[k];
+    sel=LIB.items[0]?.id||null;saveLib();save();renderAll();
+  };
+}
+
+function renderBinds(){
+  binds.innerHTML=SLOT_INFO.map(([slot,n,where])=>{
+    const id=S.bind[slot];
+    const it=LIB.items.find(x=>x.id===id);
+    const locked=LOCKED_SLOTS.has(slot);
+    const opts=LIB.items.filter(x=>x.slot===slot);
+    return `<div class="bindrow">
+      <div class="bt">${it&&LIB.thumbs[it.id]?`<img src="${LIB.thumbs[it.id]}" alt="">`:''}</div>
+      <div class="bi"><b>${slot.replace(/_/g,' ')}</b>
+        <span>${n} frame${n>1?'s':''} · ${where}</span></div>
+      ${locked?`<span class="lock">Corporate</span>`
+        :`<select data-b="${slot}" style="max-width:170px;background:var(--void);
+            border:1px solid var(--line);border-radius:3px;padding:6px 8px">
+            <option value="">— none —</option>
+            ${opts.map(o=>`<option value="${o.id}"${o.id===id?' selected':''}>${o.name}</option>`).join('')}
+          </select>`}
+    </div>`;
+  }).join('');
+  binds.querySelectorAll('[data-b]').forEach(s=>s.onchange=()=>{
+    S.bind[s.dataset.b]=s.value||undefined;save();renderAll();});
+}
+
+/* -------------------------------------------------------------- renderers */
+const VIEWS=[
+  ['deck','Deck','Choose which of the 53 plates this book carries. Sections collapse to a single click.'],
+  ['photos','Photos','Your image library. Set a focal point once and every frame crops around it.'],
+  ['over','Overlays','Swap the named image slots. One divider asset retones all eight section breaks.'],
+  ['team','Team','Contacts and headshots, stored once and available to every book.'],
+  ['prop','Property','The standardised intake. Everything the build templates bind to.'],
+  ['build','Build','Preflight and assemble.'],
+];
+let view='deck';
+
+function renderNav(){
+  const counts={deck:`${S.keep.size}/53`,photos:`${LIB.items.length}`,over:'6',
+    team:`${advisorsOn()}`,prop:'',build:''};
+  nav.innerHTML=VIEWS.map(([id,label])=>
+    `<button data-v="${id}" aria-current="${view===id}">${label}<i>${counts[id]||''}</i></button>`).join('');
+  nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{view=b.dataset.v;renderAll();});
+  const v=VIEWS.find(x=>x[0]===view);
+  vt.textContent=v[1];vs.textContent=v[2];
+  VIEWS.forEach(([id])=>document.getElementById('v-'+id).classList.toggle('hidden',id!==view));
+}
+
+function renderPresets(){
+  presets.innerHTML='<label>Tweaks</label>'+Object.keys(PRESETS).map(k=>
+    `<button class="chip" data-p="${k}" aria-pressed="${S.preset===k}">${k}</button>`).join('');
+  presets.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{
+    const p=PRESETS[b.dataset.p];
+    S.keep=new Set(p.all?PAGES.map(x=>x.n):p.keep);
+    S.preset=b.dataset.p;renderAll();save();
+  });
+}
+
+function renderBoard(){
+  const secs=[...new Set(PAGES.map(p=>p.s))];
+  board.innerHTML=secs.map(sec=>{
+    const ps=PAGES.filter(p=>p.s===sec);
+    const on=ps.filter(p=>S.keep.has(p.n)).length;
+    return `<div class="band">
+      <div class="bandhead">
+        <h2>${sec}</h2><hr>
+        <button data-sec="${sec}">${on===ps.length?'clear':'select all'} · ${on}/${ps.length}</button>
+      </div>
+      <div class="plates">${ps.map(p=>`
+        <button class="plate" data-c="${p.c}" data-n="${p.n}" aria-pressed="${S.keep.has(p.n)}"
+          title="${p.tf} text frames · ${p.im} image frames">
+          ${REPEATS[p.n]?`<span class="rep">×n</span>`:''}
+          <span class="pn">${String(p.n).padStart(2,'0')}</span>
+          <span class="pt">${p.t}</span>
+          <span class="pc">${CLASS_LABEL[p.c]}</span>
+        </button>`).join('')}</div></div>`;
+  }).join('');
+
+  board.querySelectorAll('.plate').forEach(b=>b.onclick=()=>{
+    const n=+b.dataset.n;S.keep.has(n)?S.keep.delete(n):S.keep.add(n);
+    S.preset='';renderAll();save();
+  });
+  board.querySelectorAll('[data-sec]').forEach(b=>b.onclick=()=>{
+    const ps=PAGES.filter(p=>p.s===b.dataset.sec);
+    const all=ps.every(p=>S.keep.has(p.n));
+    ps.forEach(p=>all?S.keep.delete(p.n):S.keep.add(p.n));
+    S.preset='';renderAll();save();
+  });
+}
+
+function renderOverlays(){
+  classes.innerHTML=ASSET_CLASSES.map(a=>`
+    <button class="ac" data-a="${a.id}" aria-pressed="${S.assetClass===a.id}">
+      <div class="sw" style="background:${a.sw}"></div>
+      <div class="lb"><b>${a.name}</b><span>${a.asset}</span></div>
+    </button>`).join('');
+  classes.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{
+    S.assetClass=b.dataset.a;renderAll();save();});
+  const a=ASSET_CLASSES.find(x=>x.id===S.assetClass);
+  const dv=LIB.items.find(x=>x.id===S.bind.divider_bg);
+  acnote.innerHTML=`Applies <b>${dv?dv.name:a.asset}</b> to pages 5, 19, 21, 24, 30, 33, 39 and 46 — and swaps
+    plate 12 to the <b>${a.name}</b> brokerage ranking.
+    ${dv?'':'<span style="color:var(--orange)">No divider image bound yet — add one under Photos.</span>'}`;
+  slots.innerHTML=`<dl class="kv">`+SLOT_INFO.map(([id,n,where,who])=>
+    `<dt><span class="tag">${who}</span>${id}</dt><dd>${n} frame${n>1?'s':''}</dd>
+     <dt style="grid-column:1/3;color:var(--dim);font-size:10.5px;padding-bottom:7px">${where}</dt>`).join('')+`</dl>`;
+}
+
+function renderTeam(){
+  people.innerHTML=S.team.map(p=>`
+    <div class="person" data-on="${p.on}">
+      <div class="av">${p.name.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+      <div class="who"><b>${p.name}</b><span>${p.title}</span><span>${p.mail}</span></div>
+      <div class="acts">
+        <button data-t="${p.id}">${p.on?'In book':'Excluded'}</button>
+        <button data-d="${p.id}">Remove</button>
+      </div>
+    </div>`).join('')||`<div class="drop">No advisors yet. Add one on the right.</div>`;
+  people.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{
+    const p=S.team.find(x=>x.id===b.dataset.t);p.on=!p.on;renderAll();save();});
+  people.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{
+    S.team=S.team.filter(x=>x.id!==b.dataset.d);renderAll();save();});
+}
+
+function renderProp(){
+  const g=id=>document.getElementById(id);
+  const map={'p-name':'name','p-addr':'addr','p-city':'city','p-sub':'sub','p-act':'act',
+    'p-price':'price','p-noi':'noi','p-units':'units','p-sf':'sf','p-yr':'yr','p-occ':'occ',
+    'p-desc':'desc','p-hl':'hl'};
+  for(const [id,k] of Object.entries(map)){
+    const el=g(id);if(!el)continue;
+    if(el.value!==(S.prop[k]??''))el.value=S.prop[k]??'';
+    el.oninput=()=>{S.prop[k]=el.value;renderDerived();renderStrip();save();};
+  }
+  renderDerived();
+}
+
+function renderDerived(){
+  const n=k=>parseFloat((S.prop[k]||'').toString().replace(/[^0-9.]/g,''));
+  const price=n('price'),noi=n('noi'),units=n('units'),sf=n('sf');
+  const fm=v=>isFinite(v)&&v?v.toLocaleString('en-US',{maximumFractionDigits:0}):'—';
+  const rows=[
+    ['Cap rate',price&&noi?(noi/price*100).toFixed(2)+'%':'—'],
+    ['Price / unit',price&&units?'$'+fm(price/units):'—'],
+    ['Price / SF',price&&sf?'$'+(price/sf).toFixed(2):'—'],
+    ['GRM',price&&noi?(price/(noi*1.45)).toFixed(2):'—'],
+  ];
+  derived.innerHTML=rows.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+}
+
+function renderStrip(){
+  const out=outputPages();
+  sig.innerHTML=out.map(p=>
+    `<div data-c="${p.c}" title="plate ${String(p.plate).padStart(2,'0')} — ${p.title}${p.footer?'\n'+p.footer:''}">
+      ${p.n}${p.footer?'<span></span>':''}</div>`).join('');
+  const nm=S.prop.name||'Untitled property';
+  sigmeta.innerHTML=`<b style="color:var(--paper)">${nm}</b> · ${out.length} pages ·
+    ${out.filter(p=>p.footer).length} footers renumbered · ${S.keep.size} plates selected`;
+}
+
+function renderBuild(){
+  const out=outputPages();
+  const by={};out.forEach(p=>by[p.c]=(by[p.c]||0)+1);
+  const ac=ASSET_CLASSES.find(x=>x.id===S.assetClass);
+  outkv.innerHTML=[
+    ['Pages',out.length],['Plates selected',S.keep.size],
+    ['Advisors',advisorsOn()],['Asset class',ac.name],
+    ['Sale comps',S.counts.saleComps],['Rent comps',S.counts.rentComps],
+    ['Trim','11 × 8.5 in landscape'],['Bleed','0.125 in'],
+  ].map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+  workkv.innerHTML=Object.entries(CLASS_LABEL).map(([k,l])=>{
+    const c=by[k]||0;
+    const how={static:'file copy',annual:'file copy',variant:'pre-rendered pick',
+      stamp:'copy + image stamp',build:'HTML → PDF'}[k];
+    return `<dt>${l}</dt><dd>${c} · <span style="color:var(--dim)">${how}</span></dd>`;
+  }).join('');
+
+  const w=[];
+  if(!S.prop.name)w.push('Property name is empty — the cover and every page header need it.');
+  if(!S.prop.price||!S.prop.noi)w.push('Listing price and NOI drive the offering summary and the cap rate.');
+  if(!advisorsOn()||S.team.every(p=>!p.on))w.push('No advisor selected — the bio and cover blocks will be blank.');
+  if(!S.bind.property_photo)w.push('No property photo bound. 24 frames across the book need it.');
+  if(!S.bind.divider_bg&&[5,19,21,24,30,33,39,46].some(n=>S.keep.has(n)))
+    w.push('Section dividers are in but no divider image is bound.');
+  if(S.keep.has(20)&&!S.bind.advisor_headshot)w.push('Advisor bio is in but no headshot is bound.');
+  const noFocal=LIB.items.filter(i=>i.slot==='property_photo'&&i.focal.x===.5&&i.focal.y===.5);
+  if(noFocal.length)w.push(`${noFocal.length} property photo${noFocal.length>1?'s':''} still on the default
+    centre focal point — check the 0.59:1 and 2.12:1 crops before you ship.`);
+  if(!S.keep.has(2))w.push('Disclaimer omitted. Compliance requires it on every BOV.');
+  if(S.keep.has(37)&&S.counts.saleComps<3)w.push('Fewer than three sale comps for a detail spread.');
+  pre.innerHTML=w.length
+    ? w.map(x=>`<div class="warn">${x}</div>`).join('')
+    : `<div class="warn ok">Ready. ${out.length} pages, ${by.build||0} rendered, ${(by.static||0)+(by.annual||0)+(by.variant||0)} copied.</div>`;
+}
+
+function renderAll(){
+  renderNav();renderPresets();renderBoard();renderPhotos();renderBinds();
+  renderOverlays();renderTeam();renderProp();renderStrip();renderBuild();
+}
+
+/* ------------------------------------------------------------ file intake */
+document.getElementById('pick-dir').onchange=e=>{ingest(e.target.files);e.target.value='';};
+document.getElementById('pick-file').onchange=e=>{ingest(e.target.files);e.target.value='';};
+document.getElementById('clearlib').onclick=()=>{
+  LIB={items:[],thumbs:{}};S.bind={};sel=null;saveLib();save();renderAll();
+  msg.textContent='Library emptied.';
+};
+const dz=document.getElementById('drop');
+['dragenter','dragover'].forEach(ev=>dz.addEventListener(ev,e=>{
+  e.preventDefault();dz.style.borderColor='var(--orange)';}));
+['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{
+  e.preventDefault();dz.style.borderColor='';}));
+dz.addEventListener('drop',e=>{if(e.dataTransfer?.files?.length)ingest(e.dataTransfer.files);});
+
+/* -------------------------------------------------------------- controls */
+addp.onclick=()=>{view='team';renderAll();document.getElementById('f-name').focus();};
+savep.onclick=()=>{
+  const g=id=>document.getElementById(id);
+  const name=g('f-name').value.trim();
+  if(!name){msg.textContent='Advisor needs a name.';return;}
+  S.team.push({id:'a'+Date.now(),name,title:g('f-title').value.trim()||'Investments',
+    tel:g('f-tel').value.trim(),mail:g('f-mail').value.trim(),lic:g('f-lic').value.trim(),on:true});
+  ['f-name','f-title','f-tel','f-mail','f-lic'].forEach(i=>g(i).value='');
+  msg.textContent=name+' added to the roster.';renderAll();save();
+};
+document.getElementById('reset').onclick=()=>{
+  S.keep=new Set(PAGES.map(p=>p.n));S.preset='Full';renderAll();save();};
+document.getElementById('saveset').onclick=()=>{
+  msg.textContent=`Preset saved — ${S.keep.size} plates, ${ASSET_CLASSES.find(a=>a.id===S.assetClass).name}.`;};
+document.getElementById('build').onclick=()=>{
+  const out=outputPages();
+  const b=out.filter(p=>p.c==='build').length,s=out.filter(p=>p.c==='stamp').length;
+  msg.innerHTML=`<b style="color:var(--orange)">Queued.</b> ${out.length} pages —
+    ${out.length-b-s} copied, ${s} stamped, ${b} rendered.`;
+  view='build';renderAll();
+};
+
+load().then(renderAll);
+</script>

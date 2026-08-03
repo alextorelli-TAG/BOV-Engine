@@ -1,0 +1,26 @@
+# --- Proprietary / large corporate source — keep local, regenerate on demand ---
+# The corporate InDesign package (PDF + IDML + INDD + Getty-licensed Links).
+YE 2025 BOV Template*/
+# The 53 single-page PDFs split from the corporate master (~79 MB).
+page_library/
+# Any loose corporate/deal PDFs and design sources.
+*.pdf
+*.idml
+*.indd
+*.psd
+*.eps
+
+# --- Local agent / editor state ---
+.claude/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# --- Build output / scratch ---
+*.raw
+/out.pdf
+/build/

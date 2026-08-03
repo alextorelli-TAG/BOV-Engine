@@ -1,0 +1,34 @@
+{
+  "order": [
+    {
+      "plate": 44,
+      "data": {
+        "property": "SUBJECT PROPERTY",
+        "top": {
+          "icon": "star",
+          "name": "Property Name",
+          "address": "555 Main Street, New York City, NY 1007",
+          "stats": {"units": "XX Units", "occupancy": "XX% Total Occupancy", "year": "Year Built XXXX"},
+          "unit_rows": [
+            {"type": "1 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "2 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "1 Bedroom / 1 Bathroom + Loft", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+          ],
+          "unit_total": {"units": "XXX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+        },
+        "bottom": {
+          "icon": 1,
+          "name": "Property Name",
+          "address": "555 Main Street, New York City, NY 1007",
+          "stats": {"units": "XX Units", "occupancy": "XX% Total Occupancy", "year": "Year Built XXXX"},
+          "unit_rows": [
+            {"type": "1 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "2 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "1 Bedroom / 1 Bathroom + Loft", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+          ],
+          "unit_total": {"units": "XXX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+        }
+      }
+    }
+  ]
+}

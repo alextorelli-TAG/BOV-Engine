@@ -1,0 +1,249 @@
+{
+ "order": [
+  {
+   "plate": 1,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     0.0,
+     0.0,
+     792.0,
+     612.0
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 2
+  },
+  {
+   "plate": 3,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     0.0,
+     0.0,
+     792.0,
+     612.0
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 4,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     0.0,
+     0.0,
+     360.0,
+     612.0
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 24
+  },
+  {
+   "plate": 25,
+   "data": {
+    "description": [
+     "2202 Albemarle Road is a 19,522 square foot vacant development site on Albemarle Road in the Flatbush / Prospect Park South section of Brooklyn, delivered fully vacant with no existing structure, no demolition and no tenant relocation.",
+     "Zoned C4-2, the plain R6 residential equivalent, the site permits commercial, residential, community facility or mixed-use development as of right. The as-of-right residential base is 42,948 buildable square feet at 2.20 FAR. The City of Yes Universal Affordability Preference expands the envelope to 76,136 buildable square feet at 3.90 FAR.",
+     "The site also intersects an active FRESH Zone. A qualifying grocery component of roughly 8,993 square feet, layered onto the UAP base, brings the fully bonused envelope to 85,129 buildable square feet.",
+     "The property is offered at $16,000,000, approximately $188 per buildable square foot. Stacking of the two bonus mechanisms should be confirmed with zoning counsel before contract."
+    ],
+    "highlights": [
+     "19,522 SF vacant corner-scale parcel, delivered clear with no demolition required",
+     "Four subway trunk lines within a 13 minute walk via Church Avenue and Beverly Road",
+     "85,129 buildable SF fully bonused, an increase of 42,181 SF over the as-of-right base",
+     "Three verified Brooklyn trades bracket $120 to $163 per buildable square foot"
+    ],
+    "offering": [
+     [
+      "List Price:",
+      "$16,000,000"
+     ],
+     [
+      "Lot Area:",
+      "19,522 SF"
+     ],
+     [
+      "Zoning:",
+      "C4-2 / R6"
+     ],
+     [
+      "As-of-Right FAR:",
+      "2.20"
+     ],
+     [
+      "Bonused FAR:",
+      "3.90 + FRESH"
+     ],
+     [
+      "Buildable SF:",
+      "85,129"
+     ],
+     [
+      "Price/BSF:",
+      "$188"
+     ],
+     [
+      "Delivery:",
+      "Vacant"
+     ]
+    ]
+   },
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 30
+  },
+  {
+   "plate": 31
+  },
+  {
+   "plate": 32
+  },
+  {
+   "plate": 33
+  },
+  {
+   "plate": 34,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     261.0,
+     -0.0,
+     792.0,
+     612.0
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 35
+  },
+  {
+   "plate": 37,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     36.0,
+     124.6,
+     352.1,
+     294.6
+    ],
+    [
+     403.9,
+     124.6,
+     720.0,
+     294.6
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 38,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     36.0,
+     124.6,
+     352.1,
+     294.6
+    ],
+    [
+     403.9,
+     124.6,
+     720.0,
+     294.6
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 39
+  },
+  {
+   "plate": 40,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     261.0,
+     -0.0,
+     792.0,
+     612.0
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 41
+  },
+  {
+   "plate": 44,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     36.0,
+     168.3,
+     262.8,
+     318.9
+    ],
+    [
+     36.0,
+     396.1,
+     262.8,
+     546.6
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "plate": 53,
+   "photo": "/home/claude/bov/assets/img-001-000.jpg",
+   "boxes": [
+    [
+     0.0,
+     0.0,
+     792.0,
+     612.0
+    ]
+   ],
+   "focal": [
+    0.5,
+    0.42
+   ]
+  }
+ ]
+}

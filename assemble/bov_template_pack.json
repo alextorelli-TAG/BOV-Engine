@@ -1,0 +1,4766 @@
+{
+ "name": "TAG_BOV_Template_Pack",
+ "compiled_from": "YE_2025_BOV_Template.idml",
+ "idml_dom_version": "21.2",
+ "page": {
+  "width": 792,
+  "height": 612,
+  "units": "pt",
+  "orientation": "landscape",
+  "bleed": 9,
+  "origin": "top-left"
+ },
+ "tokens": {
+  "color": {
+   "Black": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "hex": "#000000"
+   },
+   "Blue": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     69.0,
+     8.0,
+     54.0
+    ],
+    "hex": "#00246C"
+   },
+   "Body": {
+    "space": "CMYK",
+    "cmyk": [
+     5.3,
+     3.8,
+     3.8,
+     86.0
+    ],
+    "hex": "#222222"
+   },
+   "C=0 M=0 Y=100 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "hex": "#FFFF00"
+   },
+   "C=0 M=100 Y=0 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "hex": "#FF00FF"
+   },
+   "C=0 M=22 Y=79 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     22.0,
+     79.0,
+     0.0
+    ],
+    "hex": "#FFC736"
+   },
+   "C=100 M=0 Y=0 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "hex": "#00FFFF"
+   },
+   "C=100 M=90 Y=10 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     90.0,
+     10.0,
+     0.0
+    ],
+    "hex": "#0019E6"
+   },
+   "C=15 M=100 Y=100 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     15.0,
+     100.0,
+     100.0,
+     0.0
+    ],
+    "hex": "#D90000"
+   },
+   "C=5 M=4 Y=4 K=86": {
+    "space": "CMYK",
+    "cmyk": [
+     5.3,
+     3.8,
+     3.8,
+     86.0
+    ],
+    "hex": "#222222"
+   },
+   "C=75 M=5 Y=100 K=0": {
+    "space": "CMYK",
+    "cmyk": [
+     75.0,
+     5.0,
+     100.0,
+     0.0
+    ],
+    "hex": "#40F200"
+   },
+   "Cyan": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "hex": "#00FFFF"
+   },
+   "M&amp;M Blue": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     69.0,
+     8.0,
+     54.0
+    ],
+    "hex": "#00246C"
+   },
+   "MM Blue CMYK": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     69.0,
+     8.0,
+     54.0
+    ],
+    "hex": "#00246C"
+   },
+   "Magenta": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "hex": "#FF00FF"
+   },
+   "Orange": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     51.0,
+     77.0,
+     0.0
+    ],
+    "hex": "#FF7D3B"
+   },
+   "Orange 2": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     62.0,
+     90.0,
+     0.0
+    ],
+    "hex": "#FF611A"
+   },
+   "Orange 3": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     62.0,
+     90.0,
+     0.0
+    ],
+    "hex": "#FF611A"
+   },
+   "PANTONE 1575 C": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     62.0,
+     90.0,
+     0.0
+    ],
+    "hex": "#FF611A"
+   },
+   "PANTONE 296 C": {
+    "space": "CMYK",
+    "cmyk": [
+     90.7,
+     75.6,
+     54.6,
+     67.9
+    ],
+    "hex": "#081425"
+   },
+   "Paper": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "hex": "#FFFFFF"
+   },
+   "R=167 G=169 B=172": {
+    "space": "RGB",
+    "rgb": [
+     167,
+     169,
+     172
+    ],
+    "hex": "#A7A9AC"
+   },
+   "R=176 G=183 B=188": {
+    "space": "RGB",
+    "rgb": [
+     176,
+     183,
+     188
+    ],
+    "hex": "#B0B7BC"
+   },
+   "R=229 G=231 B=230": {
+    "space": "RGB",
+    "rgb": [
+     229,
+     231,
+     230
+    ],
+    "hex": "#E5E7E6"
+   },
+   "R=245 G=128 B=38": {
+    "space": "RGB",
+    "rgb": [
+     245,
+     128,
+     38
+    ],
+    "hex": "#F58026"
+   },
+   "Registration": {
+    "space": "CMYK",
+    "cmyk": [
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "hex": "#000000"
+   },
+   "Yellow": {
+    "space": "CMYK",
+    "cmyk": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "hex": "#FFFF00"
+   },
+   "r0g0b0": {
+    "space": "RGB",
+    "rgb": [
+     0,
+     0,
+     0
+    ],
+    "hex": "#000000"
+   }
+  },
+  "type": {
+   "display": {
+    "family": "Frank Ruhl Libre",
+    "source": "Google Fonts",
+    "license": "OFL",
+    "weights": [
+     400,
+     500,
+     700,
+     900
+    ]
+   },
+   "ui": {
+    "family": "Roboto",
+    "source": "Google Fonts",
+    "license": "Apache-2.0",
+    "weights": [
+     400,
+     500
+    ]
+   },
+   "scale_pt": {
+    "page_header": 16,
+    "section_head": 12,
+    "body": 9,
+    "bullet": 10,
+    "footer": 9,
+    "hero": 24,
+    "stat": 48
+   }
+  },
+  "footer": {
+   "band": [
+    0,
+    578.79,
+    233.28,
+    595.13
+   ],
+   "band_color": "#E5E7E6",
+   "rule_y": 594.88,
+   "page_num_box": [
+    23.54,
+    581.98,
+    58.54,
+    590.6
+   ],
+   "label_box": [
+    60.5,
+    581.98,
+    261.0,
+    590.6
+   ],
+   "format": "{n} | {section}"
+  },
+  "color_resolved": {
+   "navy": {
+    "hex": "#002B5C",
+    "cmyk": [
+     100,
+     69,
+     8,
+     54
+    ],
+    "use": "primary ground, headings"
+   },
+   "navy_deep": {
+    "hex": "#00224A",
+    "cmyk": null,
+    "use": "divider overlay"
+   },
+   "orange": {
+    "hex": "#F58026",
+    "cmyk": [
+     0,
+     51,
+     77,
+     0
+    ],
+    "use": "accent, eyebrows, rules"
+   },
+   "orange_warm": {
+    "hex": "#E5893F",
+    "cmyk": [
+     0,
+     62,
+     90,
+     0
+    ],
+    "use": "chart fills"
+   },
+   "grey_band": {
+    "hex": "#E5E7E6",
+    "cmyk": null,
+    "use": "footer band"
+   },
+   "grey_mid": {
+    "hex": "#A7A9AC",
+    "cmyk": null,
+    "use": "placeholder text"
+   },
+   "ink": {
+    "hex": "#222222",
+    "cmyk": [
+     5.3,
+     3.8,
+     3.8,
+     86
+    ],
+    "use": "body copy"
+   },
+   "paper": {
+    "hex": "#FFFFFF",
+    "cmyk": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "use": "page ground"
+   }
+  }
+ },
+ "image_slots": {
+  "property_photo": [
+   {
+    "page": 1,
+    "box": [
+     0.0,
+     0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 3,
+    "box": [
+     0.0,
+     0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 4,
+    "box": [
+     0.0,
+     0.0,
+     360.0,
+     612.0
+    ],
+    "w": 360.0,
+    "h": 612.0,
+    "aspect": 0.588,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 25,
+    "box": [
+     407.2,
+     124.6,
+     792.0,
+     306.0
+    ],
+    "w": 384.8,
+    "h": 181.4,
+    "aspect": 2.121,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 26,
+    "box": [
+     0.0,
+     124.6,
+     792.0,
+     539.3
+    ],
+    "w": 792.0,
+    "h": 414.7,
+    "aspect": 1.91,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 27,
+    "box": [
+     0.0,
+     124.6,
+     792.0,
+     539.3
+    ],
+    "w": 792.0,
+    "h": 414.7,
+    "aspect": 1.91,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 28,
+    "box": [
+     0.0,
+     124.6,
+     792.0,
+     539.3
+    ],
+    "w": 792.0,
+    "h": 414.7,
+    "aspect": 1.91,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 29,
+    "box": [
+     0.0,
+     310.5,
+     535.7,
+     612.0
+    ],
+    "w": 535.7,
+    "h": 301.5,
+    "aspect": 1.777,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 29,
+    "box": [
+     256.3,
+     -0.0,
+     792.0,
+     301.5
+    ],
+    "w": 535.7,
+    "h": 301.5,
+    "aspect": 1.777,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 29,
+    "box": [
+     544.7,
+     310.5,
+     792.0,
+     612.0
+    ],
+    "w": 247.3,
+    "h": 301.5,
+    "aspect": 0.82,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 29,
+    "box": [
+     -0.0,
+     -0.0,
+     247.3,
+     301.5
+    ],
+    "w": 247.3,
+    "h": 301.5,
+    "aspect": 0.82,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 34,
+    "box": [
+     261.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 531.0,
+    "h": 612.0,
+    "aspect": 0.868,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 37,
+    "box": [
+     36.0,
+     124.6,
+     352.1,
+     294.6
+    ],
+    "w": 316.1,
+    "h": 170.0,
+    "aspect": 1.859,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 37,
+    "box": [
+     403.9,
+     124.6,
+     720.0,
+     294.6
+    ],
+    "w": 316.1,
+    "h": 170.0,
+    "aspect": 1.859,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 38,
+    "box": [
+     36.0,
+     124.6,
+     352.1,
+     294.6
+    ],
+    "w": 316.1,
+    "h": 170.0,
+    "aspect": 1.859,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 38,
+    "box": [
+     403.9,
+     124.6,
+     720.0,
+     294.6
+    ],
+    "w": 316.1,
+    "h": 170.0,
+    "aspect": 1.859,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 40,
+    "box": [
+     261.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 531.0,
+    "h": 612.0,
+    "aspect": 0.868,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 44,
+    "box": [
+     36.0,
+     168.3,
+     262.8,
+     318.9
+    ],
+    "w": 226.8,
+    "h": 150.5,
+    "aspect": 1.507,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 44,
+    "box": [
+     36.0,
+     396.1,
+     262.8,
+     546.6
+    ],
+    "w": 226.8,
+    "h": 150.5,
+    "aspect": 1.507,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 45,
+    "box": [
+     36.0,
+     168.3,
+     262.8,
+     318.9
+    ],
+    "w": 226.8,
+    "h": 150.5,
+    "aspect": 1.507,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 45,
+    "box": [
+     36.0,
+     396.1,
+     262.8,
+     546.6
+    ],
+    "w": 226.8,
+    "h": 150.5,
+    "aspect": 1.507,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 47,
+    "box": [
+     407.2,
+     124.6,
+     756.0,
+     553.7
+    ],
+    "w": 348.8,
+    "h": 429.1,
+    "aspect": 0.813,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 48,
+    "box": [
+     489.6,
+     124.6,
+     756.0,
+     378.0
+    ],
+    "w": 266.4,
+    "h": 253.4,
+    "aspect": 1.051,
+    "link": "Template1_Cover1.jpg"
+   },
+   {
+    "page": 53,
+    "box": [
+     0.0,
+     0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "Template1_Cover1.jpg"
+   }
+  ],
+  "brand_logo": [
+   {
+    "page": 2,
+    "box": [
+     57.4,
+     527.0,
+     201.4,
+     554.8
+    ],
+    "w": 144.0,
+    "h": 27.7,
+    "aspect": 5.199,
+    "link": "MM_logo2018_blue295_large.png"
+   }
+  ],
+  "divider_bg": [
+   {
+    "page": 5,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 19,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 21,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 24,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 30,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 33,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 39,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   },
+   {
+    "page": 46,
+    "box": [
+     -0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-583904061.jpg"
+   }
+  ],
+  "corporate_stock": [
+   {
+    "page": 6,
+    "box": [
+     0.4,
+     0.0,
+     792.4,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "GettyImages-155440607_bw.jpg"
+   },
+   {
+    "page": 7,
+    "box": [
+     0.7,
+     -0.0,
+     792.0,
+     617.0
+    ],
+    "w": 791.3,
+    "h": 617.0,
+    "aspect": 1.282,
+    "link": "GettyImages-740522753.jpg"
+   },
+   {
+    "page": 8,
+    "box": [
+     -295.8,
+     0.0,
+     1215.5,
+     2988.0
+    ],
+    "w": 1511.3,
+    "h": 2988.0,
+    "aspect": 0.506,
+    "link": "GettyImages-184386456_bw.jpg"
+   },
+   {
+    "page": 9,
+    "box": [
+     -269.2,
+     231.0,
+     1008.1,
+     1149.8
+    ],
+    "w": 1277.3,
+    "h": 918.8,
+    "aspect": 1.39,
+    "link": "GettyImages-1088862160.jpg"
+   },
+   {
+    "page": 10,
+    "box": [
+     -296.2,
+     -69.9,
+     1154.2,
+     4445.3
+    ],
+    "w": 1450.4,
+    "h": 4515.2,
+    "aspect": 0.321,
+    "link": "GettyImages-702554471_2.jpg"
+   },
+   {
+    "page": 11,
+    "box": [
+     -0.0,
+     28.1,
+     770.4,
+     612.0
+    ],
+    "w": 770.4,
+    "h": 583.9,
+    "aspect": 1.319,
+    "link": "GettyImages-1043323008.jpg"
+   },
+   {
+    "page": 11,
+    "box": [
+     -0.0,
+     66.0,
+     770.4,
+     612.0
+    ],
+    "w": 770.4,
+    "h": 546.0,
+    "aspect": 1.411,
+    "link": "GettyImages-1043323008_cutout2.png"
+   },
+   {
+    "page": 12,
+    "box": [
+     529.1,
+     -0.1,
+     792.0,
+     611.9
+    ],
+    "w": 262.9,
+    "h": 612.0,
+    "aspect": 0.43,
+    "link": "balcony.png"
+   },
+   {
+    "page": 13,
+    "box": [
+     -9.0,
+     -9.0,
+     801.0,
+     621.0
+    ],
+    "w": 810.0,
+    "h": 630.0,
+    "aspect": 1.286,
+    "link": "MMWebsite-BOV3 2 copy.jpg"
+   },
+   {
+    "page": 14,
+    "box": [
+     -450.9,
+     -8.4,
+     1069.4,
+     10685.3
+    ],
+    "w": 1520.3,
+    "h": 10693.7,
+    "aspect": 0.142,
+    "link": "GettyImages-968312736 %284%29.jpg"
+   },
+   {
+    "page": 15,
+    "box": [
+     -488.8,
+     -239.0,
+     1063.4,
+     10724.9
+    ],
+    "w": 1552.2,
+    "h": 10963.8,
+    "aspect": 0.142,
+    "link": "covers_2024.psd"
+   },
+   {
+    "page": 16,
+    "box": [
+     -455.4,
+     228.0,
+     1055.9,
+     2988.0
+    ],
+    "w": 1511.3,
+    "h": 2760.0,
+    "aspect": 0.548,
+    "link": "GettyImages-498323251.jpg"
+   },
+   {
+    "page": 17,
+    "box": [
+     -564.2,
+     61.5,
+     480.0,
+     3780.0
+    ],
+    "w": 1044.2,
+    "h": 3718.5,
+    "aspect": 0.281,
+    "link": "GettyImages-450293159_orange.jpg"
+   },
+   {
+    "page": 18,
+    "box": [
+     -448.9,
+     231.0,
+     1392.5,
+     10685.3
+    ],
+    "w": 1841.5,
+    "h": 10454.3,
+    "aspect": 0.176,
+    "link": "GettyImages-701251910.jpg"
+   },
+   {
+    "page": 20,
+    "box": [
+     0.0,
+     132.0,
+     233.3,
+     612.0
+    ],
+    "w": 233.3,
+    "h": 480.0,
+    "aspect": 0.486,
+    "link": "martin-adams-707987-unsplash.jpg"
+   }
+  ],
+  "advisor_headshot": [
+   {
+    "page": 20,
+    "box": [
+     36.0,
+     108.6,
+     198.0,
+     329.7
+    ],
+    "w": 162.0,
+    "h": 221.1,
+    "aspect": 0.733,
+    "link": "MM_Headshot3_4x5.jpg"
+   }
+  ],
+  "marketing_bg": [
+   {
+    "page": 22,
+    "box": [
+     0.0,
+     -0.0,
+     792.0,
+     612.0
+    ],
+    "w": 792.0,
+    "h": 612.0,
+    "aspect": 1.294,
+    "link": "background.jpg"
+   },
+   {
+    "page": 23,
+    "box": [
+     126.7,
+     -0.4,
+     792.0,
+     612.4
+    ],
+    "w": 665.3,
+    "h": 612.7,
+    "aspect": 1.086,
+    "link": "background.jpg"
+   }
+  ]
+ },
+ "pages": [
+  {
+   "page": 1,
+   "section": "Front Matter",
+   "footer_section": null,
+   "class": "build",
+   "spread": "Spreads/Spread_ucf.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      2.46,
+      5.4,
+      15.86,
+      225.0
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PROPOSAL"
+    },
+    {
+     "box": [
+      54.0,
+      99.1,
+      432.72,
+      112.5
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "123 Main Street, Miami Beach, FL 00000"
+    },
+    {
+     "box": [
+      54.0,
+      32.0,
+      501.4,
+      70.28
+     ],
+     "sizes": [
+      "40"
+     ],
+     "snippet": "Property Name Goes Here"
+    }
+   ]
+  },
+  {
+   "page": 2,
+   "section": "Front Matter",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_ud5.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "brand_logo"
+   ],
+   "frames": [
+    {
+     "box": [
+      522.9,
+      530.34,
+      734.58,
+      553.26
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "OFFICES THROUGHOUT THE U.S. AND CANADAwww.marcusmillichap.co"
+    },
+    {
+     "box": [
+      57.42,
+      62.43,
+      734.58,
+      487.81
+     ],
+     "sizes": [
+      "26",
+      "10"
+     ],
+     "snippet": "Non-Endorsement & Disclaimer Notice\n\nCONFIDENTIALITY & DISCL"
+    }
+   ]
+  },
+  {
+   "page": 3,
+   "section": "Front Matter",
+   "footer_section": null,
+   "class": "variant",
+   "spread": "Spreads/Spread_ud6.xml",
+   "text_frames": 1,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      158.4,
+      383.1,
+      633.6,
+      497.5
+     ],
+     "sizes": [
+      "14",
+      "12"
+     ],
+     "snippet": "PRESENTED BY\n\nAgent Name\nTitleOffice: Calabasas (HQ)Direct: "
+    }
+   ]
+  },
+  {
+   "page": 4,
+   "section": "Front Matter",
+   "footer_section": null,
+   "class": "build",
+   "spread": "Spreads/Spread_ud7.xml",
+   "text_frames": 9,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      432.0,
+      115.56,
+      695.52,
+      138.17
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 1\nMarcus & Millichap Advantage"
+    },
+    {
+     "box": [
+      432.0,
+      320.12,
+      695.52,
+      342.73
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 5\nFinancial Analysis"
+    },
+    {
+     "box": [
+      432.0,
+      166.7,
+      695.52,
+      189.31
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 2\nAdvisor Bios"
+    },
+    {
+     "box": [
+      432.0,
+      371.25,
+      695.52,
+      393.87
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 6\nSale Comparables"
+    },
+    {
+     "box": [
+      432.0,
+      217.84,
+      695.52,
+      240.45
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 3\nMarketing Plan"
+    },
+    {
+     "box": [
+      432.0,
+      422.39,
+      695.52,
+      445.01
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 7\nRent Comparables"
+    },
+    {
+     "box": [
+      432.0,
+      268.98,
+      695.52,
+      291.59
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 4\nInvestment Overview"
+    },
+    {
+     "box": [
+      432.0,
+      473.53,
+      695.52,
+      496.15
+     ],
+     "sizes": [
+      "11",
+      "9"
+     ],
+     "snippet": "SECTION 8\nMarket Overview"
+    },
+    {
+     "box": [
+      432.0,
+      66.6,
+      720.0,
+      83.83
+     ],
+     "sizes": [
+      "18"
+     ],
+     "snippet": "TABLE OF CONTENTS"
+    }
+   ]
+  },
+  {
+   "page": 5,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_ud8.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      248.8,
+      573.81,
+      484.28
+     ],
+     "sizes": [],
+     "snippet": "OUR MISSIONA POWERFUL PLATFORMA TRACK RECORD OF SUCCESSMULTI"
+    },
+    {
+     "box": [
+      158.4,
+      100.56,
+      633.6,
+      113.96
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 1"
+    },
+    {
+     "box": [
+      208.05,
+      135.8,
+      583.95,
+      206.34
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Marcus & Millichap Advantage"
+    }
+   ]
+  },
+  {
+   "page": 6,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_udb.xml",
+   "text_frames": 4,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      71.64,
+      235.33,
+      295.26,
+      266.34
+     ],
+     "sizes": [
+      "32.4"
+     ],
+     "snippet": "WELCOME TO"
+    },
+    {
+     "box": [
+      71.64,
+      191.97,
+      243.78,
+      199.47
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "MARCUS & MILLICHAP MISSION"
+    },
+    {
+     "box": [
+      71.64,
+      263.77,
+      637.6,
+      309.71
+     ],
+     "sizes": [
+      "48"
+     ],
+     "snippet": "MARCUS & MILLICHAP"
+    },
+    {
+     "box": [
+      73.77,
+      328.09,
+      679.65,
+      393.57
+     ],
+     "sizes": [],
+     "snippet": "Marcus & Millichap was founded in 1971 with the goal of usin"
+    }
+   ]
+  },
+  {
+   "page": 7,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_udc.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      520.81,
+      207.68,
+      792.0,
+      407.08
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "REAL ESTATE INVESTMENT SALESFINANCINGRESEARCHADVISORY SERVIC"
+    },
+    {
+     "box": [
+      41.48,
+      216.74,
+      319.4,
+      392.05
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "Our mission\nis to help our clients create and preserve wealt"
+    }
+   ]
+  },
+  {
+   "page": 8,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_udd.xml",
+   "text_frames": 0,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": []
+  },
+  {
+   "page": 9,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ude.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 10,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "annual",
+   "spread": "Spreads/Spread_udf.xml",
+   "text_frames": 0,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": []
+  },
+  {
+   "page": 11,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "annual",
+   "spread": "Spreads/Spread_ue0.xml",
+   "text_frames": 7,
+   "image_frames": 2,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      541.08,
+      62.38,
+      756.55,
+      145.66
+     ],
+     "sizes": [
+      "87.02188640425334"
+     ],
+     "snippet": "2025"
+    },
+    {
+     "box": [
+      550.28,
+      430.15,
+      745.72,
+      514.08
+     ],
+     "sizes": [
+      "38",
+      "14"
+     ],
+     "snippet": "8,818\nTotal Transactions\nin 2025"
+    },
+    {
+     "box": [
+      550.28,
+      311.21,
+      745.72,
+      395.15
+     ],
+     "sizes": [
+      "38",
+      "14"
+     ],
+     "snippet": "Over 4\nClosed Transactions\nEvery Business Hour"
+    },
+    {
+     "box": [
+      541.08,
+      172.36,
+      754.92,
+      268.72
+     ],
+     "sizes": [
+      "38",
+      "14"
+     ],
+     "snippet": "$50.9\nBillion\n2025 Total Sales Volume"
+    },
+    {
+     "box": [
+      564.79,
+      113.8,
+      736.97,
+      122.8
+     ],
+     "sizes": [],
+     "snippet": "2025 BY THE NUMBERS"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 12,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "annual",
+   "spread": "Spreads/Spread_ue1.xml",
+   "text_frames": 10,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      56.0,
+      94.45,
+      526.65,
+      119.33
+     ],
+     "sizes": [],
+     "snippet": "The #1 Choice in Multifamily"
+    },
+    {
+     "box": [
+      56.0,
+      134.68,
+      506.88,
+      178.34
+     ],
+     "sizes": [],
+     "snippet": "Marcus & Millichap\u2019s Multifamily Division provides the indus"
+    },
+    {
+     "box": [
+      56.0,
+      199.7,
+      417.09,
+      211.18
+     ],
+     "sizes": [],
+     "snippet": "Multifamily Investment Sales Brokerage Company Ranking*"
+    },
+    {
+     "box": [
+      292.71,
+      228.51,
+      481.61,
+      454.08
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Marcus & Millichap\nCBREKeller WilliamsBerkadiaCushman & Wake"
+    },
+    {
+     "box": [
+      487.43,
+      229.51,
+      513.81,
+      455.08
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "1,322\n657425387342334296274271233"
+    },
+    {
+     "box": [
+      56.0,
+      63.89,
+      181.38,
+      75.49
+     ],
+     "sizes": [
+      "8"
+     ],
+     "snippet": "MULTIfamily DIVISION"
+    },
+    {
+     "box": [
+      56.0,
+      495.8,
+      462.3,
+      545.89
+     ],
+     "sizes": [],
+     "snippet": "*Trailing 12-months through 3Q 2025Includes sales $1 million"
+    },
+    {
+     "box": [
+      460.4,
+      205.44,
+      536.4,
+      217.58
+     ],
+     "sizes": [
+      "8"
+     ],
+     "snippet": "Closed Transactions"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 13,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ue4.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 14,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ue5.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 15,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ue6.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 16,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ue7.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 17,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ue8.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 18,
+   "section": "Marcus & Millichap Advantage",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "static",
+   "spread": "Spreads/Spread_ue9.xml",
+   "text_frames": 2,
+   "image_frames": 1,
+   "slots": [
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 19,
+   "section": "Advisor Bios",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_uea.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      335.92
+     ],
+     "sizes": [],
+     "snippet": "ADVISOR BIO - AGENT NAME"
+    },
+    {
+     "box": [
+      158.4,
+      214.2,
+      633.6,
+      227.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 2"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Advisor Bios"
+    }
+   ]
+  },
+  {
+   "page": 20,
+   "section": "Advisor Bios",
+   "footer_section": "ADVISOR BIOS",
+   "class": "variant",
+   "spread": "Spreads/Spread_ued.xml",
+   "text_frames": 6,
+   "image_frames": 2,
+   "slots": [
+    "advisor_headshot",
+    "corporate_stock"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      36.0,
+      478.44,
+      198.0,
+      555.84
+     ],
+     "sizes": [
+      "14",
+      "9"
+     ],
+     "snippet": "Marcus & Millichap\nOne Mid-America Plaza Suite 200Seattle, W"
+    },
+    {
+     "box": [
+      36.0,
+      349.83,
+      197.64,
+      451.44
+     ],
+     "sizes": [
+      "18",
+      "10"
+     ],
+     "snippet": "Agent Name\nSenior Associate\njoe.agent@marcusmillichap.com800"
+    },
+    {
+     "box": [
+      270.72,
+      144.6,
+      729.0,
+      451.44
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "PROFESSIONAL BACKGROUND\nJoe Agent serves as a First Vice Pre"
+    },
+    {
+     "box": [
+      54.0,
+      64.81,
+      671.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "ADVISOR BIO - AGENT NAME // AGENT TEAM NAME"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "ADVISOR BIOS"
+    }
+   ]
+  },
+  {
+   "page": 21,
+   "section": "Marketing Plan",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_uee.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      363.92
+     ],
+     "sizes": [],
+     "snippet": "MAXIMUM EXPOSURE CREATES MAXIMUM VALUECOMPREHENSIVE INTERNAL"
+    },
+    {
+     "box": [
+      158.4,
+      214.2,
+      633.6,
+      227.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 3"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Marketing Plan"
+    }
+   ]
+  },
+  {
+   "page": 22,
+   "section": "Marketing Plan",
+   "footer_section": "MARKETING PLAN",
+   "class": "static",
+   "spread": "Spreads/Spread_uf0.xml",
+   "text_frames": 10,
+   "image_frames": 1,
+   "slots": [
+    "marketing_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      407.92,
+      174.96,
+      751.0,
+      238.44
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "Foreign and International Buyers\nAs the leader in investment"
+    },
+    {
+     "box": [
+      407.92,
+      254.28,
+      751.0,
+      291.76
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "1031 Exchange Capital\nAccess the Industry\u2019s largest pool of "
+    },
+    {
+     "box": [
+      407.92,
+      483.26,
+      744.88,
+      536.75
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "3rd Tier Investors \nSpecializing exclusively in investment s"
+    },
+    {
+     "box": [
+      407.92,
+      427.78,
+      751.0,
+      467.26
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "2nd Tier Investors \nWe access via our highly organized natio"
+    },
+    {
+     "box": [
+      407.92,
+      367.77,
+      744.88,
+      405.25
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "1st Tier Investors\nMarcus & Millichap maintains long-term re"
+    },
+    {
+     "box": [
+      407.92,
+      307.76,
+      751.0,
+      345.25
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "Cross-Product Capital\nOur collaborative culture across produ"
+    },
+    {
+     "box": [
+      146.71,
+      270.24,
+      248.22,
+      294.54
+     ],
+     "sizes": [
+      "25.383525495848627"
+     ],
+     "snippet": "Strategy"
+    },
+    {
+     "box": [
+      131.77,
+      402.89,
+      263.16,
+      452.56
+     ],
+     "sizes": [
+      "25.383525495848627"
+     ],
+     "snippet": "MarketingPlan"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKETING PLAN"
+    }
+   ]
+  },
+  {
+   "page": 23,
+   "section": "Marketing Plan",
+   "footer_section": "MARKETING PLAN",
+   "class": "static",
+   "spread": "Spreads/Spread_uf1.xml",
+   "text_frames": 10,
+   "image_frames": 1,
+   "slots": [
+    "marketing_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      59.55,
+      202.66,
+      160.76,
+      231.1
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "OfferingMemorandum"
+    },
+    {
+     "box": [
+      231.11,
+      202.66,
+      366.07,
+      231.1
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "Internal & External Email Marketing"
+    },
+    {
+     "box": [
+      404.0,
+      202.66,
+      538.96,
+      231.1
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "Internal & External Phone Contact"
+    },
+    {
+     "box": [
+      575.83,
+      202.66,
+      727.66,
+      231.1
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "MarcusMillichap.com\nWebsite"
+    },
+    {
+     "box": [
+      59.55,
+      252.92,
+      204.47,
+      528.01
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "PRIOR TO ACTIVATION: \nFinalize financial analysis, property "
+    },
+    {
+     "box": [
+      231.63,
+      252.92,
+      376.55,
+      458.01
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "PRIOR TO ACTIVATION:Draft of email campaign presented for cl"
+    },
+    {
+     "box": [
+      404.0,
+      252.92,
+      548.93,
+      500.01
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "PRIOR TO ACTIVATION:Probable buyer list created from team\u2019s "
+    },
+    {
+     "box": [
+      575.83,
+      252.92,
+      751.68,
+      514.01
+     ],
+     "sizes": [
+      "9.5"
+     ],
+     "snippet": "PRIOR TO ACTIVATION:Photography of the property is collected"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKETING PLAN"
+    }
+   ]
+  },
+  {
+   "page": 24,
+   "section": "Investment Overview",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_uf2.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      419.92
+     ],
+     "sizes": [],
+     "snippet": "PROPERTY SUMMARYREGIONAL MAPLOCAL MAPRETAILER MAP"
+    },
+    {
+     "box": [
+      158.4,
+      176.2,
+      633.6,
+      189.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 4"
+    },
+    {
+     "box": [
+      208.05,
+      211.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "InvestmentOverview"
+    }
+   ]
+  },
+  {
+   "page": 25,
+   "section": "Investment Overview",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "build",
+   "spread": "Spreads/Spread_uf3.xml",
+   "text_frames": 5,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      36.0,
+      124.6,
+      384.75,
+      495.52
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "PROPERTY DESCRIPTION\nThe Multifamily Best of the Best commun"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "PROPERTY SUMMARY // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      407.25,
+      326.0,
+      756.0,
+      510.07
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "OFFERING SUMMARYListing Price:$12,000,000NOI:$512,127Cap Rat"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 26,
+   "section": "Investment Overview",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_uf4.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "REGIONAL MAP // SUBJECT PROPERTY"
+    }
+   ]
+  },
+  {
+   "page": 27,
+   "section": "Investment Overview",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_uf5.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "LOCAL MAP // SUBJECT PROPERTY"
+    }
+   ]
+  },
+  {
+   "page": 28,
+   "section": "Investment Overview",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_uf6.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RETAILER MAP // SUBJECT PROPERTY"
+    }
+   ]
+  },
+  {
+   "page": 29,
+   "section": "Investment Overview",
+   "footer_section": "INVESTMENT OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_uf7.xml",
+   "text_frames": 2,
+   "image_frames": 4,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INVESTMENT OVERVIEW"
+    }
+   ]
+  },
+  {
+   "page": 30,
+   "section": "Financial Analysis",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_uf8.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      335.92
+     ],
+     "sizes": [],
+     "snippet": "FINANCIAL DETAILS"
+    },
+    {
+     "box": [
+      158.4,
+      214.2,
+      633.6,
+      227.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 5"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Financial Analysis"
+    }
+   ]
+  },
+  {
+   "page": 31,
+   "section": "Financial Analysis",
+   "footer_section": "FINANCIAL ANALYSIS",
+   "class": "stamp",
+   "spread": "Spreads/Spread_uf9.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "FINANCIAL ANALYSIS"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "FINANCIAL DETAILS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      319.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 32,
+   "section": "Financial Analysis",
+   "footer_section": "FINANCIAL ANALYSIS",
+   "class": "stamp",
+   "spread": "Spreads/Spread_ufa.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "FINANCIAL ANALYSIS"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "FINANCIAL DETAILS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      319.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 33,
+   "section": "Sale Comparables",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_ufb.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      419.92
+     ],
+     "sizes": [],
+     "snippet": "SALE COMPS MAPSALE COMPS SUMMARYSALE COMPS CHARTSSALE COMPS"
+    },
+    {
+     "box": [
+      158.4,
+      214.2,
+      633.6,
+      227.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 6"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Sale Comparables"
+    }
+   ]
+  },
+  {
+   "page": 34,
+   "section": "Sale Comparables",
+   "footer_section": "SALE COMPARABLES",
+   "class": "stamp",
+   "spread": "Spreads/Spread_ufc.xml",
+   "text_frames": 5,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "SALE COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      194.56,
+      252.72,
+      212.05
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "SALES COMPS MAP"
+    },
+    {
+     "box": [
+      68.87,
+      239.97,
+      252.72,
+      415.38
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "SUBJECT PROPERTYProperty AddressProperty AddressProperty Add"
+    },
+    {
+     "box": [
+      36.0,
+      267.61,
+      56.88,
+      415.38
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "123456"
+    }
+   ]
+  },
+  {
+   "page": 35,
+   "section": "Sale Comparables",
+   "footer_section": "SALE COMPARABLES",
+   "class": "build",
+   "spread": "Spreads/Spread_ufd.xml",
+   "text_frames": 5,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "SALE COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "SALE COMPS SUMMARY // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      36.0,
+      97.65,
+      719.92,
+      166.99
+     ],
+     "sizes": [
+      "10",
+      "9"
+     ],
+     "snippet": "SUBJECT PROPERTYPRICEBLDG SFPRICE/UNITCAP# OF UNITSCLOSESubj"
+    },
+    {
+     "box": [
+      36.0,
+      184.21,
+      719.92,
+      514.35
+     ],
+     "sizes": [
+      "10",
+      "9"
+     ],
+     "snippet": "SALES COMPARABLESPRICEBLDG SFPRICE/UNITCAP# OF UNITSCLOSE1Pr"
+    }
+   ]
+  },
+  {
+   "page": 36,
+   "section": "Sale Comparables",
+   "footer_section": "SALE COMPARABLES",
+   "class": "stamp",
+   "spread": "Spreads/Spread_ufe.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "SALE COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "SALE COMPS CHARTS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      319.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 37,
+   "section": "Sale Comparables",
+   "footer_section": "SALE COMPARABLES",
+   "class": "build",
+   "spread": "Spreads/Spread_uff.xml",
+   "text_frames": 10,
+   "image_frames": 2,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "SALE COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "SALE COMPS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      62.0,
+      305.36,
+      352.08,
+      330.28
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Property Name\n555 Main Street, New York City, NY 1007"
+    },
+    {
+     "box": [
+      429.92,
+      305.36,
+      720.0,
+      330.28
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Property Name\n555 Main Street, New York City, NY 1007"
+    },
+    {
+     "box": [
+      412.01,
+      311.63,
+      416.71,
+      321.2
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "1"
+    },
+    {
+     "box": [
+      36.0,
+      334.36,
+      352.02,
+      440.04
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "Price$XXX,XXX,XXXSale Date\u2013Lot SizeX.XX AcresCap RateX.X%Yea"
+    },
+    {
+     "box": [
+      36.0,
+      428.57,
+      352.08,
+      529.28
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "UNIT TYPE# UNITSSIZE SFRENTRENT/SF1 Bedroom / 1 BathroomXXX,"
+    },
+    {
+     "box": [
+      403.92,
+      334.36,
+      719.94,
+      440.04
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "Price$XXX,XXX,XXXSale Date\u2013Lot SizeX.XX AcresCap RateX.X%Yea"
+    },
+    {
+     "box": [
+      403.92,
+      428.57,
+      720.0,
+      529.28
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "UNIT TYPE# UNITSSIZE SFRENTRENT/SF1 Bedroom / 1 BathroomXXX,"
+    }
+   ]
+  },
+  {
+   "page": 38,
+   "section": "Sale Comparables",
+   "footer_section": "SALE COMPARABLES",
+   "class": "build",
+   "spread": "Spreads/Spread_u100.xml",
+   "text_frames": 11,
+   "image_frames": 2,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "SALE COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "SALE COMPS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      62.0,
+      305.36,
+      352.08,
+      330.28
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Property Name\n555 Main Street, New York City, NY 1007"
+    },
+    {
+     "box": [
+      429.92,
+      305.36,
+      720.0,
+      330.28
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Property Name\n555 Main Street, New York City, NY 1007"
+    },
+    {
+     "box": [
+      410.26,
+      311.63,
+      418.46,
+      321.2
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "3"
+    },
+    {
+     "box": [
+      42.34,
+      311.63,
+      50.54,
+      321.2
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "2"
+    },
+    {
+     "box": [
+      36.0,
+      334.36,
+      352.02,
+      440.04
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "Price$XXX,XXX,XXXSale Date\u2013Lot SizeX.XX AcresCap RateX.X%Yea"
+    },
+    {
+     "box": [
+      36.0,
+      428.57,
+      352.08,
+      529.28
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "UNIT TYPE# UNITSSIZE SFRENTRENT/SF1 Bedroom / 1 BathroomXXX,"
+    },
+    {
+     "box": [
+      403.92,
+      334.36,
+      719.94,
+      440.04
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "Price$XXX,XXX,XXXSale Date\u2013Lot SizeX.XX AcresCap RateX.X%Yea"
+    },
+    {
+     "box": [
+      403.92,
+      428.57,
+      720.0,
+      529.28
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "UNIT TYPE# UNITSSIZE SFRENTRENT/SF1 Bedroom / 1 BathroomXXX,"
+    }
+   ]
+  },
+  {
+   "page": 39,
+   "section": "Rent Comparables",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_u101.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      419.92
+     ],
+     "sizes": [],
+     "snippet": "RENT COMPS MAPRENT COMPS SUMMARYRENT COMPS CHARTSRENT COMPS"
+    },
+    {
+     "box": [
+      158.4,
+      214.2,
+      633.6,
+      227.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 7"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Rent Comparables"
+    }
+   ]
+  },
+  {
+   "page": 40,
+   "section": "Rent Comparables",
+   "footer_section": "RENT COMPARABLES",
+   "class": "stamp",
+   "spread": "Spreads/Spread_u102.xml",
+   "text_frames": 5,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "RENT COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      194.56,
+      252.72,
+      212.05
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RENT COMPS MAP"
+    },
+    {
+     "box": [
+      68.87,
+      239.97,
+      252.72,
+      415.38
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Subject PropertyProperty AddressProperty AddressProperty Add"
+    },
+    {
+     "box": [
+      36.0,
+      267.61,
+      56.88,
+      415.38
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "123456"
+    }
+   ]
+  },
+  {
+   "page": 41,
+   "section": "Rent Comparables",
+   "footer_section": "RENT COMPARABLES",
+   "class": "build",
+   "spread": "Spreads/Spread_u103.xml",
+   "text_frames": 5,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "RENT COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RENT COMPS SUMMARY // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      36.0,
+      97.65,
+      719.92,
+      166.99
+     ],
+     "sizes": [
+      "10",
+      "9"
+     ],
+     "snippet": "SUBJECT PROPERTYPRICEBLDG SFPRICE/UNITCAP# OF UNITSCLOSESubj"
+    },
+    {
+     "box": [
+      36.0,
+      184.21,
+      719.92,
+      514.35
+     ],
+     "sizes": [
+      "10",
+      "9"
+     ],
+     "snippet": "RENT COMPARABLESPRICEBLDG SFPRICE/UNITCAP# OF UNITSCLOSE1Pro"
+    }
+   ]
+  },
+  {
+   "page": 42,
+   "section": "Rent Comparables",
+   "footer_section": "RENT COMPARABLES",
+   "class": "stamp",
+   "spread": "Spreads/Spread_u104.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "RENT COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RENT COMPS CHARTS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      319.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 43,
+   "section": "Rent Comparables",
+   "footer_section": "RENT COMPARABLES",
+   "class": "stamp",
+   "spread": "Spreads/Spread_u105.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "RENT COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RENT COMPS CHARTS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      319.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 44,
+   "section": "Rent Comparables",
+   "footer_section": "RENT COMPARABLES",
+   "class": "build",
+   "spread": "Spreads/Spread_u106.xml",
+   "text_frames": 5,
+   "image_frames": 2,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      288.0,
+      162.32,
+      715.2,
+      318.86
+     ],
+     "sizes": [
+      "9",
+      "8"
+     ],
+     "snippet": "UNIT TYPE# UNITSSQUARE FEETRENTRENT/SF1 Bedroom / 1 Bathroom"
+    },
+    {
+     "box": [
+      288.0,
+      390.08,
+      715.2,
+      546.62
+     ],
+     "sizes": [
+      "9",
+      "8"
+     ],
+     "snippet": "UNIT TYPE# UNITSSQUARE FEETRENTRENT/SF1 Bedroom / 1 Bathroom"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "RENT COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RENT COMPS CHARTS // SUBJECT PROPERTY"
+    }
+   ]
+  },
+  {
+   "page": 45,
+   "section": "Rent Comparables",
+   "footer_section": "RENT COMPARABLES",
+   "class": "build",
+   "spread": "Spreads/Spread_u107.xml",
+   "text_frames": 7,
+   "image_frames": 2,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      288.0,
+      162.32,
+      715.2,
+      318.86
+     ],
+     "sizes": [
+      "9",
+      "8"
+     ],
+     "snippet": "UNIT TYPE# UNITSSQUARE FEETRENTRENT/SF1 Bedroom / 1 Bathroom"
+    },
+    {
+     "box": [
+      62.0,
+      124.39,
+      288.0,
+      145.96
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "Property Name\n555 Main Street, New York City, NY 1007"
+    },
+    {
+     "box": [
+      288.0,
+      390.08,
+      715.2,
+      546.62
+     ],
+     "sizes": [
+      "9",
+      "8"
+     ],
+     "snippet": "UNIT TYPE# UNITSSQUARE FEETRENTRENT/SF1 Bedroom / 1 Bathroom"
+    },
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "RENT COMPARABLES"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "RENT COMPS CHARTS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      41.41,
+      130.64,
+      51.49,
+      140.21
+     ],
+     "sizes": [
+      "10"
+     ],
+     "snippet": "2"
+    }
+   ]
+  },
+  {
+   "page": 46,
+   "section": "Market Overview",
+   "footer_section": null,
+   "class": "static",
+   "spread": "Spreads/Spread_u108.xml",
+   "text_frames": 3,
+   "image_frames": 1,
+   "slots": [
+    "divider_bg"
+   ],
+   "frames": [
+    {
+     "box": [
+      218.19,
+      324.44,
+      573.81,
+      363.92
+     ],
+     "sizes": [],
+     "snippet": "PDF WITH HEADER/FOOTERDEMOGRAPHICS"
+    },
+    {
+     "box": [
+      158.4,
+      214.2,
+      633.6,
+      227.6
+     ],
+     "sizes": [
+      "12"
+     ],
+     "snippet": "SECTION 8"
+    },
+    {
+     "box": [
+      208.05,
+      249.44,
+      583.95,
+      281.98
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "Market Overview"
+    }
+   ]
+  },
+  {
+   "page": 47,
+   "section": "Market Overview",
+   "footer_section": "MARKET OVERVIEW",
+   "class": "variant",
+   "spread": "Spreads/Spread_u109.xml",
+   "text_frames": 7,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKET OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "PDF WITH HEADER/FOOTER // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      36.0,
+      124.6,
+      384.75,
+      286.28
+     ],
+     "sizes": [
+      "20",
+      "16"
+     ],
+     "snippet": "MIAMI-DADE\nMiami-Dade County is a gateway to South American "
+    },
+    {
+     "box": [
+      119.0,
+      329.13,
+      379.75,
+      370.96
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "BUSINESS-FRIENDLY ENVIRONMENT\nThe metro has no local corpora"
+    },
+    {
+     "box": [
+      119.0,
+      401.15,
+      379.75,
+      442.97
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "INTERNATIONAL GATEWAY\nThe metro has no local corporate or pe"
+    },
+    {
+     "box": [
+      119.0,
+      473.16,
+      379.75,
+      514.99
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MEDICAL COMMUNITY\nThe metro has no local corporate or person"
+    }
+   ]
+  },
+  {
+   "page": 48,
+   "section": "Market Overview",
+   "footer_section": "MARKET OVERVIEW",
+   "class": "variant",
+   "spread": "Spreads/Spread_u10a.xml",
+   "text_frames": 15,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKET OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "PDF WITH HEADER/FOOTER // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      36.0,
+      124.6,
+      453.6,
+      244.08
+     ],
+     "sizes": [
+      "20"
+     ],
+     "snippet": "ECONOMY\n30-unit apartment complex in the desirable Miami Bea"
+    },
+    {
+     "box": [
+      36.0,
+      285.28,
+      453.6,
+      355.82
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      36.0,
+      420.48,
+      151.2,
+      451.88
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      36.0,
+      482.4,
+      151.2,
+      513.8
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      187.2,
+      420.48,
+      302.4,
+      451.88
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      187.2,
+      482.4,
+      302.4,
+      513.8
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      338.4,
+      420.48,
+      453.6,
+      451.88
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      338.4,
+      482.4,
+      453.6,
+      513.8
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      489.6,
+      420.48,
+      604.8,
+      451.88
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      489.6,
+      482.4,
+      604.8,
+      513.8
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      640.8,
+      420.48,
+      756.0,
+      451.88
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      640.8,
+      482.4,
+      756.0,
+      513.8
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 49,
+   "section": "Market Overview",
+   "footer_section": "MARKET OVERVIEW",
+   "class": "variant",
+   "spread": "Spreads/Spread_u10b.xml",
+   "text_frames": 20,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKET OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "PDF WITH HEADER/FOOTER // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      36.0,
+      124.6,
+      453.6,
+      244.08
+     ],
+     "sizes": [
+      "20"
+     ],
+     "snippet": "DEMOGRAPHICS\n30-unit apartment complex in the desirable Miam"
+    },
+    {
+     "box": [
+      489.6,
+      137.6,
+      756.0,
+      154.82
+     ],
+     "sizes": [
+      "18"
+     ],
+     "snippet": "SPORTS"
+    },
+    {
+     "box": [
+      489.6,
+      245.5,
+      756.0,
+      262.72
+     ],
+     "sizes": [
+      "18"
+     ],
+     "snippet": "EDUCATION"
+    },
+    {
+     "box": [
+      489.6,
+      365.82,
+      756.0,
+      383.04
+     ],
+     "sizes": [
+      "18"
+     ],
+     "snippet": "ARTS & ENTERTAINMENT"
+    },
+    {
+     "box": [
+      36.0,
+      285.28,
+      453.6,
+      355.82
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    },
+    {
+     "box": [
+      489.6,
+      170.94,
+      604.8,
+      184.34
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      489.6,
+      278.84,
+      604.8,
+      292.24
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      489.6,
+      399.16,
+      604.8,
+      412.56
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      489.6,
+      203.76,
+      604.8,
+      217.16
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      489.6,
+      311.66,
+      604.8,
+      325.06
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      489.6,
+      431.98,
+      604.8,
+      445.38
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      640.8,
+      170.94,
+      756.0,
+      184.34
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      640.8,
+      278.84,
+      756.0,
+      292.24
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      640.8,
+      399.16,
+      756.0,
+      412.56
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      640.8,
+      203.76,
+      756.0,
+      217.16
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      640.8,
+      311.66,
+      756.0,
+      325.06
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    },
+    {
+     "box": [
+      640.8,
+      431.98,
+      756.0,
+      445.38
+     ],
+     "sizes": [
+      "14"
+     ],
+     "snippet": "LOGO HERE"
+    }
+   ]
+  },
+  {
+   "page": 50,
+   "section": "Market Overview",
+   "footer_section": "MARKET OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_u10c.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKET OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "DEMOGRAPHICS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      187.2,
+      285.28,
+      604.8,
+      355.82
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 51,
+   "section": "Market Overview",
+   "footer_section": "MARKET OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_u10d.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKET OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "DEMOGRAPHICS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      187.2,
+      285.28,
+      604.8,
+      355.82
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 52,
+   "section": "Market Overview",
+   "footer_section": "MARKET OVERVIEW",
+   "class": "stamp",
+   "spread": "Spreads/Spread_u10e.xml",
+   "text_frames": 4,
+   "image_frames": 0,
+   "slots": [],
+   "frames": [
+    {
+     "box": [
+      60.5,
+      583.74,
+      210.14,
+      590.6
+     ],
+     "sizes": [
+      "9.436111170417005"
+     ],
+     "snippet": "EXECUTIVE SUMMARY"
+    },
+    {
+     "box": [
+      60.5,
+      581.98,
+      261.0,
+      590.6
+     ],
+     "sizes": [
+      "9"
+     ],
+     "snippet": "MARKET OVERVIEW"
+    },
+    {
+     "box": [
+      36.0,
+      64.81,
+      653.04,
+      89.73
+     ],
+     "sizes": [
+      "16"
+     ],
+     "snippet": "DEMOGRAPHICS // SUBJECT PROPERTY"
+    },
+    {
+     "box": [
+      187.2,
+      285.28,
+      604.8,
+      355.82
+     ],
+     "sizes": [
+      "34"
+     ],
+     "snippet": "PLACE CHARTON THIS PAGE"
+    }
+   ]
+  },
+  {
+   "page": 53,
+   "section": "Back Matter",
+   "footer_section": null,
+   "class": "variant",
+   "spread": "Spreads/Spread_u10f.xml",
+   "text_frames": 1,
+   "image_frames": 1,
+   "slots": [
+    "property_photo"
+   ],
+   "frames": [
+    {
+     "box": [
+      158.4,
+      173.1,
+      633.6,
+      287.5
+     ],
+     "sizes": [
+      "14",
+      "12"
+     ],
+     "snippet": "PRESENTED BY\n\nAgent Name\nAssociateOffice: Calabasas (HQ)Dire"
+    }
+   ]
+  }
+ ],
+ "notes": [
+  "tokens.color CMYK->hex is an unmanaged approximation; use tokens.color_resolved for screen.",
+  "divider_bg is one full-bleed 792x612 asset on all 8 section dividers - a single swap retones the book by asset class.",
+  "property_photo spans 11 aspect ratios across 24 frames, so each upload needs a focal point for safe auto-crop.",
+  "No XML tags and only 12 paragraph styles, most unused: drive layout from frame geometry, not from styles."
+ ]
+}

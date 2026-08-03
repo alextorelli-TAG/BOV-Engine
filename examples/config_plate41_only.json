@@ -1,0 +1,25 @@
+{
+  "order": [
+    {
+      "plate": 41,
+      "data": {
+        "property": "SUBJECT PROPERTY",
+        "subject": {
+          "name": "Subject Property", "address": "Street Address Here",
+          "city": "City, State, 10007", "price": "$XXX,XXX,XXX",
+          "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%",
+          "units": "130", "close": "On Market"
+        },
+        "comps": [
+          {"name": "Property Name", "address": "Street Address Here", "city": "City, State, 10007", "price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130", "close": "On Market"},
+          {"name": "Property Name", "address": "Street Address Here", "city": "City, State, 10007", "price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130", "close": "On Market"},
+          {"name": "Property Name", "address": "Street Address Here", "city": "City, State, 10007", "price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130", "close": "On Market"},
+          {"name": "Property Name", "address": "Street Address Here", "city": "City, State, 10007", "price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130", "close": "On Market"},
+          {"name": "Property Name", "address": "Street Address Here", "city": "City, State, 10007", "price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130", "close": "On Market"},
+          {"name": "Property Name", "address": "Street Address Here", "city": "City, State, 10007", "price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130", "close": "On Market"}
+        ],
+        "totals": {"price": "$XXX,XXX,XXX", "bldg": "XX,XXX SF", "ppu": "$X,XXX,XXX", "cap": "X.X%", "units": "130"}
+      }
+    }
+  ]
+}

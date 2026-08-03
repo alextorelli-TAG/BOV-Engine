@@ -1,0 +1,42 @@
+{
+  "order": [
+    {
+      "plate": 37,
+      "data": {
+        "property": "SUBJECT PROPERTY",
+        "left": {
+          "icon": "star",
+          "name": "Property Name",
+          "address": "555 Main Street, New York City, NY 1007",
+          "price": "$XXX,XXX,XXX",
+          "detail": {
+            "sale_date": "–", "cap_rate": "X.X%", "noi": "$XXX,XXX", "gross_sf": "XX,XXX SF",
+            "lot_size": "X.XX Acres", "year_built": "XXXX", "num_units": "XXX", "occupancy": "XX%"
+          },
+          "unit_rows": [
+            {"type": "1 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "2 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "1 Bedroom / 1 Bathroom + Loft", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+          ],
+          "unit_total": {"units": "XXX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+        },
+        "right": {
+          "icon": 1,
+          "name": "Property Name",
+          "address": "555 Main Street, New York City, NY 1007",
+          "price": "$XXX,XXX,XXX",
+          "detail": {
+            "sale_date": "–", "cap_rate": "X.X%", "noi": "$XXX,XXX", "gross_sf": "XX,XXX SF",
+            "lot_size": "X.XX Acres", "year_built": "XXXX", "num_units": "XXX", "occupancy": "XX%"
+          },
+          "unit_rows": [
+            {"type": "1 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "2 Bedroom / 1 Bathroom", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"},
+            {"type": "1 Bedroom / 1 Bathroom + Loft", "units": "XX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+          ],
+          "unit_total": {"units": "XXX", "size": "X,XXX", "rent": "$X,XXX", "rent_sf": "$X.XX"}
+        }
+      }
+    }
+  ]
+}

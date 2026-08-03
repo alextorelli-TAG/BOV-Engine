@@ -1,0 +1,18 @@
+{
+  "org": {
+    "team": "The Anton Group",
+    "firm": "Marcus & Millichap",
+    "address": "260 Madison Avenue, 5th Floor, New York, NY 10016",
+    "emailDomain": "marcusmillichap.com"
+  },
+  "contacts": [
+    { "id": "eric-anton", "name": "Eric Anton", "title": "Senior Managing Director Investments", "office": "(212) 430-5209", "mobile": "(917) 848-6043", "email": "Eric.Anton@marcusmillichap.com" },
+    { "id": "nelson-lee", "name": "Nelson Lee", "title": "Managing Director, Investments", "office": "(646) 805-1497", "mobile": "(917) 885-0894", "email": "Nelson.Lee@marcusmillichap.com" },
+    { "id": "henri-kessler", "name": "Henri Kessler", "title": "Associate Director, Investments", "office": "(646) 805-1427", "mobile": "(310) 691-0775", "email": "Henri.Kessler@marcusmillichap.com" },
+    { "id": "adam-steiner", "name": "Adam Steiner", "title": "Associate Director, Investments", "office": "(212) 430-5175", "mobile": "(973) 769-2760", "email": "Adam.Steiner@marcusmillichap.com" },
+    { "id": "chris-murphy", "name": "Chris Murphy", "title": "Associate, Investments", "office": "(646) 805-1485", "mobile": "(203) 399-8990", "email": "Chris.Murphy@marcusmillichap.com" },
+    { "id": "justice-carrenard", "name": "Justice Carrenard", "title": "Associate", "office": "(646) 805-1471", "mobile": "(347) 788-7217", "email": "Justice.Carrenard@marcusmillichap.com" },
+    { "id": "philip-gallagher", "name": "Philip Gallagher", "title": "Associate", "office": "(646) 805-1406", "mobile": "(203) 501-3145", "email": "Philip.Gallagher@marcusmillichap.com" },
+    { "id": "max-von-graffenried", "name": "Max von Graffenried", "title": "Associate", "office": "(212) 430-5100", "mobile": "(646) 725-2510", "email": "Max.vonGraffenried@marcusmillichap.com" }
+  ]
+}

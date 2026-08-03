@@ -1,0 +1,14 @@
+{
+  "divider_texture": "C:/Users/ATorelli/OneDrive - Marcus & Millichap/Documents/Branding/Textural Images/GettyImages-1085398396.jpg",
+  "order": [
+    {
+      "plate": 19,
+      "focal": [0.5, 0.4],
+      "data": {
+        "section_label": "SECTION 2",
+        "title": "Advisor Bios",
+        "subtitles": ["ADVISOR BIO - AGENT NAME"]
+      }
+    }
+  ]
+}

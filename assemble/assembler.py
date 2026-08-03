@@ -629,6 +629,62 @@ def _chart_block(c, dy, block):
         cell_text(c, x0, x1, 306.87 + dy, tot.get(key), 'FRL', 9, ink, align)
 
 
+# --- section dividers (plates 5/19/21/24/30/33/39/46) -----------------------
+# One builder, driven by a section number + title (+ optional subtitles). The
+# background texture is a single choice that flows to every divider; navy
+# duotone + darker centre panel are the fixed house treatment.
+DIVIDER_META = {5: (1, 'Marcus & Millichap Advantage'), 19: (2, 'Advisor Bios'),
+                21: (3, 'Marketing Plan'), 24: (4, 'Investment Overview'),
+                30: (5, 'Financial Analysis'), 33: (6, 'Sale Comparables'),
+                39: (7, 'Rent Comparables'), 46: (8, 'Market Overview')}
+PANEL_L, PANEL_R = 213.1, 578.9
+PANEL_CX = (PANEL_L + PANEL_R) / 2
+
+
+def build_divider(c, d, photo=None, focal=(0.5, 0.5)):
+    """Section divider: navy-duotone texture + centre panel + section title +
+    Anton Group lockup. `d['texture']` (a placeholder for now) flows through."""
+    navy, orange = hexcol(C['navy']), hexcol(C['orange'])
+    grey = (0.69, 0.718, 0.737)
+
+    texture = d.get('texture') or photo
+    if texture and os.path.exists(texture):
+        place(c, texture, [0.0, 0.0, 792.0, 612.0], focal)
+        c.setFillColorRGB(*navy)
+        c.setFillAlpha(0.82)                 # navy duotone over the photo
+        c.rect(0, 0, 792, 612, stroke=0, fill=1)
+        c.setFillAlpha(1.0)
+    else:
+        fill_box(c, [0.0, 0.0, 792.0, 612.0], navy)
+
+    c.setFillColorRGB(*navy)                  # near-solid centre text panel
+    c.setFillAlpha(0.88)
+    c.rect(PANEL_L, 0, PANEL_R - PANEL_L, 612, stroke=0, fill=1)
+    c.setFillAlpha(1.0)
+
+    hrule(c, 0.0, 16.7, 792.0, 0.5, grey)
+    hrule(c, 0.0, 594.1, 792.0, 0.5, grey)
+
+    cell_text(c, PANEL_L, PANEL_R, 217.32, d.get('section_label', 'SECTION 1'),
+              'FRL-Med', 12, orange, 'center', track=1.15)
+    cell_text(c, PANEL_L, PANEL_R, 258.93, d.get('title', ''), 'FRL-Bold', 34,
+              (1, 1, 1), 'center')
+    subs = d.get('subtitles', [])
+    if isinstance(subs, str):
+        subs = [subs]
+    sy = 327.56
+    for s in subs:
+        cell_text(c, PANEL_L, PANEL_R, sy, s, 'FRL-Med', 12, (1, 1, 1),
+                  'center', track=1.15)
+        c.setStrokeColorRGB(*orange)
+        c.setLineWidth(0.5)
+        c.line(PANEL_CX - 43.2, ry(sy + 18.4), PANEL_CX + 43.2, ry(sy + 18.4))
+        sy += 40.0
+
+    stamp_icon(c, 'brand/anton_group_lockup_white.png', [306.0, 551.0, 486.0, 579.0],
+               fit=True)
+
+
 TOC_SECTIONS = ['Marcus & Millichap Advantage', 'Advisor Bios', 'Marketing Plan',
                 'Investment Overview', 'Financial Analysis', 'Sale Comparables',
                 'Rent Comparables', 'Market Overview']
@@ -821,7 +877,19 @@ def assemble(config, library, out_path, fonts, assets=None):
         buf, c = new_overlay()
         did = cls
 
-        if cls == 'build' and plate in BUILDERS:
+        if plate in DIVIDER_META:
+            # dividers are rebuilt (not passed through) so the texture and
+            # section title can be swapped; texture is one global choice.
+            num, deftitle = DIVIDER_META[plate]
+            page = PdfWriter().add_blank_page(PAGE_W, PAGE_H)
+            dd = dict(item.get('data', {}))
+            dd.setdefault('section_label', f'SECTION {num}')
+            dd.setdefault('title', deftitle)
+            dd.setdefault('texture', config.get('divider_texture'))
+            build_divider(c, dd, dd.get('texture'),
+                          tuple(item.get('focal', (.5, .5))))
+            did = 'divider'
+        elif cls == 'build' and plate in BUILDERS:
             # nothing from the corporate page survives: start from blank
             page = PdfWriter().add_blank_page(PAGE_W, PAGE_H)
             BUILDERS[plate](c, item.get('data', {}),

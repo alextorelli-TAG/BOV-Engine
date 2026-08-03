@@ -722,6 +722,92 @@ def build_plate4(c, d, photo=None, focal=(0.5, 0.5)):
                fit=True)
 
 
+def _email_lines(email):
+    if not email:
+        return []
+    if '@' in email:
+        u, dom = email.split('@', 1)
+        return [u + '@', dom]
+    return [email]
+
+
+def _office_lines(office):
+    if not office:
+        return []
+    parts = office.split(', ')
+    if len(parts) >= 3:
+        return [parts[0] + ',', ', '.join(parts[1:])]
+    if len(parts) == 2:
+        return [parts[0] + ',', parts[1]]
+    return [office]
+
+
+def build_plate20(c, d, photo=None, focal=(0.5, 0.5)):
+    """Advisor bio page (repeatable, one per selected advisor). Left navy panel
+    with headshot + name + title + contact; right column of bio prose. Built to
+    the Anton Group reference design. `d` is a single advisor object."""
+    navy, orange, ink = hexcol(C['navy']), hexcol(C['orange']), hexcol(C['ink'])
+    grey = hexcol(C['grey_mid'])
+    white = (1, 1, 1)
+    role = (d.get('role') or 'TEAM').upper()
+
+    # header eyebrow + top-right role
+    cell_text(c, 36.0, 0, 36.0, 'MARCUS & MILLICHAP  ·  THE ANTON GROUP',
+              'FRL-Med', 8, grey, 'left', pad=0, track=1.0)
+    cell_text(c, 0, 756.0, 36.0, role, 'FRL-Med', 8, orange, 'right', pad=0, track=1.0)
+    # two-tone head + rule
+    w = tracked(c, 36.0, ry(79.4), 'THE ANTON TEAM // ', 'FRL', 16, 1.6, navy)
+    tracked(c, 36.0 + w, ry(79.4), role, 'FRL-Bold', 16, 1.6, orange)
+    hrule(c, 0.0, 89.7, 756.0, 1.0, ink)
+
+    # left navy panel + headshot
+    fill_box(c, [0.0, 168.0, 258.0, 612.0], navy)
+    hs = d.get('headshot')
+    hs_box = [33.0, 108.0, 229.0, 360.0]
+    if hs and os.path.exists(hs):
+        place(c, hs, hs_box, tuple(d.get('focal', (0.5, 0.4))))
+    else:
+        c.setFillColorRGB(*hexcol(C['grey_mid']))
+        c.rect(hs_box[0], ry(hs_box[3]), hs_box[2] - hs_box[0],
+               hs_box[3] - hs_box[1], stroke=0, fill=1)
+
+    # name (white display, up to 2 lines), title (orange)
+    y = 384.0
+    for line in wrap(c, d.get('name', ''), 'FRL', 22, 214.0):
+        cell_text(c, 33.0, 0, y, line, 'FRL', 22, white, 'left', pad=0)
+        y += 30.0
+    y += 6.0
+    for line in wrap(c, d.get('title', ''), 'FRL-Bold', 9.5, 214.0):
+        cell_text(c, 33.0, 0, y, line, 'FRL-Bold', 9.5, orange, 'left', pad=0)
+        y += 12.5
+
+    # contact block: orange label + white value(s)
+    y += 6.0
+    hrule(c, 33.0, y, 243.0, 0.4, (0.45, 0.5, 0.58))
+    y += 12.0
+    rows = [('DIRECT', [d.get('direct')]), ('MOBILE', [d.get('mobile')]),
+            ('EMAIL', _email_lines(d.get('email'))),
+            ('OFFICE', _office_lines(d.get('office')))]
+    if d.get('license'):
+        rows.append(('LICENSE', [d.get('license')]))
+    for label, vals in rows:
+        cell_text(c, 33.0, 0, y, label, 'FRL-Bold', 7.5, orange, 'left', pad=0)
+        for i, v in enumerate([v for v in vals if v]):
+            cell_text(c, 95.0, 0, y + i * 11.5, v, 'FRL', 9, white, 'left', pad=0)
+        y += 11.5 * max(1, len([v for v in vals if v])) + 4.0
+
+    # right column: professional background
+    cell_text(c, 366.0, 0, 182.0, 'PROFESSIONAL BACKGROUND', 'FRL-Bold', 11, navy,
+              'left', pad=0)
+    hrule(c, 366.0, 196.0, 990.0 if False else 756.0, 0.4, (0.72, 0.74, 0.76))
+    by = 222.0
+    for para in d.get('bio', []):
+        for line in wrap(c, para, 'FRL', 9.5, 390.0):
+            cell_text(c, 366.0, 0, by, line, 'FRL', 9.5, ink, 'left', pad=0)
+            by += 14.0
+        by += 8.0
+
+
 def build_plate1(c, d, photo=None, focal=(0.5, 0.5)):
     """Cover: full-bleed property photo + navy scrim, PROPOSAL bar, title/
     address, and the Marcus & Millichap logo box."""
@@ -828,7 +914,7 @@ def wrap(c, text, font, size, measure):
     return lines
 
 
-BUILDERS = {1: build_plate1, 4: build_plate4,
+BUILDERS = {1: build_plate1, 4: build_plate4, 20: build_plate20,
             25: build_plate25, 35: build_plate35, 41: build_plate41,
             37: build_plate37, 38: build_plate37,
             44: build_plate44, 45: build_plate44}
@@ -889,8 +975,8 @@ def assemble(config, library, out_path, fonts, assets=None):
             build_divider(c, dd, dd.get('texture'),
                           tuple(item.get('focal', (.5, .5))))
             did = 'divider'
-        elif cls == 'build' and plate in BUILDERS:
-            # nothing from the corporate page survives: start from blank
+        elif plate in BUILDERS:
+            # a registered builder replaces the page entirely (build/variant)
             page = PdfWriter().add_blank_page(PAGE_W, PAGE_H)
             BUILDERS[plate](c, item.get('data', {}),
                             item.get('photo'), tuple(item.get('focal', (.5, .5))))

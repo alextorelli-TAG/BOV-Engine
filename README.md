@@ -114,6 +114,45 @@ tab) and resolved, along with the catalog, against `BOV_LIBRARY_ROOT`:
 BOV_LIBRARY_ROOT="<path to your images>" python -m uvicorn serve.app:app --port 8000
 ```
 
+### Comps maps (Google Maps) + secrets
+
+The Sale/Rent Comps Map plates (34, 40) are rendered from a **comps table**. In the
+console's **Comps** tab, paste a table (Excel/TSV or CSV; first row = headers) with
+columns `name, address, city, price, units, cap, …`. On Assemble, the server
+geocodes each address and composites a branded Google Static Map into the frame —
+the subject is the orange `S` pin, comps are navy numbered pins matching the
+summary table. The same table also fills the comps summary (35/41) and detail
+(37/38, 44/45) slides.
+
+API keys are read **server-side only** from a gitignored `.env` (never the
+browser, the config, or logs). Copy `.env.example` to `.env` and set your Google
+Maps Platform key (`GMAPS_PLATFORM_API_KEY`, restricted in Google Cloud to the
+Geocoding + Maps Static APIs). Keep `.env` **outside the repo** and point the
+server at it so it can never be committed:
+
+```bash
+BOV_ENV_FILE="C:/path/outside/repo/.env" python -m uvicorn serve.app:app --port 8000
+```
+
+Without a key, the map plates fall back to the corporate placeholder and the build
+still succeeds. Geocoded coordinates and rendered maps are cached under
+`serve/.cache/` (gitignored) so repeat builds don't re-bill.
+
+### Excel uploads (comps + financials)
+
+Instead of typing, upload the deal's workbooks:
+
+- **Comps tab → Upload sale/rent comps (.xlsx)** — the server detects the header
+  row (even under a title block) and maps commercial or multifamily columns
+  (Property Address, Submarket, Sale Price, Total SF, Price PSF, Transaction Date;
+  cap rate optional). Fills the comps summary/detail slides and geocodes the map.
+- **Property tab → Upload financials (.xlsx)** — parses the proforma's *Deal
+  Summary* sheet into the Property fields (NOI, SF, units, occupancy, year,
+  address) + Deal Highlights, and the *OpEx* / *Proforma* sheets into the
+  **Financial Analysis** slides (31 Operating Statement, 32 Cash Flow Projection),
+  rendered as house-style tables. Uploaded values overwrite the fields, then stay
+  editable.
+
 ## Repository layout
 
 | Path | What it is |

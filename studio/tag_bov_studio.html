@@ -323,7 +323,14 @@
         </div>
         <div class="card">
           <h3>Offering summary</h3>
-          <p>Eight fields. Derived metrics compute — never typed twice.</p>
+          <p>Type the fields, or upload the deal proforma to fill them from the Deal
+            Summary sheet (NOI, SF, units, occupancy, year, address + highlights).
+            Uploaded values overwrite these fields; you can still edit after.</p>
+          <div style="margin-bottom:12px">
+            <label class="fbtn" for="up-fin">Upload financials (.xlsx)</label>
+            <input type="file" id="up-fin" accept=".xlsx">
+            <span id="fin-note" style="font-size:11px;color:var(--dim);margin-left:8px"></span>
+          </div>
           <div class="row">
             <div class="field"><label>Listing price</label><input id="p-price" inputmode="numeric" placeholder="12000000"></div>
             <div class="field"><label>NOI</label><input id="p-noi" inputmode="numeric" placeholder="512127"></div>
@@ -346,6 +353,45 @@
           generation will draft both from your facts + thesis in a later release.</p>
         <div class="field"><label>Property description — 3–4 paragraphs</label><textarea id="p-desc" placeholder="Three or four paragraphs on construction, unit mix, condition, position…"></textarea></div>
         <div class="field"><label>Highlights — one per line (4–6)</label><textarea id="p-hl" placeholder="30-unit elevator building in Murray Hill&#10;Sub-4% in-place, 38% below-market rents&#10;Two blocks to the 6 at 33rd Street"></textarea></div>
+      </div>
+    </section>
+
+    <!-- COMPS -->
+    <section class="view hidden" id="v-comps">
+      <div class="grid2">
+        <div class="card">
+          <h3>Sale comparables</h3>
+          <p>Upload the deal's comps workbook, or paste from Excel / CSV below (first
+            row = headers). Recognised columns: <b>Property Address, Submarket, Sale
+            Price, Total SF, Price PSF, Transaction Date</b> (cap rate optional).</p>
+          <div style="margin-bottom:11px">
+            <label class="fbtn" for="up-sale">Upload sale comps (.xlsx)</label>
+            <input type="file" id="up-sale" accept=".xlsx">
+          </div>
+          <div class="field"><textarea id="c-sale" spellcheck="false"
+            placeholder="name&#9;address&#9;city&#9;price&#9;units&#9;cap&#10;The Ivy&#9;120 W 30th St&#9;New York, NY 10001&#9;$14,200,000&#9;28&#9;4.6%"></textarea></div>
+          <div id="c-sale-out" class="note"></div>
+        </div>
+        <div class="card">
+          <h3>Rent comparables</h3>
+          <p>Same format. Upload a rent-comps workbook, or paste below. Recognised
+            columns: <b>name, address, city, units, occupancy, year</b>.</p>
+          <div style="margin-bottom:11px">
+            <label class="fbtn" for="up-rent">Upload rent comps (.xlsx)</label>
+            <input type="file" id="up-rent" accept=".xlsx">
+          </div>
+          <div class="field"><textarea id="c-rent" spellcheck="false"
+            placeholder="name&#9;address&#9;city&#9;units&#9;occupancy&#9;year&#10;Parkline&#9;455 Grand St&#9;New York, NY 10002&#9;40&#9;95%&#9;2019"></textarea></div>
+          <div id="c-rent-out" class="note"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>How this is used</h3>
+        <p>One table, four uses: the <b>Sale/Rent Comps Summary</b> (35/41) and
+          <b>Detail</b> spreads (37/38, 44/45) fill from these rows, and the
+          <b>Comps Map</b> plates (34/40) geocode each address into a numbered pin
+          — pin <b>1</b> is the first row, matching the summary order. Addresses that
+          don't geocode are skipped; the subject property is the orange <b>S</b> pin.</p>
       </div>
     </section>
 
@@ -379,7 +425,7 @@
 </div>
 
 <script>
-const PAGES=[{"n":1,"t":"Cover","c":"build","s":"Front Matter","f":null,"tf":3,"im":1,"sl":["property_photo"]},{"n":2,"t":"Disclaimer","c":"static","s":"Front Matter","f":null,"tf":2,"im":1,"sl":["brand_logo"]},{"n":3,"t":"Presented By","c":"variant","s":"Front Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]},{"n":300,"ins":"exec_summary","code":"ES","t":"Executive Summary","c":"build","s":"Front Matter","f":"EXECUTIVE SUMMARY","tf":6,"im":0,"sl":[]},{"n":4,"t":"Table of Contents","c":"build","s":"Front Matter","f":null,"tf":9,"im":1,"sl":["property_photo"]},{"n":5,"t":"Divider \u2014 M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":301,"ins":"anton_advantage","code":"AA","t":"The Anton Advantage","c":"build","s":"Marcus & Millichap Advantage","f":"THE ANTON ADVANTAGE","tf":6,"im":0,"sl":[]},{"n":6,"t":"Welcome to M&M","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":4,"im":1,"sl":["corporate_stock"]},{"n":7,"t":"Our Mission","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":8,"t":"The M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":9,"t":"A Company of Specialists","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":10,"t":"Better Methods, Better Results","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":11,"t":"Year in Review Stats","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":7,"im":2,"sl":["corporate_stock"]},{"n":12,"t":"#1 in Multifamily","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":10,"im":1,"sl":["corporate_stock"]},{"n":13,"t":"MarcusMillichap.com","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":14,"t":"Making a Market","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":15,"t":"Research Reports","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":16,"t":"Actionable Insights","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":17,"t":"Capital Migration","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":18,"t":"MMCC Financing","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":19,"t":"Divider \u2014 Advisor Bios","c":"static","s":"Advisor Bios","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":20,"t":"Advisor Bio","c":"variant","s":"Advisor Bios","f":"ADVISOR BIOS","tf":6,"im":2,"sl":["advisor_headshot","corporate_stock"]},{"n":21,"t":"Divider \u2014 Marketing Plan","c":"static","s":"Marketing Plan","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":22,"t":"Maximum Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":23,"t":"Internal & External Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":24,"t":"Divider \u2014 Investment Overview","c":"static","s":"Investment Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":25,"t":"Property Summary","c":"build","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":5,"im":1,"sl":["property_photo"]},{"n":26,"t":"Regional Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":27,"t":"Local Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":28,"t":"Retailer Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":29,"t":"Property Photos","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":2,"im":4,"sl":["property_photo"]},{"n":30,"t":"Divider \u2014 Financial Analysis","c":"static","s":"Financial Analysis","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":31,"t":"Financial Detail I","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":32,"t":"Financial Detail II","c":"stamp","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":33,"t":"Divider \u2014 Sale Comparables","c":"static","s":"Sale Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":34,"t":"Sale Comps Map","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":35,"t":"Sale Comps Summary","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":0,"sl":[]},{"n":36,"t":"Sale Comps Chart","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":4,"im":0,"sl":[]},{"n":37,"t":"Sale Comps Detail I","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":10,"im":2,"sl":["property_photo"]},{"n":38,"t":"Sale Comps Detail II","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":11,"im":2,"sl":["property_photo"]},{"n":39,"t":"Divider \u2014 Rent Comparables","c":"static","s":"Rent Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":40,"t":"Rent Comps Map","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":41,"t":"Rent Comps Summary","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":0,"sl":[]},{"n":42,"t":"Rent Comps Chart I","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":43,"t":"Rent Comps Chart II","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":44,"t":"Rent Comps Detail I","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":2,"sl":["property_photo"]},{"n":45,"t":"Rent Comps Detail II","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":7,"im":2,"sl":["property_photo"]},{"n":46,"t":"Divider \u2014 Market Overview","c":"static","s":"Market Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":47,"t":"Metro Overview","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":7,"im":1,"sl":["property_photo"]},{"n":48,"t":"Metro Economy","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":15,"im":1,"sl":["property_photo"]},{"n":49,"t":"Metro Demographics","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":20,"im":0,"sl":[]},{"n":50,"t":"Demographics Chart I","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":51,"t":"Demographics Chart II","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":52,"t":"Demographics Chart III","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":53,"t":"Back Cover","c":"variant","s":"Back Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]}];
+const PAGES=[{"n":1,"t":"Cover","c":"build","s":"Front Matter","f":null,"tf":3,"im":1,"sl":["property_photo"]},{"n":2,"t":"Disclaimer","c":"static","s":"Front Matter","f":null,"tf":2,"im":1,"sl":["brand_logo"]},{"n":3,"t":"Presented By","c":"variant","s":"Front Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]},{"n":300,"ins":"exec_summary","code":"ES","t":"Executive Summary","c":"build","s":"Front Matter","f":"EXECUTIVE SUMMARY","tf":6,"im":0,"sl":[]},{"n":4,"t":"Table of Contents","c":"build","s":"Front Matter","f":null,"tf":9,"im":1,"sl":["property_photo"]},{"n":5,"t":"Divider \u2014 M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":301,"ins":"anton_advantage","code":"AA","t":"The Anton Advantage","c":"build","s":"Marcus & Millichap Advantage","f":"THE ANTON ADVANTAGE","tf":6,"im":0,"sl":[]},{"n":6,"t":"Welcome to M&M","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":4,"im":1,"sl":["corporate_stock"]},{"n":7,"t":"Our Mission","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":8,"t":"The M&M Advantage","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":9,"t":"A Company of Specialists","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":10,"t":"Better Methods, Better Results","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":0,"im":1,"sl":["corporate_stock"]},{"n":11,"t":"Year in Review Stats","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":7,"im":2,"sl":["corporate_stock"]},{"n":12,"t":"#1 in Multifamily","c":"annual","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":10,"im":1,"sl":["corporate_stock"]},{"n":13,"t":"MarcusMillichap.com","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":14,"t":"Making a Market","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":15,"t":"Research Reports","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":16,"t":"Actionable Insights","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":17,"t":"Capital Migration","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":18,"t":"MMCC Financing","c":"static","s":"Marcus & Millichap Advantage","f":"INVESTMENT OVERVIEW","tf":2,"im":1,"sl":["corporate_stock"]},{"n":19,"t":"Divider \u2014 Advisor Bios","c":"static","s":"Advisor Bios","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":20,"t":"Advisor Bio","c":"variant","s":"Advisor Bios","f":"ADVISOR BIOS","tf":6,"im":2,"sl":["advisor_headshot","corporate_stock"]},{"n":21,"t":"Divider \u2014 Marketing Plan","c":"static","s":"Marketing Plan","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":22,"t":"Maximum Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":23,"t":"Internal & External Exposure","c":"static","s":"Marketing Plan","f":"MARKETING PLAN","tf":10,"im":1,"sl":["marketing_bg"]},{"n":24,"t":"Divider \u2014 Investment Overview","c":"static","s":"Investment Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":25,"t":"Property Summary","c":"build","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":5,"im":1,"sl":["property_photo"]},{"n":26,"t":"Regional Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":27,"t":"Local Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":28,"t":"Retailer Map","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":3,"im":1,"sl":["property_photo"]},{"n":29,"t":"Property Photos","c":"stamp","s":"Investment Overview","f":"INVESTMENT OVERVIEW","tf":2,"im":4,"sl":["property_photo"]},{"n":30,"t":"Divider \u2014 Financial Analysis","c":"static","s":"Financial Analysis","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":31,"t":"Operating Statement","c":"build","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":32,"t":"Cash Flow Projection","c":"build","s":"Financial Analysis","f":"FINANCIAL ANALYSIS","tf":4,"im":0,"sl":[]},{"n":33,"t":"Divider \u2014 Sale Comparables","c":"static","s":"Sale Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":34,"t":"Sale Comps Map","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":35,"t":"Sale Comps Summary","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":5,"im":0,"sl":[]},{"n":36,"t":"Sale Comps Chart","c":"stamp","s":"Sale Comparables","f":"SALE COMPARABLES","tf":4,"im":0,"sl":[]},{"n":37,"t":"Sale Comps Detail I","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":10,"im":2,"sl":["property_photo"]},{"n":38,"t":"Sale Comps Detail II","c":"build","s":"Sale Comparables","f":"SALE COMPARABLES","tf":11,"im":2,"sl":["property_photo"]},{"n":39,"t":"Divider \u2014 Rent Comparables","c":"static","s":"Rent Comparables","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":40,"t":"Rent Comps Map","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":1,"sl":["property_photo"]},{"n":41,"t":"Rent Comps Summary","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":0,"sl":[]},{"n":42,"t":"Rent Comps Chart I","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":43,"t":"Rent Comps Chart II","c":"stamp","s":"Rent Comparables","f":"RENT COMPARABLES","tf":4,"im":0,"sl":[]},{"n":44,"t":"Rent Comps Detail I","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":5,"im":2,"sl":["property_photo"]},{"n":45,"t":"Rent Comps Detail II","c":"build","s":"Rent Comparables","f":"RENT COMPARABLES","tf":7,"im":2,"sl":["property_photo"]},{"n":46,"t":"Divider \u2014 Market Overview","c":"static","s":"Market Overview","f":null,"tf":3,"im":1,"sl":["divider_bg"]},{"n":47,"t":"Metro Overview","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":7,"im":1,"sl":["property_photo"]},{"n":48,"t":"Metro Economy","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":15,"im":1,"sl":["property_photo"]},{"n":49,"t":"Metro Demographics","c":"variant","s":"Market Overview","f":"MARKET OVERVIEW","tf":20,"im":0,"sl":[]},{"n":50,"t":"Demographics Chart I","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":51,"t":"Demographics Chart II","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":52,"t":"Demographics Chart III","c":"stamp","s":"Market Overview","f":"MARKET OVERVIEW","tf":4,"im":0,"sl":[]},{"n":53,"t":"Back Cover","c":"variant","s":"Back Matter","f":null,"tf":1,"im":1,"sl":["property_photo"]}];
 </script>
 <script>
 /* ------------------------------------------------------------------ data */
@@ -398,11 +444,14 @@ const defaultKeep=()=>new Set(PAGES.filter(p=>!DEFAULT_OFF.has(p.n)).map(p=>p.n)
 // texture is one global choice, so per-page divider data stays empty for MVP.
 const DIVIDERS=new Set([5,19,21,24,30,33,39,46]);
 // Corporate pages that stamp the property photo into their frame(s).
-const PHOTO_STAMPS=new Set([26,27,28,29,34,40]);
+// (34/40 are handled as comps maps in buildConfig, not property-photo stamps.)
+const PHOTO_STAMPS=new Set([26,27,28,29]);
 
-// The local build server (serve/app.py). If it isn't running, Assemble falls
+// The local build server (serve/app.py). Same-origin when served from it; else
+// fall back to localhost:8000 (file:// use). If it isn't running, Assemble falls
 // back to downloading the config JSON so it can be run from the CLI.
-const BUILD_URL='http://localhost:8000/api/bov/build';
+const API_BASE=(location.protocol==='http:'||location.protocol==='https:')?'':'http://localhost:8000';
+const BUILD_URL=API_BASE+'/api/bov/build';
 
 const PRESETS={
   Full:{all:true},
@@ -485,6 +534,9 @@ let S={
   prop:{},
   counts:{saleComps:6,rentComps:6},
   bind:{},          // slot -> library image id
+  comps:{sale:[],rent:[]},      // parsed comp rows -> summary/detail/maps
+  compsRaw:{sale:'',rent:''},   // the pasted text, so it survives reloads
+  financials:{operating:[],cashflow:{}},  // from proforma upload -> plates 31/32
 };
 
 // The library keeps a downscaled preview plus the focal point and the original
@@ -592,6 +644,22 @@ function offeringPairs(){
   if(p.occ)r.push(['Occupancy',(''+p.occ).replace(/%$/,'')+'%']);
   return r;
 }
+// --- comps -> summary / detail / map payloads ---
+const fullAddr=r=>[r&&r.address,r&&r.city].filter(Boolean).join(', ');
+const mapPoints=list=>(list||[]).map((r,i)=>({label:i+1,address:fullAddr(r)})).filter(p=>p.address);
+function subjectRow(){
+  const p=S.prop,price=pnum('price'),noi=pnum('noi'),units=pnum('units'),sf=pnum('sf');
+  return {name:p.name||'Subject Property',address:p.addr||'',city:p.city||'',
+    price:price?usd(price):'',bldg:sf?Math.round(sf).toLocaleString('en-US'):'',
+    ppu:(price&&units)?usd(price/units):'',
+    cap:(price&&noi)?(noi/price*100).toFixed(2)+'%':'',
+    units:units?String(units):'',close:''};
+}
+const saleBlock=(r,label)=>r?{icon:label,name:r.name||'',address:fullAddr(r),price:r.price||'',
+  detail:{sale_date:r.close||'',cap_rate:r.cap||'',gross_sf:r.bldg||'',num_units:r.units||''}}:{};
+const rentBlock=(r,label)=>r?{icon:label,name:r.name||'',address:fullAddr(r),
+  stats:{units:r.units||'',occupancy:r.occupancy||'',year:r.year||''}}:{};
+
 function advisorData(a){
   // build_plate20: direct = office phone, office = street address, per-advisor headshot
   const d={name:a.name,title:a.bioTitle||a.title,direct:a.office,mobile:a.mobile,
@@ -619,6 +687,11 @@ function execData(){
 
 function buildConfig(){
   const order=[];
+  const subjMap={address:fullAddr({address:S.prop.addr,city:S.prop.city})};
+  const propHead=(S.prop.name||'SUBJECT PROPERTY').toUpperCase();
+  // Comps detail spreads hold two comps per page; walk them in reading order so
+  // pin/number 1 is the first comp on both the map and the detail page.
+  let saleDi=0,rentDi=0;
   for(const op of outputPages()){
     const e=op.ins?{insert:op.ins}:{plate:op.plate};
     e.include=true;
@@ -633,10 +706,19 @@ function buildConfig(){
         description:(S.prop.desc||'').split(/\n{2,}/).map(s=>s.trim()).filter(Boolean),
         highlights:(S.prop.hl||'').split(/\n/).map(s=>s.trim()).filter(Boolean),
         offering:offeringPairs()};attachPhoto(e,'property_photo');}
+    else if(pl===31)e.data={property:propHead,operating:S.financials.operating||[]};
+    else if(pl===32)e.data={property:propHead,cashflow:S.financials.cashflow||{}};
+    else if(pl===35)e.data={property:propHead,subject:subjectRow(),comps:S.comps.sale,totals:{}};
+    else if(pl===41)e.data={property:propHead,subject:subjectRow(),comps:S.comps.rent,totals:{}};
+    else if(pl===34)e.data={subject:subjMap,comps:mapPoints(S.comps.sale)};   // server geocodes -> map PNG
+    else if(pl===40)e.data={subject:subjMap,comps:mapPoints(S.comps.rent)};
+    else if(pl===37||pl===38){const k=saleDi++;const s=S.comps.sale;
+        e.data={property:propHead,left:saleBlock(s[2*k],2*k+1),right:saleBlock(s[2*k+1],2*k+2)};}
+    else if(pl===44||pl===45){const k=rentDi++;const r=S.comps.rent;
+        e.data={property:propHead,top:rentBlock(r[2*k],2*k+1),bottom:rentBlock(r[2*k+1],2*k+2)};}
     else if(pl===53){const a=onAdvisors()[0]||{};
         e.data={name:a.name||'',title:a.title||'',direct:a.office||'',mobile:a.mobile||'',email:a.email||''};attachPhoto(e,'property_photo');}
     else if(PHOTO_STAMPS.has(pl))attachPhoto(e,'property_photo');
-    // dividers + remaining build plates (comps detail/summary) carry defaults
     order.push(e);
   }
   const cfg={order,meta:{property:S.prop.name||'BOV',assetClass:S.assetClass}};
@@ -836,13 +918,15 @@ const VIEWS=[
   ['over','Overlays','Swap the named image slots. One divider asset retones all eight section breaks.'],
   ['team','Team','Contacts and headshots, stored once and available to every book.'],
   ['prop','Property','The standardised intake. Everything the build templates bind to.'],
+  ['comps','Comps','Paste a comps table. Feeds the summary, detail and map slides.'],
   ['build','Build','Preflight and assemble.'],
 ];
 let view='deck';
 
 function renderNav(){
   const counts={deck:`${S.keep.size}/${PAGES.length}`,photos:`${LIB.items.length}`,over:'6',
-    team:`${advisorsOn()}`,prop:'',build:''};
+    team:`${advisorsOn()}`,prop:'',
+    comps:`${(S.comps.sale.length)+(S.comps.rent.length)}`,build:''};
   nav.innerHTML=VIEWS.map(([id,label])=>
     `<button data-v="${id}" aria-current="${view===id}">${label}<i>${counts[id]||''}</i></button>`).join('');
   nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{view=b.dataset.v;renderAll();});
@@ -979,6 +1063,69 @@ function renderDerived(){
   derived.innerHTML=rows.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
 }
 
+/* --------------------------------------------------------------- comps intake */
+// Canonical comp keys the assembler reads, plus header synonyms. Header cells are
+// normalised to lowercase-alphanumeric before lookup, so "Cap Rate" -> "caprate".
+const COMP_SYN={
+  name:['name','comp','property','building'],
+  address:['address','street','addr'],
+  city:['city','citystatezip','location','citystate'],
+  price:['price','saleprice','closeprice'],
+  bldg:['bldg','sf','buildingsf','grosssf','size','squarefeet'],
+  ppu:['ppu','priceperunit','priceunit','perunit'],
+  cap:['cap','caprate'],
+  units:['units','unitcount','nounits','numunits'],
+  close:['close','closedate','saledate','date'],
+  occupancy:['occupancy','occ','occupied'],
+  year:['year','yearbuilt','yr','built'],
+};
+const SYN_LOOKUP=(()=>{const m={};for(const k in COMP_SYN){m[k]=k;
+  for(const s of COMP_SYN[k])m[s]=k;}return m;})();
+const normHdr=h=>h.toLowerCase().replace(/[^a-z0-9]/g,'');
+
+function splitDelim(line,delim){
+  const out=[];let cur='',q=false;
+  for(let i=0;i<line.length;i++){const ch=line[i];
+    if(q){ if(ch==='"'){ if(line[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=ch; }
+    else { if(ch==='"')q=true; else if(ch===delim){out.push(cur);cur='';} else cur+=ch; }
+  }
+  out.push(cur);return out.map(s=>s.trim());
+}
+function parseComps(text){
+  const lines=(text||'').replace(/\r/g,'').split('\n').filter(l=>l.trim());
+  if(lines.length<2)return {rows:[],cols:[]};
+  const delim=lines[0].includes('\t')?'\t':',';
+  const hdr=splitDelim(lines[0],delim).map(normHdr);
+  const keys=hdr.map(h=>SYN_LOOKUP[h]||null);
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const cells=splitDelim(lines[i],delim);
+    const o={};cells.forEach((v,j)=>{const k=keys[j];if(k&&v!=='')o[k]=v;});
+    if(o.address||o.name)rows.push(o);
+  }
+  return {rows,cols:keys.filter(Boolean)};
+}
+
+function renderComps(){
+  const wire=(taId,rawKey,outId,fields)=>{
+    const ta=document.getElementById(taId),out=document.getElementById(outId);
+    if(ta.value!==(S.compsRaw[rawKey]||''))ta.value=S.compsRaw[rawKey]||'';
+    const parsed=parseComps(ta.value);
+    S.comps[rawKey]=parsed.rows;
+    out.innerHTML=parsed.rows.length
+      ? `<b style="color:var(--orange)">${parsed.rows.length} comp${parsed.rows.length>1?'s':''}</b> parsed`
+        +` · columns: ${parsed.cols.join(', ')||'none recognised'}`
+        +`<dl class="kv" style="margin-top:8px">`
+        +parsed.rows.map((r,i)=>`<dt>${i+1}. ${r.name||'(no name)'}</dt>`
+          +`<dd style="text-align:left;color:var(--dim)">${[r.address,r.city].filter(Boolean).join(', ')||'— no address —'}</dd>`).join('')
+        +`</dl>`
+      : (ta.value.trim()?'<span style="color:var(--orange)">No rows parsed — check the header row and delimiter.</span>':'Nothing pasted yet.');
+    ta.oninput=()=>{S.compsRaw[rawKey]=ta.value;renderComps();renderStrip();save();};
+  };
+  wire('c-sale','sale','c-sale-out');
+  wire('c-rent','rent','c-rent-out');
+}
+
 function renderStrip(){
   const out=outputPages();
   sig.innerHTML=out.map(p=>
@@ -1026,7 +1173,7 @@ function renderBuild(){
 
 function renderAll(){
   renderNav();renderPresets();renderBoard();renderPhotos();renderBinds();
-  renderOverlays();renderTeam();renderProp();renderStrip();renderBuild();
+  renderOverlays();renderTeam();renderProp();renderComps();renderStrip();renderBuild();
 }
 
 /* ------------------------------------------------------------ file intake */
@@ -1042,6 +1189,57 @@ const dz=document.getElementById('drop');
 ['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{
   e.preventDefault();dz.style.borderColor='';}));
 dz.addEventListener('drop',e=>{if(e.dataTransfer?.files?.length)ingest(e.dataTransfer.files);});
+
+/* ------------------------------------------------------ Excel (.xlsx) uploads */
+async function postXlsx(url,file,form){
+  const fd=new FormData();fd.append('file',file);
+  if(form)for(const k in form)fd.append(k,form[k]);
+  const r=await fetch(url,{method:'POST',body:fd});
+  if(!r.ok){let t='';try{t=(await r.json()).error||''}catch(e){}throw new Error(t||('server '+r.status));}
+  return r.json();
+}
+const COMP_OUT=['name','address','city','price','bldg','ppu','cap','units','close'];
+function rowsToTsv(rows){
+  if(!rows.length)return '';
+  const cols=COMP_OUT.filter(k=>rows.some(r=>r[k]!=null&&r[k]!==''));
+  return [cols.join('\t')].concat(rows.map(r=>cols.map(k=>r[k]??'').join('\t'))).join('\n');
+}
+function wireCompsUpload(inputId,kind){
+  const el=document.getElementById(inputId);if(!el)return;
+  el.onchange=async()=>{
+    const f=el.files[0];if(!f)return;msg.textContent=`Reading ${f.name}…`;
+    try{
+      const d=await postXlsx(API_BASE+'/api/ingest/comps',f,{kind});
+      const rows=d.rows||[];
+      S.compsRaw[kind]=rowsToTsv(rows);   // renderComps re-parses this into S.comps
+      renderAll();save();
+      msg.innerHTML=`<b style="color:var(--orange)">${rows.length} ${kind} comp${rows.length!==1?'s':''}</b> imported from ${f.name}.`;
+    }catch(e){msg.innerHTML=`<b style="color:var(--orange)">Upload failed.</b> Is the build server running? <span style="color:var(--dim)">(${e.message})</span>`;}
+    el.value='';
+  };
+}
+wireCompsUpload('up-sale','sale');
+wireCompsUpload('up-rent','rent');
+
+(function(){
+  const el=document.getElementById('up-fin');if(!el)return;
+  el.onchange=async()=>{
+    const f=el.files[0];if(!f)return;
+    const note=document.getElementById('fin-note');if(note)note.textContent='Reading…';
+    try{
+      const d=await postXlsx(API_BASE+'/api/ingest/financials',f);
+      const p=d.property||{};
+      for(const k of ['addr','city','noi','sf','units','yr','occ'])
+        if(p[k]!=null&&p[k]!=='')S.prop[k]=p[k];   // overwrite mapped fields
+      if((d.highlights||[]).length)S.prop.hl=d.highlights.join('\n');
+      S.financials={operating:d.operating||[],cashflow:d.cashflow||{}};
+      renderAll();save();
+      if(note)note.innerHTML=`<b style="color:var(--orange)">Imported</b> — `
+        +`${(d.operating||[]).length} P&L lines · ${((d.cashflow||{}).years||[]).length}-yr cash flow`;
+    }catch(e){if(note)note.innerHTML=`<span style="color:var(--orange)">Failed.</span> Is the server running? (${e.message})`;}
+    el.value='';
+  };
+})();
 
 /* -------------------------------------------------------------- controls */
 addp.onclick=()=>{view='team';renderAll();document.getElementById('f-name').focus();};

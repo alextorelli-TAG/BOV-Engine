@@ -251,6 +251,17 @@ def draw_pin(c, box, number, fill, text_colour):
     c.drawString(cx - tw / 2, ry(cyc) - s * 0.34, str(number))
 
 
+# Comps-map plates (34/40): cover the corporate gold subject-star in the legend
+# and redraw it as an orange pin, so the legend matches the map's orange subject
+# marker. Star measured at [36, 233.3, 56.9, 253.2]; comp pins sit at x[38.6,54.3].
+MAP_LEGEND_PLATES = {34, 40}
+
+
+def legend_orange_pin(c):
+    fill_box(c, [34.0, 231.0, 60.0, 255.5], (1, 1, 1))          # cover the gold star
+    draw_pin(c, [38.6, 232.4, 54.3, 254.1], '', hexcol(C['orange']), (1, 1, 1))
+
+
 # ---------------------------------------------------------------- overlays
 def new_overlay():
     buf = io.BytesIO()
@@ -444,6 +455,80 @@ def build_plate35(c, d, photo=None, focal=(0.5, 0.5)):
 def build_plate41(c, d, photo=None, focal=(0.5, 0.5)):
     """Rent Comps Summary — identical layout to plate 35."""
     _build_comps_summary(c, d, 'RENT COMPS SUMMARY // ', 'RENT COMPARABLES')
+
+
+# --- financial tables (plates 31/32) ----------------------------------------
+# Corporate 31/32 are blank "PLACE CHART" pages, so these are house-style tables
+# built from the uploaded proforma (serve/ingest.py) using the shared toolkit.
+def build_plate31(c, d, photo=None, focal=(0.5, 0.5)):
+    """Operating Statement: revenue + expense lines with $ and $/SF, NOI total."""
+    navy, ink = hexcol(C['navy']), hexcol(C['ink'])
+    band = hexcol(C['grey_band'])
+    running_head(c, 'FINANCIAL DETAILS // ', d.get('property', 'SUBJECT PROPERTY'))
+    if not d.get('operating'):
+        return                                    # no proforma uploaded -> clean head-only
+
+    LX, AMT_R, PSF_R = 40.0, 560.0, 716.0
+    top = 112.0
+    cell_text(c, LX - 4, 360, top, 'OPERATING STATEMENT', 'FRL-Bold', 11, navy, track=0.95)
+    cell_text(c, 0, AMT_R, top, 'AMOUNT', 'FRL-Bold', 8.5, navy, 'right', track=0.9)
+    cell_text(c, 0, PSF_R, top, '$ / SF', 'FRL-Bold', 8.5, navy, 'right', track=0.9)
+    hrule(c, 36.0, top + 10, 719.9, 0.75, ink)
+
+    y, pitch, last = top + 26, 21.5, None
+    for ln in d.get('operating', []):
+        g = ln.get('group')
+        if g in ('rev', 'exp') and g != last:
+            cell_text(c, LX - 4, 360, y, 'REVENUE' if g == 'rev' else 'OPERATING EXPENSES',
+                      'FRL-Bold', 9, navy, track=0.95)
+            y += pitch
+            last = g
+        strong = ln.get('total') or g == 'noi'
+        if strong:
+            fill_box(c, [36.0, y - 5.5, 719.9, y + 13.5], band)
+        font = 'FRL-Bold' if strong else 'FRL'
+        col = navy if strong else ink
+        cell_text(c, LX + (0 if strong else 8), 430, y, ln.get('label'), font, 9.5, col)
+        cell_text(c, 0, AMT_R, y, ln.get('amount'), font, 9.5, col, 'right')
+        cell_text(c, 0, PSF_R, y, ln.get('psf'), font, 9.5, col, 'right')
+        y += pitch
+    hrule(c, 36.0, y - 5.5, 719.9, 0.5, ink)
+
+
+def build_plate32(c, d, photo=None, focal=(0.5, 0.5)):
+    """Cash Flow Projection: key lines across the forecast years."""
+    navy, ink = hexcol(C['navy']), hexcol(C['ink'])
+    band = hexcol(C['grey_band'])
+    running_head(c, 'FINANCIAL DETAILS // ', d.get('property', 'SUBJECT PROPERTY'))
+
+    cf = d.get('cashflow', {}) or {}
+    years = (cf.get('years') or [])[:10]
+    rows = cf.get('rows', [])
+    if not rows:
+        return                                    # no proforma uploaded -> clean head-only
+    LX, L1, RX = 40.0, 168.0, 716.0
+    top = 112.0
+    cell_text(c, LX - 4, 400, top, 'CASH FLOW PROJECTION', 'FRL-Bold', 11, navy, track=0.95)
+    n = len(years)
+    colw = (RX - L1) / n if n else 0
+    for i, yr in enumerate(years):
+        cell_text(c, 0, L1 + (i + 1) * colw, top, yr, 'FRL-Bold', 8, navy, 'right', track=0.3)
+    hrule(c, 36.0, top + 10, 719.9, 0.75, ink)
+
+    y, pitch = top + 30, 30.0
+    for r in rows:
+        strong = 'net operating income' in (r.get('label', '')).lower()
+        if strong:
+            fill_box(c, [36.0, y - 6, 719.9, y + 14], band)
+        font = 'FRL-Bold' if strong else 'FRL'
+        col = navy if strong else ink
+        cell_text(c, LX, L1, y, r.get('label'), font, 9, col)
+        vals = r.get('values', [])
+        for i in range(n):
+            cell_text(c, 0, L1 + (i + 1) * colw, y,
+                      vals[i] if i < len(vals) else '', font, 8, col, 'right')
+        y += pitch
+    hrule(c, 36.0, y - 6, 719.9, 0.5, ink)
 
 
 # --- comps DETAIL blocks (plates 37/38 sale, 44/45 rent) --------------------
@@ -1037,7 +1122,8 @@ def wrap(c, text, font, size, measure):
 
 
 BUILDERS = {1: build_plate1, 4: build_plate4, 20: build_plate20,
-            25: build_plate25, 35: build_plate35, 41: build_plate41,
+            25: build_plate25, 31: build_plate31, 32: build_plate32,
+            35: build_plate35, 41: build_plate41,
             37: build_plate37, 38: build_plate37,
             44: build_plate44, 45: build_plate44, 53: build_plate53}
 
@@ -1116,6 +1202,9 @@ def assemble(config, library, out_path, fonts, assets=None):
                     place(c, item['photo'], box,
                           tuple(item.get('focal', (.5, .5))))
                 did += f'+stamp x{len(boxes)}'
+            if plate in MAP_LEGEND_PLATES:
+                legend_orange_pin(c)          # gold star -> orange pin
+                did += '+legend'
 
         if section:
             draw_footer(c, n, section)

@@ -53,8 +53,13 @@ full-template-first model:
       visually but still present in the PDF text layer).
 - [ ] One full multifamily book assembled and reviewed end to end.
 
-*Deferred to production, not MVP:* map generation (Google Maps API) and
-financial charts/tables from Excel — MVP stamps manually-provided images.
+- [x] **Comps maps (Google).** Paste a comps table; the server geocodes each
+      address and composites a branded Static Map (subject star + numbered comp
+      pins) into the Sale/Rent Comps Map frames (34/40). Keys are server-side only
+      (`.env`, gitignored).
+
+*Deferred to production, not MVP:* area maps (regional/local/retailer, 26–28) and
+financial charts/tables from Excel — MVP stamps manually-provided images for those.
 
 ---
 
@@ -74,12 +79,17 @@ without touching code.
 - [ ] **Pre-rendered combinatorics.** Bake section dividers per asset class,
       metro trios per market, and cover/bio/back per advisor, so nothing that
       varies per property is *designed* at generation time.
-- [ ] **Map generation.** Regional/local/retailer/comp maps produced per run via
-      the Google Maps API and stamped into their frames (replacing manual upload).
-- [ ] **Financial data ingestion.** Read the Excel data dump that matches each
-      financial slide and drop values in; migrate applicable financial pages from
-      stamped images to rendered tables. *Later:* read directly from the team's
-      full underwriting Excel models.
+- [ ] **Area maps.** Regional/local/retailer maps (26–28) via the same Maps
+      renderer (subject-centered at different zooms; true nearby-retailer POIs need
+      the Places API). Comp maps (34/40) already shipped in MVP. Later: Static Maps
+      URL signing and premium 2048 px tiles for print-crisp output.
+- [x] **Excel ingestion (comps + financials).** Upload the deal's comps workbook
+      and proforma; the server (`serve/ingest.py`) parses the header-detected comps
+      table and the proforma's Deal Summary / OpEx / Proforma sheets, fills the
+      Property fields + comps, and renders the Financial Analysis slides (31/32) as
+      house-style tables. *Later:* read directly from the team's full underwriting
+      models and migrate more financial pages from stamped images to rendered
+      tables.
 - [ ] **Central asset storage** the build worker can reach (full-res photos,
       focal points, logos, asset-class divider library) — a browser can't re-read
       local disk between sessions.

@@ -17,6 +17,15 @@ page_library/
 !assemble/assets/stock/
 !assemble/assets/stock/**
 
+# --- Secrets — NEVER commit ---
+# API keys (Google Maps, Anthropic) live here, loaded server-side only.
+.env
+.env.*
+!.env.example
+
+# --- Server cache (geocoded coords + rendered map PNGs) ---
+serve/.cache/
+
 # --- Local agent / editor state ---
 .claude/
 

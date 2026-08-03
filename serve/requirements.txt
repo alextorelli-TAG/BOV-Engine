@@ -1,5 +1,9 @@
 fastapi>=0.110
 uvicorn[standard]>=0.27
+httpx>=0.27          # Google Geocoding + Static Maps calls (serve/maps.py)
+python-dotenv>=1.0   # load API keys from .env (server-side only)
+openpyxl>=3.1        # read comps/proforma .xlsx uploads (serve/ingest.py)
+python-multipart>=0.0.9  # multipart form uploads for the ingest endpoints
 # The assembler's own runtime deps (also needed by this process):
 pypdf>=4.0
 reportlab>=4.0

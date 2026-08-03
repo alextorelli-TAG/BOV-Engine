@@ -65,16 +65,17 @@ Authoritative spec for how a BOV book is composed. Pairs with `ROADMAP.md`
 | 29 | Photo Grid | P ×4–5 | | ✅ (stamp) | |
 | **§5 Financial Analysis** — *mandatory* ||||||
 | 30 | Divider | D | ✔ | ▢ | |
-| 31–32 | Charts | M | ✔ | ▢ | from Excel data |
+| 31 | Operating Statement | X | ✔ | ✅ | house-style table from proforma OpEx |
+| 32 | Cash Flow Projection | X | ✔ | ✅ | house-style table from proforma |
 | **§6 Sale Comparables** — *core, mandatory* ||||||
 | 33 | Divider | D | ✔ | ▢ | |
-| 34 | Comps Map | M | | ▢ | Google Maps + legend |
+| 34 | Comps Map | M | | ✅ | Google Maps (geocoded pins) + orange-pin legend |
 | 35 | Sale Comps Summary | X | ✔ | ✅ | |
 | 36 | Chart | M | | ▢ | from Excel data |
 | 37–38 | Sale Comps Detail | X + P | | ✅ | |
 | **§7 Rent Comparables** — *multifamily; N/A for land* ||||||
 | 39 | Divider | D | | ▢ | |
-| 40 | Rent Comps Map | M | | ▢ | Google Maps |
+| 40 | Rent Comps Map | M | | ✅ | Google Maps (geocoded pins) + orange-pin legend |
 | 41 | Rent Comps Summary | X | | ✅ | |
 | 42–43 | Charts | M | | ▢ | from Excel data |
 | 44–45 | Rent Comps Charts | X + P | | ✅ | |

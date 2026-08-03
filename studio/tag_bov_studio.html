@@ -689,6 +689,8 @@ function buildConfig(){
   const order=[];
   const subjMap={address:fullAddr({address:S.prop.addr,city:S.prop.city})};
   const propHead=(S.prop.name||'SUBJECT PROPERTY').toUpperCase();
+  // Non-multifamily deals are priced per SF, not per unit — relabel comp columns.
+  const compHeaders=(S.assetClass!=='multifamily')?{ppu:'PRICE/SF',units:''}:undefined;
   // Comps detail spreads hold two comps per page; walk them in reading order so
   // pin/number 1 is the first comp on both the map and the detail page.
   let saleDi=0,rentDi=0;
@@ -708,8 +710,8 @@ function buildConfig(){
         offering:offeringPairs()};attachPhoto(e,'property_photo');}
     else if(pl===31)e.data={property:propHead,operating:S.financials.operating||[]};
     else if(pl===32)e.data={property:propHead,cashflow:S.financials.cashflow||{}};
-    else if(pl===35)e.data={property:propHead,subject:subjectRow(),comps:S.comps.sale,totals:{}};
-    else if(pl===41)e.data={property:propHead,subject:subjectRow(),comps:S.comps.rent,totals:{}};
+    else if(pl===35)e.data={property:propHead,subject:subjectRow(),comps:S.comps.sale,totals:{},headers:compHeaders};
+    else if(pl===41)e.data={property:propHead,subject:subjectRow(),comps:S.comps.rent,totals:{},headers:compHeaders};
     else if(pl===34)e.data={subject:subjMap,comps:mapPoints(S.comps.sale)};   // server geocodes -> map PNG
     else if(pl===40)e.data={subject:subjMap,comps:mapPoints(S.comps.rent)};
     else if(pl===37||pl===38){const k=saleDi++;const s=S.comps.sale;

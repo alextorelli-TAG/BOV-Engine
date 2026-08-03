@@ -399,11 +399,12 @@ def _comps_row(c, cols, name_top, row, navy, ink):
 HEADER_TRACK = 0.95     # corporate letter-spaces the bold 10pt header row
 
 
-def _comps_header(c, cols, top, label, navy):
+def _comps_header(c, cols, top, label, navy, headers=None):
     """Column header row: section label in the name column + column titles."""
+    headers = headers or SALE_HEADERS
     cell_text(c, 113.0, 266.4, top, label, 'FRL-Bold', 10, navy, track=HEADER_TRACK)
     for key, x0, x1, align in cols[1:]:
-        cell_text(c, x0, x1, top, SALE_HEADERS.get(key, ''), 'FRL-Bold', 10, navy,
+        cell_text(c, x0, x1, top, headers.get(key, ''), 'FRL-Bold', 10, navy,
                   align, track=HEADER_TRACK)
 
 
@@ -413,18 +414,19 @@ def _build_comps_summary(c, d, prefix, section_label):
     `section_label`. Geometry measured off the corporate tables."""
     navy, ink = hexcol(C['navy']), hexcol(C['ink'])
     gold = hexcol('#FFC736')
+    headers = {**SALE_HEADERS, **(d.get('headers') or {})}   # commercial -> PRICE/SF, etc.
 
     running_head(c, prefix, d.get('property', 'SUBJECT PROPERTY'))
 
     # ---- subject table ---------------------------------------------------
-    _comps_header(c, SALE_COLS, 106.19, 'SUBJECT PROPERTY', navy)
+    _comps_header(c, SALE_COLS, 106.19, 'SUBJECT PROPERTY', navy, headers)
     hrule(c, TABLE_X0, 118.7, TABLE_X1, 0.5, ink)
     draw_star(c, 74.25, 142.25, 10.5, gold)
     _comps_row(c, SALE_COLS, 125.75, d.get('subject', {}), navy, ink)
     hrule(c, TABLE_X0, 165.6, TABLE_X1, 0.25, ink)
 
     # ---- comparables table ----------------------------------------------
-    _comps_header(c, SALE_COLS, 192.76, section_label, navy)
+    _comps_header(c, SALE_COLS, 192.76, section_label, navy, headers)
     hrule(c, TABLE_X0, 205.3, TABLE_X1, 0.5, ink)
     comps = d.get('comps', [])[:6]
     name_top0, pitch = 212.31, 46.87

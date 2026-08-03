@@ -120,8 +120,10 @@ def build_static_map(subject_address, comps, w_pt, h_pt):
         return None
 
     w, h = _frame_size(w_pt, h_pt)
-    # Comps first, subject last, so the orange subject pin always draws on top.
-    markers = [f'color:{COMP_COLOR}|label:{lab}|{ll[0]},{ll[1]}' for lab, ll in pins]
+    # Comps drawn first and one size down (mid); the full-size orange subject is
+    # appended last so it always sits on top and reads as the dominant marker even
+    # when a comp is a block away.
+    markers = [f'size:mid|color:{COMP_COLOR}|label:{lab}|{ll[0]},{ll[1]}' for lab, ll in pins]
     if subj:
         markers.append(f'color:{SUBJECT_COLOR}|label:S|{subj[0]},{subj[1]}')
 

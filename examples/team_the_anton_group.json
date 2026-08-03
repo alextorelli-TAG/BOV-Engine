@@ -6,9 +6,50 @@
     "emailDomain": "marcusmillichap.com"
   },
   "contacts": [
-    { "id": "eric-anton", "name": "Eric Anton", "title": "Senior Managing Director Investments", "office": "(212) 430-5209", "mobile": "(917) 848-6043", "email": "Eric.Anton@marcusmillichap.com" },
-    { "id": "nelson-lee", "name": "Nelson Lee", "title": "Managing Director, Investments", "office": "(646) 805-1497", "mobile": "(917) 885-0894", "email": "Nelson.Lee@marcusmillichap.com" },
-    { "id": "henri-kessler", "name": "Henri Kessler", "title": "Associate Director, Investments", "office": "(646) 805-1427", "mobile": "(310) 691-0775", "email": "Henri.Kessler@marcusmillichap.com" },
+    {
+      "id": "eric-anton", "name": "Eric Michael Anton",
+      "title": "Senior Managing Director Investments",
+      "role": "Team Lead",
+      "bioTitle": "Senior Managing Director · Co-Chairman, Global Capital Group",
+      "office": "(212) 430-5209", "mobile": "(917) 848-6043",
+      "email": "Eric.Anton@marcusmillichap.com",
+      "address": "260 Madison Avenue, New York, NY 10016",
+      "bio": [
+        "Mr. Anton is a Senior Managing Director and Director of the firm’s Global Capital Group. He is located in Marcus & Millichap’s New York office, the firm’s largest. With more than 25 years of experience in commercial real estate, his group is focused on investment sales and equity placement transactions in the New York metropolitan area.",
+        "As Director of the Global Capital Group, he is responsible for identifying new sources of inbound capital to the U.S. from across the world, traveling regularly to meet investors in Beijing, Shanghai, Tokyo, Hong Kong, London, Singapore, Germany, Canada, and Korea.",
+        "Since joining Marcus & Millichap in 2017, Mr. Anton has completed several signature deals, including the recapitalization of 520 Fifth Avenue, a $650 million development site in the Grand Central submarket, and the net lease of the Times Square Theater, a $100 million project on West 42nd Street. Throughout his career he has completed more than $25 billion in commercial real estate transactions, including office, multifamily, hotel, and development site transactions.",
+        "Mr. Anton is a director for the Real Estate Board of New York’s commercial division and earned a Master of Science in Real Estate Finance and Development from Columbia University after graduating with a dual degree in European History and Political Science from Brown University."
+      ]
+    },
+    {
+      "id": "nelson-lee", "name": "Nelson Lee",
+      "title": "Managing Director, Investments",
+      "role": "Global Capital Group",
+      "bioTitle": "Managing Director, Investments · Co-Chairman, Global Capital Group",
+      "office": "(646) 805-1497", "mobile": "(917) 885-0894",
+      "email": "Nelson.Lee@marcusmillichap.com",
+      "address": "260 Madison Avenue, New York, NY 10016",
+      "bio": [
+        "Mr. Lee is Co-Chairman of the Global Capital Group at Marcus & Millichap’s Manhattan office, with more than 22 years of commercial real estate experience.",
+        "In the last five years he and the GCG team have traveled to more than 20 cities in 11 countries to facilitate investments and capital-markets transactions, closing more than $2.2 billion across hospitality, multifamily, development, office, and retail.",
+        "Together with Eric Anton he sources foreign capital directly — specifically from Asia and Europe — attending the world’s leading real estate conferences to meet the investors and institutions actively seeking New York metro income."
+      ]
+    },
+    {
+      "id": "henri-kessler", "name": "Henri Kessler",
+      "title": "Associate Director, Investments",
+      "role": "Transaction Execution",
+      "bioTitle": "Associate Director · Investments · Senior Associate, Global Capital Group",
+      "office": "(646) 805-1427", "mobile": "(310) 691-0775",
+      "email": "Henri.Kessler@marcusmillichap.com",
+      "address": "260 Madison Avenue, New York, NY 10016",
+      "license": "NY 10401288939",
+      "bio": [
+        "Mr. Kessler is a Senior Associate at Marcus & Millichap’s Global Capital Group and a member of The Anton Group, responsible for identifying new sources of inbound capital to the U.S. from around the world. He establishes relationships with Pan-Asian and European family offices, international investors, developers, and institutional clients — providing services from owner representation and advisory to investment sales and 1031 exchanges.",
+        "Mr. Kessler joined Marcus & Millichap in 2017 after brokering the sale of the AMC Village 7 Theater in Manhattan for $32.25 million. Since then, he has traded over $100 million in CRE transactions, including the sale of the Gosman’s Portfolio in Montauk, NY for $34 million, and the representation of developers and owners of industrial entertainment and production facilities nationally.",
+        "Prior to Marcus & Millichap, Mr. Kessler was a Partner at The Robert Evans Company on the Paramount Pictures Studio lot in Hollywood, where he developed feature films and television series and founded Woodland Hotel & Resort Group, LLC. He holds a degree from New York University and brings deep international and cross-disciplinary deal-making experience to every transaction."
+      ]
+    },
     { "id": "adam-steiner", "name": "Adam Steiner", "title": "Associate Director, Investments", "office": "(212) 430-5175", "mobile": "(973) 769-2760", "email": "Adam.Steiner@marcusmillichap.com" },
     { "id": "chris-murphy", "name": "Chris Murphy", "title": "Associate, Investments", "office": "(646) 805-1485", "mobile": "(203) 399-8990", "email": "Chris.Murphy@marcusmillichap.com" },
     { "id": "justice-carrenard", "name": "Justice Carrenard", "title": "Associate", "office": "(646) 805-1471", "mobile": "(347) 788-7217", "email": "Justice.Carrenard@marcusmillichap.com" },

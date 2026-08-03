@@ -894,8 +894,85 @@ def build_exec_summary(c, d):
     cell_text(c, 36.0, 0, y, d.get('titles', ''), 'FRL', 9.5, orange, 'left', pad=0, track=0.5)
 
 
-INSERTS = {'exec_summary': build_exec_summary}
-INSERT_META = {'exec_summary': {'footer_section': 'EXECUTIVE SUMMARY'}}
+ANTON_POINTS = [
+    'Our team is unique in several ways relevant to this transaction.',
+    'We are the only team at Marcus & Millichap — and one of few in New York '
+    'City — focused on all of the city’s primary property types: residential, '
+    'office, development, retail, hotel, and industrial.',
+    'We are one of the only teams solely focused on the middle market — deals '
+    'priced between $20M and $250M.',
+    'Success here requires a deep network of institutional and high-net-worth '
+    'family buyers.',
+    'Through the Global Capital Group we source foreign capital directly — a '
+    'channel most middle-market teams do not have.',
+]
+ANTON_STATS = [('$27B+', 'INVESTMENT SALES'), ('350+', 'TRANSACTIONS'),
+               ('$113B+', 'GCG CAPITAL FACILITATED'), ('6', 'PRIMARY PROPERTY TYPES')]
+
+
+def build_anton_advantage(c, d):
+    """Team Overview — 'What Sets Us Apart': the Anton Group advantage narrative
+    (left) + a navy 'By the Numbers' stat panel (right). Fixed team boilerplate."""
+    navy, orange, ink = hexcol(C['navy']), hexcol(C['orange']), hexcol(C['ink'])
+    white = (1, 1, 1)
+    light = (0.82, 0.84, 0.87)
+
+    running_head(c, 'TEAM OVERVIEW // ', 'WHAT SETS US APART')
+
+    # left: title + tagline + numbered points
+    c.setFillColorRGB(*orange)
+    c.rect(36.0, ry(151.5), 30.0, 3.0, stroke=0, fill=1)
+    cell_text(c, 36.0, 0, 158.0, 'THE ANTON GROUP', 'FRL-Bold', 25, navy, 'left', pad=0)
+    cell_text(c, 36.0, 0, 187.0, 'ADVANTAGE', 'FRL-Bold', 25, orange, 'left', pad=0)
+    ty = 224.0
+    for line in wrap(c, d.get('tagline', 'Since 1998, more than $27 billion across '
+                     '350+ investment sales and capital-market transactions.'),
+                     'FRL', 13, 360.0):
+        cell_text(c, 36.0, 0, ty, line, 'FRL', 13, navy, 'left', pad=0)
+        ty += 17.0
+    ty += 10.0
+    hrule(c, 36.0, ty, 400.0, 0.5, (0.72, 0.74, 0.76))
+    ty += 16.0
+    for i, pt in enumerate(d.get('points', ANTON_POINTS)):
+        cell_text(c, 36.0, 0, ty, f'{i + 1:02d}', 'FRL-Bold', 10, orange, 'left', pad=0)
+        for ln in wrap(c, pt, 'FRL', 9.5, 336.0):
+            cell_text(c, 62.0, 0, ty, ln, 'FRL', 9.5, ink, 'left', pad=0)
+            ty += 13.0
+        ty += 9.0
+
+    # right: navy 'by the numbers' panel
+    PX0, PX1 = 420.0, 776.0
+    fill_box(c, [PX0, 124.0, PX1, 127.5], orange)
+    fill_box(c, [PX0, 127.5, PX1, 566.0], navy)
+    cell_text(c, 445.0, 0, 157.0, 'THE ANTON GROUP · BY THE NUMBERS', 'FRL-Bold',
+              8.5, orange, 'left', pad=0, track=0.6)
+    cols = (445.0, 612.0)
+    tile_tops = (188.0, 262.0)
+    for idx, (val, lab) in enumerate(ANTON_STATS):
+        x = cols[idx % 2]
+        top = tile_tops[idx // 2]
+        cell_text(c, x, 0, top, val, 'FRL', 30, white, 'left', pad=0)
+        cell_text(c, x, 0, top + 30.0, lab, 'FRL-Bold', 7.5, orange, 'left',
+                  pad=0, track=0.5)
+    hrule(c, 445.0, 238.0, 752.0, 0.4, (0.35, 0.42, 0.55))
+    hrule(c, 445.0, 312.0, 752.0, 0.4, (0.35, 0.42, 0.55))
+    cell_text(c, 445.0, 0, 336.0, 'MIDDLE-MARKET FOCUS', 'FRL-Bold', 8.5, orange,
+              'left', pad=0, track=0.6)
+    cell_text(c, 445.0, 0, 360.0, d.get('range', '$20M – $250M'), 'FRL', 26, white,
+              'left', pad=0)
+    dy = 398.0
+    for line in wrap(c, d.get('sectors', 'Residential · Office · Development · '
+                     'Retail · Hotel · Industrial — the only team at Marcus & '
+                     'Millichap covering all six of New York City’s primary '
+                     'property types.'), 'FRL', 8.5, 312.0):
+        cell_text(c, 445.0, 0, dy, line, 'FRL', 8.5, light, 'left', pad=0)
+        dy += 12.0
+
+
+INSERTS = {'exec_summary': build_exec_summary,
+           'anton_advantage': build_anton_advantage}
+INSERT_META = {'exec_summary': {'footer_section': 'EXECUTIVE SUMMARY'},
+               'anton_advantage': {'footer_section': 'TEAM OVERVIEW'}}
 
 
 def wrap(c, text, font, size, measure):

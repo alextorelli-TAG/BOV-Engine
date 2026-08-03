@@ -652,6 +652,11 @@ def assemble(config, library, out_path, fonts, assets=None):
     log, n = [], 0
 
     for item in config['order']:
+        # Full-template-first: every page defaults to included; the console
+        # toggles pages off. Excluded pages are skipped and don't consume a
+        # page number, so footers renumber to the surviving set.
+        if item.get('include') is False:
+            continue
         plate = item['plate']
         meta = plates[plate]
         cls = meta['class']

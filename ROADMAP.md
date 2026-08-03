@@ -1,6 +1,8 @@
 # Roadmap
 
-Where the BOV Engine is and where it's going. Three stages:
+Where the BOV Engine is and where it's going. The composition model (every run
+starts from the full template; the operator subtracts and customizes) is
+specified in `TEMPLATE_OUTLINE.md`. Three stages:
 
 1. **MVP / Prototype** — prove the template can be reproduced from data, and
    assemble a real book end to end. *(current stage)*
@@ -33,15 +35,26 @@ built pages are indistinguishable from the corporate template.
 - [x] Operator console with page/preset selection, roster, photo library with
       focal points, and property intake.
 
-**Remaining for MVP**
+**Remaining for MVP** — a full multifamily book assembled from the
+full-template-first model:
+- [ ] Full-53 config model: default = all pages ON, per-page `include` flag +
+      payload; assembler honors `include:false`.
 - [ ] Cover builder (plate 1) — property name + address over the hero photo.
-- [ ] Table-of-contents builder (plate 4) — generated last from surviving
-      sections and their page numbers.
-- [ ] Wire the console's **Assemble** button to the assembler (today it only
-      reports what *would* be produced).
+- [ ] Table-of-contents builder (plate 4) — generated last from surviving pages.
+- [ ] **Executive Summary** letter page (mandatory insert after TOC) — see spec
+      in `TEMPLATE_OUTLINE.md`.
+- [ ] Divider builder + navy duotone (8 section dividers, asset-class photo swap
+      at run time).
+- [ ] Team variant pages from structured headshot+contact data: presented-by
+      (3), advisor bios (19–20, always included), back cover (53).
+- [ ] Wire the console's **Assemble** button; full-53 checklist grouped by
+      section with mandatory locks and per-page editors.
 - [ ] Strip the superseded footer text from restamped pages (currently covered
       visually but still present in the PDF text layer).
 - [ ] One full multifamily book assembled and reviewed end to end.
+
+*Deferred to production, not MVP:* map generation (Google Maps API) and
+financial charts/tables from Excel — MVP stamps manually-provided images.
 
 ---
 
@@ -61,8 +74,15 @@ without touching code.
 - [ ] **Pre-rendered combinatorics.** Bake section dividers per asset class,
       metro trios per market, and cover/bio/back per advisor, so nothing that
       varies per property is *designed* at generation time.
+- [ ] **Map generation.** Regional/local/retailer/comp maps produced per run via
+      the Google Maps API and stamped into their frames (replacing manual upload).
+- [ ] **Financial data ingestion.** Read the Excel data dump that matches each
+      financial slide and drop values in; migrate applicable financial pages from
+      stamped images to rendered tables. *Later:* read directly from the team's
+      full underwriting Excel models.
 - [ ] **Central asset storage** the build worker can reach (full-res photos,
-      focal points, logos) — a browser can't re-read local disk between sessions.
+      focal points, logos, asset-class divider library) — a browser can't re-read
+      local disk between sessions.
 - [ ] **Preflight & QA.** Copy-fit checks, missing-asset warnings, and a
       page-count/footer-integrity check before export.
 - [ ] **Clean output.** Remove buried original images and superseded text so

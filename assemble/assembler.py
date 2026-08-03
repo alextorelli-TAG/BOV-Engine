@@ -808,6 +808,51 @@ def build_plate20(c, d, photo=None, focal=(0.5, 0.5)):
         by += 8.0
 
 
+def build_plate53(c, d, photo=None, focal=(0.5, 0.5)):
+    """Back cover: property photo (duotone) + centre panel + PRESENTED BY +
+    lead advisor contact + Anton Group lockup. Same treatment as a divider."""
+    navy, orange = hexcol(C['navy']), hexcol(C['orange'])
+    grey, white = (0.69, 0.718, 0.737), (1, 1, 1)
+
+    tex = photo or d.get('photo')
+    if tex and os.path.exists(tex):
+        place(c, tex, [0.0, 0.0, 792.0, 612.0], focal)
+        c.setFillColorRGB(*navy)
+        c.setFillAlpha(0.45)
+        c.rect(0, 0, 792, 612, stroke=0, fill=1)
+        c.setFillAlpha(1.0)
+    else:
+        fill_box(c, [0.0, 0.0, 792.0, 612.0], navy)
+    c.setFillColorRGB(*navy)
+    c.setFillAlpha(0.66)
+    c.rect(PANEL_L, 0, PANEL_R - PANEL_L, 612, stroke=0, fill=1)
+    c.setFillAlpha(1.0)
+    hrule(c, 0.0, 16.7, 792.0, 0.5, grey)
+    hrule(c, 0.0, 594.1, 792.0, 0.5, grey)
+
+    cell_text(c, PANEL_L, PANEL_R, 177.01, 'PRESENTED BY', 'FRL-Bold', 14, white,
+              'center', track=2.5)
+    c.setStrokeColorRGB(*orange)
+    c.setLineWidth(0.5)
+    c.line(PANEL_CX - 48, ry(198.0), PANEL_CX + 48, ry(198.0))
+    cell_text(c, PANEL_L, PANEL_R, 214.0, d.get('name', 'Agent Name'), 'FRL-Bold',
+              14, orange, 'center')
+    lines = [d.get('title', '')]
+    if d.get('direct'):
+        lines.append('Direct: ' + d['direct'])
+    if d.get('mobile'):
+        lines.append('Mobile: ' + d['mobile'])
+    if d.get('email'):
+        lines.append(d['email'])
+    ly = 231.0
+    for ln in lines:
+        if ln:
+            cell_text(c, PANEL_L, PANEL_R, ly, ln, 'FRL', 12, white, 'center')
+        ly += 16.5
+    stamp_icon(c, 'brand/anton_group_lockup_white.png', [306.0, 538.0, 486.0, 575.0],
+               fit=True)
+
+
 def build_plate1(c, d, photo=None, focal=(0.5, 0.5)):
     """Cover: full-bleed property photo + navy scrim, PROPOSAL bar, title/
     address, and the Marcus & Millichap logo box."""
@@ -994,7 +1039,7 @@ def wrap(c, text, font, size, measure):
 BUILDERS = {1: build_plate1, 4: build_plate4, 20: build_plate20,
             25: build_plate25, 35: build_plate35, 41: build_plate41,
             37: build_plate37, 38: build_plate37,
-            44: build_plate44, 45: build_plate44}
+            44: build_plate44, 45: build_plate44, 53: build_plate53}
 
 
 # ---------------------------------------------------------------- assemble

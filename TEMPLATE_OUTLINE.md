@@ -41,11 +41,11 @@ Authoritative spec for how a BOV book is composed. Pairs with `ROADMAP.md`
 | # | Page | Type | Mandatory | Status | Notes |
 |---|---|---|:--:|:--:|---|
 | **Front matter** ||||||
-| 1 | Cover | X + P | ✔ | ▢ | property name/address over hero |
+| 1 | Cover | X + P | ✔ | ✅ | property name/address over hero |
 | 2 | Disclaimer | B | ✔ | ✅ | activity-ID stamp only |
-| 3 | Presented By | T + P | ✔ | ▢ | team roster |
-| 4 | Table of Contents | X | ✔ | ▢ | generated **last** from surviving pages |
-| 4a | **Executive Summary** | X | ✔ | ▢ | **inserted after TOC** — letter format (see spec) |
+| ~~3~~ | ~~Presented By~~ | — | — | — | **dropped — redundant (off by default)** |
+| ~~4~~ | **Executive Summary** | X | ✔ | ✅ | letter format; sits after Disclaimer → page 3 |
+| ~~5~~ | Table of Contents | X | ✔ | ✅ | generated **last** from surviving pages |
 | **§1 The M&M Advantage** — *optional* ||||||
 | 5 | Divider | D | | ▢ | |
 | 6–9 | Welcome / Mission / Advantage / Specialists | B | | ✅ | locked |
